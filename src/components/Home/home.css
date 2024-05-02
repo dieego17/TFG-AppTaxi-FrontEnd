@@ -1,0 +1,22 @@
+.section__preheader {
+    background-color: #006431;
+    height: 100%;
+    width: 100%;
+}
+
+
+.article__h1, .article__text{
+    color: #ffffff;
+}
+.img__taxi{
+    width: 100%;
+    height: 100%;
+}
+.article__button{
+    text-decoration: none;
+    color: #ffffff;
+    border: 1px solid #003d1d;
+    border-radius: 5px;
+    padding: 5px 40px;
+    background-color: #003d1d;
+}

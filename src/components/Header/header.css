@@ -1,15 +1,14 @@
-.header{
-    color: white;
+.navbar {
     background-color: #006431;
-    height: 455px;
+    border-bottom: #006431;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
 }
-.container{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
+
 .logo__img {
-    width: 60px;
+    width: 70px;
     transition: transform 1s ease;
 }
 
@@ -17,35 +16,27 @@
     transform: rotateZ(20deg);
 }
 
-.nav-link{
+.nav-link {
     color: #ffffff;
     margin: 0px 20px;
     font-size: 1.2rem;
     transition: transform 1s ease;
 }
-.nav-link:hover{
+
+.nav-link:hover {
     color: #ffffff;
     transform: scale(1.1);
 }
 
-
-.article__text{
-    margin-left: 50px;
-    margin-bottom: 50px;
-}
-.article__h1{
+.nav-link:focus{
     color: #ffffff;
 }
-.button__header{
-    text-decoration: none;
-    color: #ffffff;
-    border: 1px solid #004622;
-    background-color: #004622;
-    text-align: center;
-    border-radius: 5px;
-    padding: 5px;
-}
-.img__coche{
-    width: 100%;
-}
 
+/* MENU HAMBURGUESA */
+.navbar-toggler{
+    border: none;
+}
+.nav__icon{
+    color: #ffffff;
+    font-size: 2rem;
+}

@@ -1,62 +1,52 @@
 /* eslint-disable no-unused-vars */
-import React from 'react'
-import './header.css'
-import logo from '../../assets/logo.png'
-import taxi from '../../assets/taxi__header.png'
+import React from 'react';
+import { Link } from 'react-router-dom';
+import logo from '../../assets/images/logo.png';
+import './header.css';
 
 function Header() {
   return (
-    <header className='header border'>
-      <section className='container mt-3'>
-        <div className='header__logo'>
-          <a href="/">
-            <img className='logo__img' src={logo} alt="" />
-          </a>
-        </div>
-        <nav className="navbar navbar-expand-lg">
-          <div className="container-fluid">
-            <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-              <span className="navbar-toggler-icon"></span>
-            </button>
-            <div className="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                <li className="nav-item">
-                  <a className="nav-link" href="#">Home</a>
-                </li>
-                <li className="nav-item dropdown">
-                  <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Servicios
-                  </a>
-                  <ul className="dropdown-menu">
-                    <li><a className="dropdown-item" href="#">Action</a></li>
-                    <li><a className="dropdown-item" href="#">Another action</a></li>
-                    <li><hr className="dropdown-divider"/></li>
-                    <li><a className="dropdown-item" href="#">Something else here</a></li>
-                  </ul>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="#">Quiénes somos</a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="#"><i className="fa-solid fa-user"></i></a>
-                </li>
+    <nav className="navbar navbar-expand-lg navbar-light">
+      <div className="container-fluid container">
+        <Link to={'/'}>
+          <img src={logo} alt="logo" className="logo__img" />
+        </Link>
+        <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <i className="fa-solid fa-bars nav__icon"></i>
+        </button>
+        <div className="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+          <ul className="navbar-nav">
+            <li className="nav-item">
+              <Link to={'/'} className="nav-link">
+                Home
+              </Link>
+            </li>
+            <li className="nav-item dropdown">
+              <Link to={'/services'} className="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Servicios
+              </Link>
+              <ul className="dropdown-menu">
+                <li><Link to={'#'} className="dropdown-item">Action</Link></li>
+                <li><Link to={'#'} className="dropdown-item">Another action</Link></li>
+                <li><hr className="dropdown-divider"/></li>
+                <li><Link to={'#'} className="dropdown-item">Something else here</Link></li>
               </ul>
-            </div>
-          </div>
-        </nav>
-      </section>
-      <section className='section__title container'>
-        <article className='d-flex flex-column justify-content-end article__text'>
-          <h1 className='article__h1'>El viaje de tu vida</h1>
-          <p className='text-center'>Prueba</p>
-          <a className='button__header' href="/">Conseguir un viaje</a>
-        </article>
-        <article>
-          <img className='img__coche' src={taxi} alt="" />
-        </article>
-      </section>
-    </header>
-  )
+            </li>
+            <li className="nav-item">
+              <Link to={'/quienes-somos'} className="nav-link">
+                Quiénes somos
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link to={'/login'} className="nav-link">
+                <i className="fa-solid fa-user"></i>
+              </Link>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  );
 }
 
-export default Header
+export default Header;
