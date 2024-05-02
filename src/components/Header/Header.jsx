@@ -18,7 +18,7 @@ function Header() {
           <ul className="navbar-nav">
             <li className="nav-item">
               <Link to={'/'} className="nav-link">
-                Home
+                Inicio
               </Link>
             </li>
             <li className="nav-item dropdown">
