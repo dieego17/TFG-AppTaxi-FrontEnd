@@ -6,6 +6,7 @@ import Home from './components/Home/Home'
 import Layout from './components/Layout'
 import QuienesSomos from './components/QuienesSomos'
 import Login from './components/Login/Login'
+import Dashboard from './components/Dashboard/Dashboard'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
     <BrowserRouter>
@@ -15,6 +16,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route path='/quienes-somos' element={<QuienesSomos />} />
       </Route>
       <Route path='/login' element={<Login />} />
+      <Route path='/dashboard' element={<Dashboard />}>
+        
+      </Route>
       <Route path='*' element={<Navigate to={'/'} />} />
     </Routes>
   </BrowserRouter>
