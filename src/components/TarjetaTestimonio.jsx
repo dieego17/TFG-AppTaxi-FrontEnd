@@ -12,7 +12,7 @@ function TarjetaTestimonio({testimonios}) {
                   <h5 className="card-title text-success">{testimonio.cliente.usuario.nombre} {testimonio.cliente.usuario.apellidos}</h5>
                   <p className="card-text">{testimonio.mensaje_testimonio}</p>
                   {
-                    testimonio.clasificacion_testimonio == 4 ? 
+                    testimonio.clasificacion_testimonio == 4 || testimonio.clasificacion_testimonio < 4.5 ? 
                     <div className="text-center">
                       <i className="bi bi-star-fill text-success"></i>
                       <i className="bi bi-star-fill text-success"></i>
@@ -20,7 +20,7 @@ function TarjetaTestimonio({testimonios}) {
                       <i className="bi bi-star-fill text-success"></i>
                       <i className="bi bi-star text-success"></i>
                     </div>
-                    : testimonio.clasificacion_testimonio == 5 ?
+                    : testimonio.clasificacion_testimonio == 5 || testimonio.clasificacion_testimonio > 4.5 ?
                     <div className="text-center">
                       <i className="bi bi-star-fill text-success"></i>
                       <i className="bi bi-star-fill text-success"></i>

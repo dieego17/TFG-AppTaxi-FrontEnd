@@ -7,26 +7,15 @@ import coche from '../../assets/images/car.png';
 import porcen from '../../assets/images/percent.png';
 import tele from '../../assets/images/teleo.png';
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
 import TarjetaTestimonio from '../TarjetaTestimonio';
+import { useTestimonio } from '../../hooks/useTestimonio'
 
  
 
 function Home() {
 
-  const [testimonios, setTestimonios] = useState([])
-
-  const getTestimonios = async () => {
-    const response = await fetch('http://localhost:3000/appTaxi/v1/testimonios')
-    const data = await response.json()
-    /* console.log(data) */
-    setTestimonios(data)
-  }
-
-  useEffect(() => { 
-    getTestimonios()
-  }, [])
-
+  // hook personalizado para coger los testimonios de los clientes
+  const testimonios = useTestimonio()
 
 
   return (
@@ -50,10 +39,31 @@ function Home() {
       </div>
       <section>
         <article className='container'>
-          <p className='text-center'>Porque elegirnos</p>
+          <p className='text-center'>Qué Servicios Ofrecemos</p>
         </article>
-        <article className='p-5 article__elegirnos'>
+        <article className='p-5'>
           <div className='container'>
+            <div className='row justify-content-around'>
+              <div className="col-lg-2 col-md-6 text-center">
+                <p className='text__elegirnos pt-4'>Descuentos</p>
+              </div>
+              <div className="col-lg-2 col-md-6 text-center">
+                <p className='text__elegirnos pt-4'>Coche Rápido</p>
+              </div>
+              <div className="col-lg-2 col-md-6 text-center">
+                <p className='text__elegirnos pt-4'>Coche Seguro</p>
+              </div>
+              <div className="col-lg-2 col-md-6 text-center">
+                <p className='text__elegirnos pt-4'>Soporte Eficaz</p>
+              </div>
+            </div>
+          </div>
+        </article>
+      </section>
+      <section>
+        <article className='article__elegirnos'>
+          <div className='container p-5'>
+            <p className='text-center text-white'>Porque elegirnos</p>
             <div className='row justify-content-around'>
               <div className="col-lg-2 col-md-6 text-center">
                 <img src={porcen} alt="" />
