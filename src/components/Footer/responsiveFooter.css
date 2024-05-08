@@ -1,0 +1,35 @@
+@media screen and (min-width: 320px){
+    .container__politicas{
+        flex-direction: column;
+        margin-left: 50px;
+    }
+    .link__footer--politicas{
+        font-size: 1rem;
+        padding-top: 2PX;
+    }
+    .hr__rrss{
+        display: flex;
+    }
+}
+
+@media screen and (min-width: 768px){
+    
+    
+}
+
+@media screen and (min-width: 1024px){
+    .container__politicas{
+        flex-direction: row;
+        margin-left: 50px;
+    }
+    .link__footer--politicas{
+        font-size: 0.8rem;
+    }
+}
+
+
+@media screen and (min-width: 1440px){
+    .link__footer--politicas{
+        font-size: 1rem;
+    }
+}

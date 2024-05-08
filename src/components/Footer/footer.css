@@ -2,3 +2,48 @@
     background-color: #006431;
     border-top: #006431;
 }
+
+.article__lista{
+    display: flex;
+    justify-content: space-around;
+    padding: 10px;
+    margin: 10px 0px 0px;
+}
+
+/*  POLITICAS */
+.article__rrss{
+    padding: 10px 0px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.container__politicas{
+    padding: 10px;
+    display: flex;
+    justify-content: space-around;
+}
+.container__rrss{
+    padding: 10px 5px;
+    display: flex;
+    justify-content: space-around;
+
+}
+.link__footer{
+    color: #ffffff;
+    text-decoration: none;
+}
+.link__footer:hover{
+    color: #ffffff;
+    text-decoration: underline;
+}
+.link__footer--name:hover{
+    color: #ffffff;
+    text-decoration: none;
+}
+.link__footer--rrss{
+    font-size: 1.3rem;
+}
+.list__footer{
+    list-style-type: none;
+    padding: 3px;
+}

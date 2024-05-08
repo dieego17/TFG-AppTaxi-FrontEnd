@@ -12,10 +12,18 @@
     width: 100%;
     height: 100%;
 }
+
+.section__postheader{
+    position: relative;
+}
+.article__img{
+    position: relative;
+}
 .img__fondo{
     width: 100%;
     height: 100%;
-    
+    margin: 120px 0px 0px;
+    position: relative;
 }
 .article__button{
     text-decoration: none;
@@ -32,4 +40,9 @@
 .text__elegirnos{
     color: #ffffff;
     font-size: 1.2rem;
+}
+
+.card-img-top{
+    width: 400px;
+    height: 250px;
 }

@@ -2,7 +2,6 @@
 import React, { useState } from 'react'
 import './login.css'
 import { Link } from 'react-router-dom'
-import Cliente from '../Cliente/Cliente'
 
 
 function Login() {

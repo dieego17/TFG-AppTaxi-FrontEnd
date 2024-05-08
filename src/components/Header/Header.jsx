@@ -26,10 +26,10 @@ function Header() {
                 Servicios
               </Link>
               <ul className="dropdown-menu">
-                <li><Link to={'#'} className="dropdown-item">Action</Link></li>
-                <li><Link to={'#'} className="dropdown-item">Another action</Link></li>
+                <li><Link to={'#'} className="dropdown-item">Viajes de ciudad a ciudad</Link></li>
+                <li><Link to={'#'} className="dropdown-item">Reociga inmediata</Link></li>
                 <li><hr className="dropdown-divider"/></li>
-                <li><Link to={'#'} className="dropdown-item">Something else here</Link></li>
+                <li><Link to={'#'} className="dropdown-item">Alquiler por horas y día completo</Link></li>
               </ul>
             </li>
             <li className="nav-item">
