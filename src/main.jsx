@@ -8,6 +8,9 @@ import QuienesSomos from './components/QuienesSomos'
 import Login from './components/Login/Login'
 import Dashboard from './components/Dashboard/Dashboard'
 import Register from './components/Register/Register'
+import RecogidaInmedia from './components/RecogidaInmediata/RecogidaInmedia';
+import CiudadaCiudad from './components/CiudadaCiudad/CiudadaCiudad';
+import ViajeHoras from './components/ViajeHoras/ViajeHoras';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
     <BrowserRouter>
@@ -15,6 +18,10 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       <Route path='/' element={<Layout />}>
         <Route index element={<Home />} />
         <Route path='/quienes-somos' element={<QuienesSomos />} />
+
+        <Route path='/servicios/recogida-inmediata' element={<RecogidaInmedia />} />
+        <Route path='/servicios/ciudad-a-ciudad' element={<CiudadaCiudad />} />
+        <Route path='/servicios/viaje-por-horas' element={<ViajeHoras />} />
       </Route>
       <Route path='/login' element={<Login />} />
       <Route path='/register' element={<Register />} />

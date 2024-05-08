@@ -1,0 +1,28 @@
+@media screen and (min-width: 320px){
+    .container__form{
+        display: none;
+    }
+    .formulario__pequeño{
+        display: block;
+    
+    }
+}
+
+@media screen and (min-width: 768px){
+    
+    
+}
+
+@media screen and (min-width: 1024px){
+    .container__form{
+        display: block;
+    }
+    .formulario__pequeño{
+        display: none;
+    }
+}
+
+
+@media screen and (min-width: 1440px){
+
+}

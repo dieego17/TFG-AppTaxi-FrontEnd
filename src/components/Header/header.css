@@ -31,6 +31,13 @@
 .nav-link:focus{
     color: #ffffff;
 }
+.button__login{
+    color: #006431;
+}
+.button__login:hover{
+    color: #006431;
+    background-color: #ffffff;
+}
 
 /* MENU HAMBURGUESA */
 .navbar-toggler{

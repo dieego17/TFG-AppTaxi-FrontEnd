@@ -22,14 +22,13 @@ function Header() {
               </Link>
             </li>
             <li className="nav-item dropdown">
-              <Link to={'/services'} className="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <Link to={'/servicios'} className="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Servicios
               </Link>
               <ul className="dropdown-menu">
-                <li><Link to={'#'} className="dropdown-item">Viajes de ciudad a ciudad</Link></li>
-                <li><Link to={'#'} className="dropdown-item">Reociga inmediata</Link></li>
-                <li><hr className="dropdown-divider"/></li>
-                <li><Link to={'#'} className="dropdown-item">Alquiler por horas y día completo</Link></li>
+                <li><Link to={'servicios/ciudad-a-ciudad'} className="dropdown-item">Viajes de ciudad a ciudad</Link></li>
+                <li><Link to={'servicios/recogida-inmediata'} className="dropdown-item">Recogida inmediata</Link></li>
+                <li><Link to={'servicios/viaje-por-horas'} className="dropdown-item">Alquiler por horas y día completo</Link></li>
               </ul>
             </li>
             <li className="nav-item">
@@ -38,8 +37,8 @@ function Header() {
               </Link>
             </li>
             <li className="nav-item">
-              <Link to={'/login'} className="nav-link">
-                <i className="fa-solid fa-user"></i>
+              <Link to={'/login'} className="nav-link btn btn-light button__login">
+                <i className="bi bi-person-circle"></i> Iniciar Sesión
               </Link>
             </li>
           </ul>
