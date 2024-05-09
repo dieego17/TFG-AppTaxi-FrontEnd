@@ -40,10 +40,26 @@
 }
 
 /* MENU HAMBURGUESA */
-.navbar-toggler{
+.navbar-toggler:focus,
+.navbar-toggler-icon:focus {
+    outline: none !important;
+}
+
+.navbar-toggler,
+.navbar-toggler-icon {
+    outline: none;
     border: none;
 }
-.nav__icon{
+.button__nav{
+    background-color: #006431;
+    border: none;
+    margin: 2px 5px;
+}
+.navbar-toggler-icon {
+    color: #ffffff;
+}
+
+.nav__icon {
     color: #ffffff;
     font-size: 2rem;
 }

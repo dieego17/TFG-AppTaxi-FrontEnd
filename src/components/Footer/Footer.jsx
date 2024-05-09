@@ -8,10 +8,8 @@ function Footer() {
     <footer className='footer'>
       <section className='container t-4'>
         <article className='article__lista row text-left'>
-            <div className='col-lg-3 col-sm-12'>
-              <div>
-                <h3 className=''>Empresa</h3>
-              </div>
+            <div className='col-lg-3 col-sm-12 mt-3'>
+              <h3 className='h3__footer'>Empresa</h3>
               <ul className='p-0'>
                 <li className='list__footer'><a className='link__footer' href="">Cómo trabajamos</a></li>
                 <li className='list__footer'><a className='link__footer' href="">Trabaja con nosotros</a></li>
@@ -19,10 +17,8 @@ function Footer() {
                 <li className='list__footer'><a className='link__footer' href="">Contacte con Nosotros</a></li>
               </ul>
             </div>
-            <div className='col-lg-3 col-sm-12'>
-              <div>
-                <h3>Principales ciudades</h3>
-              </div>
+            <div className='col-lg-3 col-sm-12 mt-3'>
+              <h3 className='h3__footer'>Principales ciudades</h3>
               <ul className='p-0'>
                 <li className='list__footer'><a className='link__footer' href="">Talavera de la Reina</a></li>
                 <li className='list__footer'><a className='link__footer' href="">Madrid</a></li>
@@ -32,10 +28,8 @@ function Footer() {
                 <li className='list__footer'><a className='link__footer' href="">Todas las ciudades</a></li>
               </ul>
             </div>
-            <div className='col-lg-3 col-sm-12'>
-              <div>
-                <h3>Explorar</h3>
-              </div>
+            <div className='col-lg-3 col-sm-12 mt-3'>
+              <h3 className='h3__footer'>Explorar</h3>
               <ul className='p-0'>
                 <li className='list__footer'><a className='link__footer' href='/'>Viajes de ciudad a ciudad</a></li>
                 <li className='list__footer'><a className='link__footer' href='/'>Recogida inmediata</a></li>

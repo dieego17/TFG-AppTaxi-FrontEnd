@@ -1,0 +1,40 @@
+.tarjeta__servicios, .imagen__servicios{
+    position: relative;
+}
+.texto__servicios{
+    position: absolute;
+    top: 60%;
+    left: 35%;
+    transform: translate(-50%, -50%);
+    color: white;
+    text-align: justify;
+    font-size: 0.9rem;
+}
+.supertitle__servicios{
+    color: #006431;
+}
+.title__servicios{
+    font-size: 1rem;
+    font-weight: bold;
+    text-align: justify;
+
+}
+.imagen__servicios{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(25%);
+}
+.boton__servicios{
+    border: none;
+    background-color: #006431;
+    text-decoration: none;
+    color: #ffffff;
+    padding: 10px 20px;
+    font-size: 1rem;
+    transition: ease-in-out 0.3s;
+}
+.boton__servicios:hover{
+    background-color: #003d1d;
+}
+

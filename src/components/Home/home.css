@@ -1,9 +1,7 @@
 .section__preheader {
-    background-color: #006431;
     height: 100%;
     width: 100%;
 }
-
 
 .article__h1, .article__text{
     color: #ffffff;
@@ -27,18 +25,46 @@
     border-radius: 5px;
     padding: 10px 55px;
     top: 22%;
-    left: 65%;
+    left: 6%;
     z-index: 2;
+    box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.75);
+}
+.h2__form{
+    color: #006431;
+    font-size: 2.2rem;
+    margin: 5px 0px 10px;
+
 }
 .form-group{
     width: 100%;
     margin: 5px 0px;
+    display: flex;
+    flex-direction: column;
 }
-.form-control{
+.form__control{
     margin: 5px 0px;
     border: 1px solid #006431;
     color: #006431;
+    background-color: #d3d3d3;
+    padding: 5px 10px;
+    border-radius: 5px;
 }
+.form__control::placeholder{
+    color: #006431;
+    border: none;
+    outline: none !important;
+}
+.form__control:hover{
+    background-color: #d3d3d3;
+    border: 1px solid #006431;
+    outline: none !important;
+}
+.form__control:focus{
+    background-color: #d3d3d3;
+    border: 1px solid #006431;
+    outline: none !important;
+}
+
 .boton__form{
     background-color: #006431;
     color: #ffffff;
@@ -47,6 +73,31 @@
     padding: 5px 20px;
     width: 100%;
     margin: 15px 0px 10px;
+}
+.boton__form:hover{
+    background-color: #003d1d;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 20px;
+    width: 100%;
+    margin: 15px 0px 10px;
+}
+
+.form__pequeño{
+    margin: 0px 10px;
+}
+.form__destino{
+    position: relative;
+}
+.icono__destino{
+    position: absolute;
+    top: 57%;
+    left: 90%;
+}
+
+.container__servicios{
+    margin: 0px 5px;
 }
 
 .img__fondo{
@@ -67,14 +118,6 @@
 .article__elegirnos{
     background-color: #006431;
 }
-.text__elegirnos{
-    color: #ffffff;
-    font-size: 1.2rem;
-}
-
-.container__servicios{
-
-}
 
 .card{
     width: 400px;
@@ -86,4 +129,37 @@
 .card-img-top{
     width: 100%;
     height: 250px;
+}
+.container__iconos--elegirnos{
+    margin: 10px 0px 20px;
+}
+.text__elegirnos{
+    color: #ffffff;
+    font-size: 1.2rem;
+    margin: 0px 10px;
+}
+
+.svg__google{
+    width: 50px;
+    height: 50px;
+    margin: 0px 10px;
+}
+
+.container__reseñas{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0px;
+}
+
+.title__reseñas{
+    margin: 0px 15px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.estrellas__reseñas{
+    color: #ffffff;
+    border: 1px solid #FDD663;
+    padding: 5px 10px;
+    margin: 0px 1px;
+    background-color: #FDD663;
 }
