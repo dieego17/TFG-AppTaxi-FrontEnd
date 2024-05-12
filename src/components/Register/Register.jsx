@@ -4,6 +4,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useAuth } from '../../auth/AuthProvider'
 import { Navigate } from 'react-router-dom'
+import bcrypt from 'bcryptjs'
+
 
 function Register() {
 
@@ -52,7 +54,6 @@ function Register() {
     })
     // Manejar la respuesta del backend
     if(response.status === 400){
-      console.log('Faltan datos por llenar')
       const json = await response.json()
       console.log(json)
       setErrorResponse(json.body.message)

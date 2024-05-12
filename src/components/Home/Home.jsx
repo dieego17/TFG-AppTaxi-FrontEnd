@@ -183,7 +183,7 @@ function Home() {
             <i className="bi bi-star-half estrellas__reseñas"></i>
           </div>
           <div className="container__tarjetas--testimonios">
-            <TarjetaTestimonio testimonios={testimonios} key={testimonios.id} />
+            {/* <TarjetaTestimonio testimonios={testimonios} key={testimonios.id} /> */}
           </div>
         </article>
       </section>
