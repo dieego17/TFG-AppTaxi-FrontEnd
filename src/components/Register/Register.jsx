@@ -16,6 +16,10 @@ function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [repitePassword, setRepitePassword] = useState('')
+
+  // Estado para mostrar/ocultar la contraseña
+  const [showPassword, setShowPassword] = useState(false); 
+  const [showPasswordRepet, setShowPasswordRepet] = useState(false); 
   
   // Estado para mostrar mensaje de error
   const [errorResponse, setErrorResponse] = useState('')
@@ -134,26 +138,26 @@ function Register() {
 
                 <div className="form-group">
                   <label htmlFor="password">Contraseña:</label>
-                  <input
-                    type="password"
-                    className="form-control"
-                    placeholder="Ingresa tu contraseña"
-                    onChange={(e) =>{
-                      setPassword(e.target.value)
-                    }}
-                  />
+                  <div className="input-group">
+                    <input onChange={(e) => setPassword(e.target.value)} type={showPassword ? "text" : "password"} className="form-control" id="password" placeholder="Ingresa tu contraseña" />
+                    <div className="input-group-append">
+                      <span className="input-group-text">
+                        <i className={`fa ${showPassword ? "fa-eye-slash" : "fa-eye"}`} onClick={() => setShowPassword(!showPassword)}></i>
+                      </span>
+                    </div>
+                  </div>
                 </div>
 
                 <div className="form-group">
                   <label htmlFor="password">Repetir Contraseña:</label>
-                  <input
-                    type="password"
-                    className="form-control"
-                    placeholder="Ingresa tu contraseña"
-                    onChange={(e) =>{
-                      setRepitePassword(e.target.value)
-                    }}
-                  />
+                  <div className="input-group">
+                    <input onChange={(e) => setRepitePassword(e.target.value)} type={showPasswordRepet ? "text" : "password"} className="form-control" id="password" placeholder="Ingresa tu contraseña" />
+                    <div className="input-group-append">
+                      <span className="input-group-text">
+                        <i className={`fa ${showPasswordRepet ? "fa-eye-slash" : "fa-eye"}`} onClick={() => setShowPasswordRepet(!showPasswordRepet)}></i>
+                      </span>
+                    </div>
+                  </div>
                 </div>
 
                 <button type="submit" className="btn btn-primary btn-block">

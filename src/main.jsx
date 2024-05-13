@@ -42,5 +42,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         <Route path="*" element={<Navigate to={"/"} />} />
       </Routes>
     </BrowserRouter>
-  </AuthProvider>
+  </AuthProvider> 
 );
+
+

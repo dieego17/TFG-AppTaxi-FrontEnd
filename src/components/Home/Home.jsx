@@ -35,7 +35,6 @@ function Home() {
                 <input
                   type="text"
                   className="form__control"
-                  id="origen"
                   placeholder="Dirección, hotel..."
                 />
                 <i className="fa-solid fa-location-dot icono__destino"></i>
@@ -45,7 +44,6 @@ function Home() {
                 <input
                   type="text"
                   className="form__control"
-                  id="destino"
                   placeholder="Dirección, hotel..."
                 />
                 <i className="fa-solid fa-location-dot icono__destino"></i>
@@ -59,8 +57,6 @@ function Home() {
                 <input
                   type="time"
                   className="form__control"
-                  id="hora"
-                  value={"11:00"}
                 />
               </div>
               <Link className="link__button" to="/servicios/ciudad-a-ciudad">
@@ -80,7 +76,6 @@ function Home() {
             <input
               type="text"
               className="form__control"
-              id="origen"
               placeholder="Dirección, hotel..."
             />
             <i className="fa-solid fa-location-dot icono__destino"></i>
@@ -90,7 +85,6 @@ function Home() {
             <input
               type="text"
               className="form__control"
-              id="destino"
               placeholder="Dirección, hotel..."
             />
             <i className="fa-solid fa-location-dot icono__destino"></i>
@@ -104,8 +98,6 @@ function Home() {
             <input
               type="time"
               className="form__control"
-              id="hora"
-              value={"11:00"}
             />
           </div>
           <Link className="link__button" to="/servicios/ciudad-a-ciudad">
@@ -183,7 +175,7 @@ function Home() {
             <i className="bi bi-star-half estrellas__reseñas"></i>
           </div>
           <div className="container__tarjetas--testimonios">
-            {/* <TarjetaTestimonio testimonios={testimonios} key={testimonios.id} /> */}
+            <TarjetaTestimonio testimonios={testimonios} key={testimonios.id} />
           </div>
         </article>
       </section>

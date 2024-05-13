@@ -45,7 +45,11 @@ function Login() {
         const json = await response.json();
         if (json.body.accessToken && json.body.refreshToken) {
           auth.saveUser(json);
-          goTo('/dashboard');
+          if(json.body.usuario.rol === 'admin'){
+            goTo('/dashboard');
+          }else{
+            goTo('/cliente');
+          }
         }
       } else {
         const json = await response.json();

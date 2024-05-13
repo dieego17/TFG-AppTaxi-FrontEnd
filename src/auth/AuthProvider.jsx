@@ -1,8 +1,10 @@
+/* eslint-disable react-refresh/only-export-components */
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 // Importaciones de React y funciones necesarias para crear y usar contextos
-import { createContext, useContext, useState, useEffect } from 'react';
 import React from 'react';
+
+import { createContext, useContext, useState, useEffect } from 'react';
 
 
 // Crear el contexto de autenticación
@@ -26,15 +28,36 @@ function AuthProvider({ children }) {
     const [isAuth, setIsAuth] = useState(false);
     const [accessToken, setAccessToken] = useState('');
     const [user, setUser] = useState({});
+    const [isLoading, setIsLoading] = useState(false);
 
     // Efecto para verificar la autenticación al cargar el componente
     useEffect(() => {
-        checkAuth();
-    }, []);
+        const token = localStorage.getItem('token');
+        if (token) {
+          const tokenParts = token.split('.');
+          if (tokenParts.length === 3) {
+            const payload = JSON.parse(atob(tokenParts[1]));
+            const currentTime = Math.floor(Date.now() / 1000);
+            if (payload.exp < currentTime) {
+              // El token ha expirado, solicitar al usuario que inicie sesión nuevamente
+              setIsAuth(false);
+              localStorage.removeItem('token'); // Limpiar el token expirado del localStorage
+            } else {
+              // Token válido, establecer el estado de autenticación como verdadero
+              setIsAuth(true);
+              checkAuth(); // Llama a la función checkAuth aquí
+            }
+          } else {
+            // El token no tiene el formato correcto, solicitar al usuario que inicie sesión nuevamente
+            setIsAuth(false);
+            localStorage.removeItem('token');
+          }
+        }
+      }, []);
 
     // Función para solicitar un nuevo token de acceso
     async function requestNewToken(token) {
-        // Hacer una petición al backend para obtener un nuevo token de acceso
+    
         const response = await fetch(`${ApiUrl}/token`, {
             method: 'POST',
             headers: {
@@ -42,13 +65,16 @@ function AuthProvider({ children }) {
                 'Authorization': `Bearer ${token}`
             },
         });
+    
         if (response.ok) {
             const json = await response.json();
-            if (json.body.accessToken) {
-                return json.body.accessToken;
+            if (json.accessToken) {
+                return json.accessToken;
             } else {
                 return null;
             }
+        } else {
+            return null;
         }
     }
 
@@ -74,7 +100,15 @@ function AuthProvider({ children }) {
     async function checkAuth() {
         if (accessToken) {
             // El usuario está autenticado
+            const userInfo = await getUserInfo(accessToken);
+            console.log(userInfo);
+            if (userInfo) {
+                saveSessionInfo(userInfo, accessToken, getRefreshToken());
+                setIsLoading(false);
+                return;
+            }
         } else {
+
             // El usuario no está autenticado
             // Obtener el token de actualización de localStorage
             const token = getRefreshToken();
@@ -87,11 +121,16 @@ function AuthProvider({ children }) {
                     if (userInfo) {
                         // Guardar la información de la sesión
                         saveSessionInfo(userInfo, newAccessToken, token);
+                        setIsLoading(false);
+                        return;
                     }
                 }
             }
         }
+
+        setIsLoading(false);
     }
+    
 
     // Función para guardar la información de la sesión
     function saveSessionInfo(userInfo, accessToken, refreshToken) {
@@ -108,7 +147,7 @@ function AuthProvider({ children }) {
 
     // Función para obtener el token de actualización
     function getRefreshToken() {
-        const tokenData = localStorage.getItem('Token');
+        const tokenData = localStorage.getItem('token');
         if (tokenData) {
             const token = JSON.parse(tokenData);
             return token;
@@ -129,7 +168,13 @@ function AuthProvider({ children }) {
     // Devolver el proveedor de autenticación con el contexto y sus valores
     return (
         <AuthContext.Provider value={{ isAuth, getAccessToken, saveUser, getRefreshToken, getUser }}>
-            {children}
+            {
+                isLoading ? 
+                    <div>
+                        Cargando...
+                    </div> 
+                : children
+            }
         </AuthContext.Provider>
     );
 }
