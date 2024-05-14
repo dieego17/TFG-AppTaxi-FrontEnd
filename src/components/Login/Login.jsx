@@ -6,12 +6,15 @@ import { useAuth } from '../../auth/AuthProvider';
 import { Navigate } from 'react-router-dom';
 
 function Login() {
-  // Estados para guardar los datos del formulario
+  // Estados para guardar los datos del formulario y errores
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
-  // Estado para mostrar mensaje de error
   const [errorResponse, setErrorResponse] = useState('');
+  const [emailError, setEmailError] = useState('');
+  const [passwordError, setPasswordError] = useState('');
+
+  // Estado para mostrar/ocultar la contraseña
+  const [showPassword, setShowPassword] = useState(false);
 
   // Hook para obtener el estado de autenticación
   const auth = useAuth();
@@ -19,9 +22,58 @@ function Login() {
   // Hook para redireccionar a otra página
   const goTo = useNavigate();
 
+  // Función para validar el correo electrónico
+  const validateEmail = (email) => {
+    const re = /\S+@\S+\.\S+/;
+    return re.test(email);
+  };
+
+  // Función para validar la contraseña
+  const validatePassword = (password) => {
+    return password.length >= 6; // mínimo 6 caracteres
+  };
+
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
+    if (!e.target.value) {
+      setEmailError('Por favor ingresa tu correo electrónico.');
+    } else if (!validateEmail(e.target.value)) {
+      setEmailError('Por favor ingresa un correo electrónico válido.');
+    } else {
+      setEmailError('');
+    }
+  };
+
+  const handlePasswordChange = (e) => {
+    setPassword(e.target.value);
+    if (!e.target.value) {
+      setPasswordError('Por favor ingresa tu contraseña.');
+    } else if (!validatePassword(e.target.value)) {
+      setPasswordError('La contraseña debe tener al menos 6 caracteres.');
+    } else {
+      setPasswordError('');
+    }
+  };
+
   // Función para enviar los datos del formulario
   const handleSubmit = async (e) => {
     e.preventDefault(); // Evitar que el formulario recargue la página
+
+    // Reiniciar errores
+    setEmailError('');
+    setPasswordError('');
+    setErrorResponse('');
+
+    // Validar campos
+    if (!email || !validateEmail(email)) {
+      setEmailError('Por favor ingresa un correo electrónico válido.');
+      return;
+    }
+
+    if (!password || !validatePassword(password)) {
+      setPasswordError('La contraseña debe tener al menos 6 caracteres.');
+      return;
+    }
 
     try {
       // Enviar los datos del formulario al backend
@@ -45,9 +97,10 @@ function Login() {
         const json = await response.json();
         if (json.body.accessToken && json.body.refreshToken) {
           auth.saveUser(json);
+          console.log(json)
           if(json.body.usuario.rol === 'admin'){
             goTo('/dashboard');
-          }else{
+          }else if(json.body.usuario.rol === 'cliente'){
             goTo('/cliente');
           }
         }
@@ -83,11 +136,32 @@ function Login() {
               <form onSubmit={handleSubmit}>
                 <div className="form-group">
                   <label htmlFor="email">Correo Electrónico:</label>
-                  <input onChange={(e) => setEmail(e.target.value)} type="email" className="form-control" id="email" placeholder="Ingresa tu correo electrónico" />
+                  <input 
+                    value={email} 
+                    onChange={handleEmailChange} 
+                    type="email" 
+                    className="form-control" 
+                    placeholder="Ingresa tu correo electrónico" 
+                  />
+                  {emailError && <div className="text-danger">{emailError}</div>}
                 </div>
                 <div className="form-group">
                   <label htmlFor="password">Contraseña:</label>
-                  <input onChange={(e) => setPassword(e.target.value)} type="password" className="form-control" id="password" placeholder="Ingresa tu contraseña" />
+                  <div className="input-group">
+                    <input 
+                      value={password} 
+                      onChange={handlePasswordChange} 
+                      type={showPassword ? "text" : "password"} 
+                      className="form-control" 
+                      placeholder="Ingresa tu contraseña" 
+                    />
+                    <div className="input-group-append">
+                      <span className="input-group-text">
+                        <i className={`fa ${showPassword ? "fa-eye-slash" : "fa-eye"}`} onClick={() => setShowPassword(!showPassword)}></i>
+                      </span>
+                    </div>
+                  </div>
+                  {passwordError && <div className="text-danger">{passwordError}</div>}
                 </div>
                 <button type="submit" className="btn btn-primary btn-block">Iniciar Sesión</button>
                 <Link to={'/register'} className="btn btn-primary btn-block">Registro</Link>

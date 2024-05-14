@@ -1,58 +1,58 @@
 /* eslint-disable no-unused-vars */
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useAuth } from '../../auth/AuthProvider';
 import { Link } from 'react-router-dom';
-import { useClientes } from '../../hooks/useClientes';
-import { useEffect } from 'react';
-
-import Login from '../Login/Login';
 
 function Dashboard() {
-  const auth = useAuth();
-  const clientes = useClientes();
+  /* const auth = useAuth(); */
+  const [usuario, setUsuario] = useState(null); // Declarar usuario usando useState
+
+  /* useEffect(() => {
+    if (!auth.isAuth) {
+      // Redireccionar al componente Login si el usuario no está autenticado
+      window.location.href = '/login'; // Cambia la URL según tu configuración de rutas
+    }
+  }, [auth.isAuth]); */
 
   useEffect(() => {
-    // Verificar si el usuario está autenticado al cargar el componente
-    if (!auth.isAuth) {
-      return <Login />;
+    // Lógica para obtener y decodificar el token JWT
+    const token = localStorage.getItem('token');
+    if (token) {
+      const decodedUsuario = decodeJWT(token); // Cambia el nombre de usuario para evitar conflictos
+      setUsuario(decodedUsuario); // Actualizar el estado de usuario
     }
-  }, [auth.isAuth]);
+  }, []);
+
+  // Función para decodificar el token JWT
+  function decodeJWT(token) {
+    try {
+      const base64Url = token.split('.')[1];
+      const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+      const jsonPayload = decodeURIComponent(window.atob(base64).split('').map(function(c) {
+          return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+      }).join(''));
+      return JSON.parse(jsonPayload);
+    } catch (error) {
+      console.error('Error decoding JWT:', error);
+      return null;
+    }
+  }
 
   return (
     <div>
-      <h1>Bienvenido 
-        {
-          auth.getUser().nombre 
-        } 
-        </h1>
-      <table className='table'>
-        <thead>
-          <tr>
-            <th>Nombre</th>
-            <th>Teléfono</th>
-            <th>Correo electrónico</th>
-            <th>Dirección</th>
-            <th>Método de pago</th>
-            <th>Más información</th>
-          </tr>
-        </thead>
-        <tbody>
-          {clientes.map(cliente => (
-            <tr key={cliente.id}>
-              <td>{cliente.usuario.nombre} {cliente.usuario.apellidos}</td>
-              <td>{cliente.usuario.telefono}</td>
-              <td>{cliente.usuario.correo_electronico}</td>
-              <td>{cliente.direccion_cliente}</td>
-              <td>{cliente.metodo_pago}</td>
-              <td>
-                <Link to={`/cliente/${cliente.id}`}>
-                  <i className="fa-solid fa-circle-info"></i>
-                </Link>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      <h1>Bienvenido/a {usuario?.usuario?.nombre} </h1>
+      <p>Este es el dashboard</p>
+      <div className='d-flex flex-column'>
+        <Link to={'/dashboard/resumen-beneficios'}>
+          Ver Resumen de Beneficios
+        </Link>
+        <Link to={`/dashboard/clientes`}>
+          Ver clientes
+        </Link>
+        <Link to={'/dashboard/insertar-ganancias-perdidas'}>
+          Crear Ganancias y Gastos
+        </Link>
+      </div>
     </div>
   );
 }

@@ -11,13 +11,17 @@ import Register from "./components/Register/Register";
 import RecogidaInmedia from "./components/RecogidaInmediata/RecogidaInmedia";
 import CiudadaCiudad from "./components/CiudadaCiudad/CiudadaCiudad";
 import ViajeHoras from "./components/ViajeHoras/ViajeHoras";
-import ProtectRoute from "./auth/ProtectRoute";
-import AuthProvider from "./auth/AuthProvider";
 import Cliente from "./components/Cliente/Cliente";
+import AllClientes from "./components/Dashboard/AllClientes/AllClientes";
+import GraficaBeneficios from "./components/Dashboard/GraficaBeneficios/GraficaBeneficios";
+import InsertarGananciasPerdidas from "./components/Dashboard/GraficaBeneficios/InsertarGananciasPerdidas";
+import ReservaDetalle from "./components/Dashboard/AllClientes/ClienteDetalle/ReservaDetalle/ReservaDetalle";
+import ViajeDetalle from "./components/Dashboard/AllClientes/ClienteDetalle/ViajeDetalle/ViajeDetalle";
+ /* import ProtectRoute from "./auth/ProtectRoute";
+import AuthProvider from "./auth/AuthProvider"; */
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <AuthProvider>
-    <BrowserRouter>
+  <BrowserRouter>
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
@@ -36,13 +40,26 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/cliente" element={<Cliente />} />
-        <Route path="/" element={<ProtectRoute />}>
-          <Route path="/dashboard" element={<Dashboard />}></Route>
-        </Route>
+          <Route path="/dashboard" element={<Dashboard />}>
+          </Route>
+          <Route path="/dashboard/clientes" element={<AllClientes />} />
+          <Route path="/dashboard/clientes/reservas-detalle/:id" element={<ReservaDetalle />} />
+          <Route path="/dashboard/clientes/viajes-detalle/:id" element={<ViajeDetalle />} />
+
+
+          <Route path="/dashboard/resumen-beneficios" element={<GraficaBeneficios />} />
+          <Route path="/dashboard/insertar-ganancias-perdidas" element={<InsertarGananciasPerdidas />} />
         <Route path="*" element={<Navigate to={"/"} />} />
       </Routes>
     </BrowserRouter>
-  </AuthProvider> 
+  
 );
 
+{/* <AuthProvider>
+    <Route path="/" element={<ProtectRoute />}>
+          
+      </Route>
+  </AuthProvider>  */}
+
+ 
 
