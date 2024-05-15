@@ -1,7 +1,11 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react';
 import { useAuth } from '../../auth/AuthProvider';
-import { Link } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
+import AsideDashboard from './AsideDashboard';
+import HeaderDashboard from './HeaderDashboard';
+import './dashboard.css';
+
 
 function Dashboard() {
   /* const auth = useAuth(); */
@@ -39,20 +43,20 @@ function Dashboard() {
   }
 
   return (
-    <div>
-      <h1>Bienvenido/a {usuario?.usuario?.nombre} </h1>
-      <p>Este es el dashboard</p>
-      <div className='d-flex flex-column'>
-        <Link to={'/dashboard/resumen-beneficios'}>
-          Ver Resumen de Beneficios
-        </Link>
-        <Link to={`/dashboard/clientes`}>
-          Ver clientes
-        </Link>
-        <Link to={'/dashboard/insertar-ganancias-perdidas'}>
-          Crear Ganancias y Gastos
-        </Link>
-      </div>
+    <div className='container__dashboard'>
+      <header className='header__dashboard'>
+        <HeaderDashboard />
+      </header>
+      <aside className='aside__dashboard'>
+        <AsideDashboard />
+      </aside>
+      <main className='main'>
+        <h1>Bienvenido/a {usuario?.usuario?.nombre} </h1>
+        <p>Este es el dashboard</p>
+        <div>
+          <Outlet />
+        </div>
+      </main>
     </div>
   );
 }

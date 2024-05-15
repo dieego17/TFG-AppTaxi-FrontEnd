@@ -12,6 +12,7 @@ export const useOneCliente = (id, idUsuario) => {
 
     useEffect(() => {
         loadCliente()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [id])
     
     return cliente

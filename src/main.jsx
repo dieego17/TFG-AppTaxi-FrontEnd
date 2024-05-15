@@ -41,14 +41,12 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         <Route path="/register" element={<Register />} />
         <Route path="/cliente" element={<Cliente />} />
           <Route path="/dashboard" element={<Dashboard />}>
+            <Route path="/dashboard/clientes" element={<AllClientes />} />
+            <Route path="/dashboard/clientes/reservas-detalle/:id" element={<ReservaDetalle />} />
+            <Route path="/dashboard/clientes/viajes-detalle/:id" element={<ViajeDetalle />} />
+            <Route path="/dashboard/resumen-beneficios" element={<GraficaBeneficios />} />
+            <Route path="/dashboard/insertar-ganancias-perdidas" element={<InsertarGananciasPerdidas />} />
           </Route>
-          <Route path="/dashboard/clientes" element={<AllClientes />} />
-          <Route path="/dashboard/clientes/reservas-detalle/:id" element={<ReservaDetalle />} />
-          <Route path="/dashboard/clientes/viajes-detalle/:id" element={<ViajeDetalle />} />
-
-
-          <Route path="/dashboard/resumen-beneficios" element={<GraficaBeneficios />} />
-          <Route path="/dashboard/insertar-ganancias-perdidas" element={<InsertarGananciasPerdidas />} />
         <Route path="*" element={<Navigate to={"/"} />} />
       </Routes>
     </BrowserRouter>

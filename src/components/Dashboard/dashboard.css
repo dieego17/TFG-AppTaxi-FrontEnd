@@ -1,0 +1,33 @@
+.container__dashboard {
+    display: flex;
+    flex-direction: column;
+    /* Cambiamos la dirección a columna para apilar los elementos verticalmente */
+    height: 100vh;
+}
+
+.header__dashboard {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    /* Centramos el texto */
+}
+
+.aside__dashboard {
+    background-color: #f0f0f0;
+    width: 250px;
+    padding: 20px;
+    height: 100%;
+    position: fixed;
+}
+
+.main {
+    flex: 1;
+    display: flex;
+    /* Para que los elementos dentro del main se alineen correctamente */
+    flex-direction: column;
+    /* Apilamos los elementos dentro del main verticalmente */
+    text-align: center;
+    /* Centramos el texto */
+
+}
