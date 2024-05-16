@@ -80,9 +80,6 @@ function InsertarGananciasPerdidas() {
                     Insertar
                 </button>
             </form>
-            <Link to={'/dashboard'}>
-                Volver
-            </Link>
         </div>
     );
 }

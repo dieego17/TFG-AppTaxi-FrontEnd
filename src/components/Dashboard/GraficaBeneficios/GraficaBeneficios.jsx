@@ -83,9 +83,6 @@ function GraficaBeneficios() {
     <div>
         <h1>Gráficas de Ganancias, Pérdidas y Beneficios</h1>
         <canvas id="myChart" width="200" height="50"></canvas>
-        <Link to={'/dashboard'}>
-          Volver
-      </Link>
     </div>
   )
 }

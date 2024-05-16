@@ -1,7 +1,6 @@
 .container__dashboard {
     display: flex;
     flex-direction: column;
-    /* Cambiamos la dirección a columna para apilar los elementos verticalmente */
     height: 100vh;
 }
 
@@ -10,24 +9,31 @@
     color: #fff;
     padding: 20px;
     text-align: center;
-    /* Centramos el texto */
+    position: fixed;
+    width: 100%;
 }
 
 .aside__dashboard {
-    background-color: #f0f0f0;
+    background-color: #006431;
     width: 250px;
     padding: 20px;
     height: 100%;
     position: fixed;
 }
 
-.main {
-    flex: 1;
+.main__dashboard{
     display: flex;
-    /* Para que los elementos dentro del main se alineen correctamente */
     flex-direction: column;
-    /* Apilamos los elementos dentro del main verticalmente */
     text-align: center;
-    /* Centramos el texto */
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    margin-left: 100px;
+    margin-top: 90px;
+}
 
+.outlet__dashboard{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }

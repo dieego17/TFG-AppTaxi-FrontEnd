@@ -50,10 +50,8 @@ function Dashboard() {
       <aside className='aside__dashboard'>
         <AsideDashboard />
       </aside>
-      <main className='main'>
-        <h1>Bienvenido/a {usuario?.usuario?.nombre} </h1>
-        <p>Este es el dashboard</p>
-        <div>
+      <main className='main__dashboard'>
+        <div className='outlet__dashboard'>
           <Outlet />
         </div>
       </main>

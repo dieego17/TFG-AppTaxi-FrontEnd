@@ -29,6 +29,11 @@ function AsideDashboard() {
             Crear Ganancias y Gastos
           </Link>
         </li>
+        <li>
+          <Link to={'/'}>
+            Cerrar Sesión
+          </Link>
+        </li>
       </ul>
     </div>
   )

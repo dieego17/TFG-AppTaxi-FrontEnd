@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React from 'react'
 import { useClientes } from '../../../hooks/useClientes';
-import { Link, Outlet } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 
 function AllClientes() {
@@ -45,9 +45,6 @@ function AllClientes() {
           ))}
         </tbody>
       </table>
-      <Link to={'/dashboard'}>
-          Volver
-      </Link>
     </div>
   )
 }
