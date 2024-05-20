@@ -1,17 +1,25 @@
 /* eslint-disable no-unused-vars */
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { useOneViaje } from "../../../../../hooks/useOneViaje";
-import { useState } from "react";
-import { PDFDownloadLink } from '@react-pdf/renderer'
+import { PDFDownloadLink } from '@react-pdf/renderer';
+import { updateEstadoViaje } from "../../../../../services/updateEstadoViaje";
 import Pdf from "../../../../pdf/Pdf";
-import InsertarFactura from "./InsertarFactura";
 
 function ClienteDetalle() {
   const [idUsuario, setIdUsuario] = useState("3"); // idUsuario de prueba
   const params = useParams();
   const id = params.id;
-  const viajes = useOneViaje(id, idUsuario);
+  // Estado local para almacenar los datos del viaje
+  const [viajes, setViajes] = useState([]);
+
+  // Obtener los datos del viaje
+  const fetchedViajes = useOneViaje(id, idUsuario);
+
+  // Actualizar el estado localmente
+  useEffect(() => {
+    setViajes(fetchedViajes);
+  }, [fetchedViajes]);
 
   // Función para formatear la fecha
   const formatDate = (date) => {
@@ -24,13 +32,32 @@ function ClienteDetalle() {
     return `${hour}:${minute}`;
   };
 
+  // Función para cambiar el estado del viaje
+  const handleChangeEstadoViaje = async (viajeId, nuevoEstado) => {
+    try {
+      // Actualizar el estado en la base de datos
+      await updateEstadoViaje(viajeId, nuevoEstado);
+
+      // Actualizar el estado localmente
+      setViajes((prevViajes) =>
+        prevViajes.map((viaje) =>
+          viaje.id_viaje === viajeId ? { ...viaje, estado_viaje: nuevoEstado } : viaje
+        )
+      );
+
+      console.log("Estado del viaje actualizado correctamente.");
+    } catch (error) {
+      console.error("Error al actualizar el estado del viaje:", error);
+    }
+  };
+
   return (
     <div>
       <table className="table">
         <thead>
           <tr>
-            <th>Destino Viaje</th>
             <th>Origen Viaje</th>
+            <th>Destino Viaje</th>
             <th>Hora Viaje</th>
             <th>Fecha Viaje</th>
             <th>Estado Viaje</th>
@@ -39,30 +66,32 @@ function ClienteDetalle() {
           </tr>
         </thead>
         <tbody>
-          {
-            viajes.map((viaje) => (
-              <tr key={viaje.id_viaje}>
-                <td>{viaje.destino_viaje}</td>
-                <td>{viaje.origen_viaje}</td>
-                <td>{formatTime(viaje.hora_viaje)}</td>
-                <td>{formatDate(viaje.fecha_viaje)}</td>
-                {viaje.estado_viaje === 1 ? (
-                  <td className="estado__pendiente">Pendiente</td>
-                ) : (
-                  <td className="estado__confirmado">Finalizado</td>
-                )}
-                <td>{viaje.precioTotal_viaje}€</td>
-                <td>
+          {viajes.map((viaje) => (
+            <tr key={viaje.id_viaje}>
+              <td>{viaje.origen_viaje}</td>
+              <td>{viaje.destino_viaje}</td>
+              <td>{formatTime(viaje.hora_viaje)}</td>
+              <td>{formatDate(viaje.fecha_viaje)}</td>
+              <td className={viaje.estado_viaje === 'Pendiente' ? "estado__pendiente" : "estado__confirmado"}>
+                {viaje.estado_viaje}
+              </td>
+              <td>{viaje.precioTotal_viaje}€</td>
+              <td>
+                {viaje.estado_viaje === 'Finalizado' ? (
                   <PDFDownloadLink document={<Pdf viaje={viaje} />} fileName="factura.pdf">
                     {({ blob, url, loading, error }) =>
                       loading ? 'Cargando documento...' : <button>Descargar Factura</button>
                     }
                   </PDFDownloadLink>
-                  <InsertarFactura />
-                </td>
-              </tr>
-            ))
-          }
+                ) : (
+                  <p>Factura no disponible</p>
+                )}
+                <button onClick={() => handleChangeEstadoViaje(viaje.id_viaje, viaje.estado_viaje === 'Pendiente' ? 'Finalizado' : 'Pendiente')}>
+                  {viaje.estado_viaje === 'Pendiente' ? 'Marcar como Finalizado' : 'Marcar como Pendiente'}
+                </button>
+              </td>
+            </tr>
+          ))}
         </tbody>
       </table>
       <Link to={"/dashboard/clientes"}>Volver</Link>
