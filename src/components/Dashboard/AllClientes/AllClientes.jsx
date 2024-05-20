@@ -23,26 +23,27 @@ function AllClientes() {
           </tr>
         </thead>
         <tbody>
-          {clientes && clientes.map(cliente => (
-            <tr key={cliente.usuario.id_usuario}>
-              <td>{cliente.usuario.nombre}</td>
-              <td>{cliente.usuario.apellidos}</td>
-              <td>{cliente.usuario.telefono}</td>
-              <td>{cliente.usuario.correo_electronico}</td>
-              <td>{cliente.direccion_cliente}</td>
-              <td>{cliente.metodo_pago}</td>
-              <td>
-                <Link to={`/dashboard/clientes/reservas-detalle/${cliente.id_usuario}`}>
-                  <i className="bi bi-suitcase-lg-fill"></i>
-                </Link>
-              </td>
-              <td>
-                <Link to={`/dashboard/clientes/viajes-detalle/${cliente.id_usuario}`}>
+        {clientes && clientes.map(cliente => (
+          <tr key={cliente.id_usuario}>
+            <td>{cliente.usuario.nombre}</td>
+            <td>{cliente.usuario.apellidos}</td>
+            <td>{cliente.usuario.telefono}</td>
+            <td>{cliente.usuario.correo_electronico}</td>
+            <td>{cliente.usuario.direccion_usuario}</td>
+            <td>{cliente.metodo_pago}</td>
+            <td>
+              <Link to={`/dashboard/clientes/reservas-detalle/${cliente.id_usuario}`}>
+                <i className="bi bi-suitcase-lg-fill"></i>
+              </Link>
+            </td>
+            <td>
+              <Link to={`/dashboard/clientes/viajes-detalle/${cliente.id_usuario}`}>
                 <i className="fa-solid fa-taxi"></i>
-                </Link>
-              </td>
-            </tr>
-          ))}
+              </Link>
+            </td>
+          </tr>
+        ))}
+
         </tbody>
       </table>
     </div>
