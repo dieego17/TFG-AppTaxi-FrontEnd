@@ -2,7 +2,7 @@
 import React from 'react'
 import { useEffect, useState, useRef } from 'react';
 import Chart from 'chart.js/auto';
-import { Link } from 'react-router-dom';
+import { Link, Outlet } from 'react-router-dom';
 
 
 function GraficaBeneficios() {
@@ -23,6 +23,7 @@ function GraficaBeneficios() {
     };
 
     fetchData();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -83,6 +84,7 @@ function GraficaBeneficios() {
     <div>
         <h1>Gráficas de Ganancias, Pérdidas y Beneficios</h1>
         <canvas id="myChart" width="200" height="50"></canvas>
+        <Outlet />
     </div>
   )
 }

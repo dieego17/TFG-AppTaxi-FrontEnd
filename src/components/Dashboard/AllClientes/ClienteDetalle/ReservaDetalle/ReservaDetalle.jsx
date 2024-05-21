@@ -40,19 +40,19 @@ function ReservaDetalle() {
             <td>{formatTime(reserva.hora_reserva)}</td>
 
             {reserva.estado_reserva === "Pendiente" ? (
-                <td className="estado__pendiente">
-                    Pendiente
+                <td>
+                    <p className="estado__pendiente">Pendiente</p>
                 </td>
                 ) : 
-                <td className="estado__confirmado">
-                    Confirmada
+                <td>
+                    <p className="estado__confirmado">Confirmada</p>
                 </td>
                 }
           </tr>
           )}
         </tbody>
       </table>
-      <Link to={"/dashboard/clientes"}>Volver</Link>
+      <Link className="button__volver" to={"/dashboard/clientes"}>Volver</Link>
     </div>
   );
 }

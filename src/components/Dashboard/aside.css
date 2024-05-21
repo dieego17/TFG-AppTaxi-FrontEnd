@@ -1,0 +1,35 @@
+.section__logo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 5px 0px 50px;
+}
+.logo__aside{
+    width: 70px;
+}
+
+.ul__aside{
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;    
+    padding: 0px;
+}
+
+.list__aside{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 0px;
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.list__aside--logout{
+    margin-top: 150px;
+}
+.icon__aside{
+    font-size: 30px;
+    color: #ffffff;
+}

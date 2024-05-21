@@ -15,6 +15,23 @@
     background-color: #008000;
     margin: 5px 0px;
 }
+.button__pdf{
+    background-color: #008cff;
+    color: #ffffff;
+    border: none;
+    padding: 5px;
+    border-radius: 5px;
+    margin: 5px 0px;
+}
+
+.button__estado{
+    background-color: #a3a3a3;
+    color: #ffffff;
+    border: none;
+    padding: 5px;
+    border-radius: 5px;
+    margin: 5px 0px;
+}
 
 .button__volver{
     background-color: #006431;

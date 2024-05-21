@@ -17,6 +17,7 @@ import GraficaBeneficios from "./components/Dashboard/GraficaBeneficios/GraficaB
 import InsertarGananciasPerdidas from "./components/Dashboard/GraficaBeneficios/InsertarGananciasPerdidas";
 import ReservaDetalle from "./components/Dashboard/AllClientes/ClienteDetalle/ReservaDetalle/ReservaDetalle";
 import ViajeDetalle from "./components/Dashboard/AllClientes/ClienteDetalle/ViajeDetalle/ViajeDetalle";
+import AllGanancias from "./components/Dashboard/GraficaBeneficios/AllGnancias/AllGanancias";
  /* import ProtectRoute from "./auth/ProtectRoute";
 import AuthProvider from "./auth/AuthProvider"; */
 
@@ -44,7 +45,9 @@ ReactDOM.createRoot(document.getElementById("root")).render(
             <Route path="/dashboard/clientes" element={<AllClientes />} />
             <Route path="/dashboard/clientes/reservas-detalle/:id" element={<ReservaDetalle />} />
             <Route path="/dashboard/clientes/viajes-detalle/:id" element={<ViajeDetalle />} />
-            <Route path="/dashboard/resumen-beneficios" element={<GraficaBeneficios />} />
+            <Route path="/dashboard/resumen-beneficios" element={<GraficaBeneficios />} >
+              <Route path="/dashboard/resumen-beneficios/todas-ganancias" element={<AllGanancias />} />
+            </Route>
             <Route path="/dashboard/insertar-ganancias-perdidas" element={<InsertarGananciasPerdidas />} />
           </Route>
         <Route path="*" element={<Navigate to={"/"} />} />

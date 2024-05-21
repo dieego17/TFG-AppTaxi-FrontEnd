@@ -3,37 +3,42 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import './aside.css'
+import logo from '../../assets/images/logo.png'
 
 function AsideDashboard() {
   return (
     <div className='container__aside'>
-      <h2>ASIDE</h2>
-      <ul>
-      <li>
+      <section className='section__logo'>
+        <Link to={'/dashboard'}>
+          <img className='logo__aside' src={logo} alt="" />
+        </Link>
+      </section>
+      <ul className='ul__aside'>
+        <li className='list__aside'>
           <Link to={'/dashboard'}>
-            Home
+            <i className="fa-solid fa-house icon__aside"></i>
           </Link>
         </li>
-        <li>
+        <li className='list__aside'>
           <Link to={'/dashboard/resumen-beneficios'}>
-            Resumen de Beneficios
+            <i className="fa-solid fa-chart-simple icon__aside"></i>
           </Link>
         </li>
-        <li>
+        <li className='list__aside'>
           <Link to={`/dashboard/clientes`}>
-            Clientes
+            <i className="fa-solid fa-users icon__aside"></i>
           </Link>
         </li>
-        <li>
+        <li className='list__aside'>
           <Link to={'/dashboard/insertar-ganancias-perdidas'}>
-            Crear Ganancias y Gastos
+            <i className="fa-solid fa-hand-holding-dollar icon__aside"></i>
           </Link>
         </li>
-        <li>
+        {/* <li className='list__aside list__aside--logout'>
           <Link to={'/'}>
-            Cerrar Sesión
+            <i className="fa-solid fa-power-off icon__aside"></i>
           </Link>
-        </li>
+        </li> */}
       </ul>
     </div>
   )
