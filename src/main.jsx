@@ -14,10 +14,11 @@ import ViajeHoras from "./components/ViajeHoras/ViajeHoras";
 import Cliente from "./components/Cliente/Cliente";
 import AllClientes from "./components/Dashboard/AllClientes/AllClientes";
 import GraficaBeneficios from "./components/Dashboard/GraficaBeneficios/GraficaBeneficios";
-import InsertarGananciasPerdidas from "./components/Dashboard/GraficaBeneficios/InsertarGananciasPerdidas";
+import InsertarGananciasPerdidas from "./components/Dashboard/GraficaBeneficios/InsertarGananciasPerdidas/InsertarGananciasPerdidas";
 import ReservaDetalle from "./components/Dashboard/AllClientes/ClienteDetalle/ReservaDetalle/ReservaDetalle";
 import ViajeDetalle from "./components/Dashboard/AllClientes/ClienteDetalle/ViajeDetalle/ViajeDetalle";
-import AllGanancias from "./components/Dashboard/GraficaBeneficios/AllGnancias/AllGanancias";
+import EditarPerfiil from "./components/Dashboard/EditarPerfil/EditarPerfiil";
+
  /* import ProtectRoute from "./auth/ProtectRoute";
 import AuthProvider from "./auth/AuthProvider"; */
 
@@ -37,19 +38,24 @@ ReactDOM.createRoot(document.getElementById("root")).render(
             element={<CiudadaCiudad />}
           />
           <Route path="/servicios/viaje-por-horas" element={<ViajeHoras />} />
+
+          <Route path="/cliente" element={<Cliente />} />
+
         </Route>
+        
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/cliente" element={<Cliente />} />
+
           <Route path="/dashboard" element={<Dashboard />}>
             <Route path="/dashboard/clientes" element={<AllClientes />} />
             <Route path="/dashboard/clientes/reservas-detalle/:id" element={<ReservaDetalle />} />
             <Route path="/dashboard/clientes/viajes-detalle/:id" element={<ViajeDetalle />} />
+            <Route path="/dashboard/editar-perfil" element={<EditarPerfiil />} />
             <Route path="/dashboard/resumen-beneficios" element={<GraficaBeneficios />} >
-              <Route path="/dashboard/resumen-beneficios/todas-ganancias" element={<AllGanancias />} />
             </Route>
             <Route path="/dashboard/insertar-ganancias-perdidas" element={<InsertarGananciasPerdidas />} />
           </Route>
+
         <Route path="*" element={<Navigate to={"/"} />} />
       </Routes>
     </BrowserRouter>

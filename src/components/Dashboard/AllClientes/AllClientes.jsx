@@ -8,6 +8,10 @@ import './allclientes.css'
 function AllClientes() {
     
   const clientes = useClientes();
+
+  const nombre = 'Joselu'
+  const inicial = nombre.charAt(0)
+
   return (
     <div>
         <table className='table'>
@@ -26,7 +30,9 @@ function AllClientes() {
         <tbody className='table__tbody'>
         {clientes && clientes.map(cliente => (
           <tr className='table__tr' key={cliente.id_usuario}>
-            <td className='table__td'>{cliente.usuario.nombre}</td>
+            <td className='table__td'>
+              {cliente.usuario.nombre}
+              </td>
             <td className='table__td'>{cliente.usuario.apellidos}</td>
             <td className='table__td'>{cliente.usuario.telefono}</td>
             <td className='table__td'>{cliente.usuario.correo_electronico}</td>

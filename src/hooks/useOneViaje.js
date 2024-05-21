@@ -1,20 +1,19 @@
-import { useState, useEffect } from 'react'
-import { getOneViaje } from '../services/getOneViaje'
+import { useState, useEffect } from 'react';
+import { getOneViaje } from '../services/getOneViaje';
 
-//hook para conseguir un viaje
-export const useOneViaje= (id, idUsuario) => {
+// Hook to get a viaje with pagination
+export const useOneViaje = (id, idUsuario, page, limit) => {
+  const [viaje, setViaje] = useState([]);
 
-    const [viaje, setViaje] = useState([])
+  const loadViaje = async () => {
+    const oneViaje = await getOneViaje(id, idUsuario, page, limit);
+    setViaje(oneViaje);
+  };
 
-    const loadViaje = async () => {
-        const OneViaje = await getOneViaje(id, idUsuario)
-        setViaje(OneViaje)
-    }
+  useEffect(() => {
+    loadViaje();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [id, idUsuario, page, limit]);
 
-    useEffect(() => {
-        loadViaje()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [id])
-    
-    return viaje
-}
+  return viaje;
+};

@@ -3,7 +3,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import './aside.css'
-import logo from '../../assets/images/logo.png'
+import logo from '../../../assets/images/logo.png'
 
 function AsideDashboard() {
   return (

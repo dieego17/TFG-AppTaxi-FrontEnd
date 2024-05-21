@@ -2,9 +2,10 @@
 import React from 'react'
 import { useAuth } from '../../auth/AuthProvider'
 import { useState, useEffect } from 'react';
+import './cliente.css'
 
 function Cliente() {
-  const auth = useAuth();
+  /* const auth = useAuth();
   const [usuario, setUsuario] = useState(null); // Declarar usuario usando useState
 
   useEffect(() => {
@@ -35,11 +36,15 @@ function Cliente() {
       console.error('Error decoding JWT:', error);
       return null;
     }
-  }
+  } */
+
+  const nombre = 'Diego'
+
   return (
-      <div>Bienvenido al cliente {usuario?.usuario?.nombre}
-        <p>Aqui van los clientes normales</p>
-      </div>
+      <section className='container container__cliente'>
+        
+        <h1>Bienvenido {nombre}{/*  {usuario?.usuario?.nombre} */}</h1>
+      </section>
       
   );
 }

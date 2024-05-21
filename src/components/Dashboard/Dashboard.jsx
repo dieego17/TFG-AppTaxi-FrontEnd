@@ -1,33 +1,28 @@
 /* eslint-disable no-unused-vars */
+// src/components/Dashboard/Dashboard.js
 import React, { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom'; // Importa useLocation para obtener la ubicación actual
 import { useAuth } from '../../auth/AuthProvider';
 import { Outlet } from 'react-router-dom';
-import AsideDashboard from './AsideDashboard';
-import HeaderDashboard from './HeaderDashboard';
+import AsideDashboard from './AsideDashboard/AsideDashboard';
+import HeaderDashboard from './HeaderDashboard/HeaderDashboard';
+import ResumenDashboard from './ResumenDashboard/ResumenDashboard';
 import './dashboard.css';
-
+import { Link } from 'react-router-dom';
 
 function Dashboard() {
-  /* const auth = useAuth(); */
-  const [usuario, setUsuario] = useState(null); // Declarar usuario usando useState
-
-  /* useEffect(() => {
-    if (!auth.isAuth) {
-      // Redireccionar al componente Login si el usuario no está autenticado
-      window.location.href = '/login'; // Cambia la URL según tu configuración de rutas
-    }
-  }, [auth.isAuth]); */
+  const [usuario, setUsuario] = useState(null);
+  // Obtiene la ubicación actual
+  const location = useLocation();
 
   useEffect(() => {
-    // Lógica para obtener y decodificar el token JWT
     const token = localStorage.getItem('token');
     if (token) {
-      const decodedUsuario = decodeJWT(token); // Cambia el nombre de usuario para evitar conflictos
-      setUsuario(decodedUsuario); // Actualizar el estado de usuario
+      const decodedUsuario = decodeJWT(token);
+      setUsuario(decodedUsuario);
     }
   }, []);
 
-  // Función para decodificar el token JWT
   function decodeJWT(token) {
     try {
       const base64Url = token.split('.')[1];
@@ -42,6 +37,9 @@ function Dashboard() {
     }
   }
 
+  // Verifica si la ubicación actual es la página del Dashboard
+  const mostrarResumen = location.pathname === '/dashboard';
+
   return (
     <div className='container__dashboard'>
       <header className='header__dashboard'>
@@ -51,6 +49,7 @@ function Dashboard() {
         <AsideDashboard />
       </aside>
       <main className='main__dashboard'>
+        <ResumenDashboard mostrar={mostrarResumen} />
         <div className='outlet__dashboard'>
           <Outlet />
         </div>
