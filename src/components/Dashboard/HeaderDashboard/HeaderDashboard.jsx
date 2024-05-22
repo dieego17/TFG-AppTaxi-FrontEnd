@@ -22,12 +22,6 @@ function HeaderDashboard() {
         </button>
         <ul className="dropdown-menu">
           <li>
-            <Link to={'/dashboard/editar-perfil'} className='dropdown-item'>
-              <p>Perfil</p>
-            </Link>
-
-          </li>
-          <li>
             <Link to={'/'} className='dropdown-item'>
               <p>Cerrar Sesión</p>
             </Link>

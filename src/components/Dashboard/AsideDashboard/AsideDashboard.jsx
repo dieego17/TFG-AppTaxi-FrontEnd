@@ -1,5 +1,4 @@
 /* eslint-disable no-unused-vars */
-
 import React from 'react'
 import { Link } from 'react-router-dom'
 import './aside.css'
@@ -30,15 +29,15 @@ function AsideDashboard() {
           </Link>
         </li>
         <li className='list__aside'>
-          <Link to={'/dashboard/insertar-ganancias-perdidas'}>
-            <i className="fa-solid fa-hand-holding-dollar icon__aside"></i>
+          <Link to={`/dashboard/clientes-facturas`}>
+            <i className="fa-solid fa-envelope icon__aside"></i>
           </Link>
         </li>
-        {/* <li className='list__aside list__aside--logout'>
-          <Link to={'/'}>
-            <i className="fa-solid fa-power-off icon__aside"></i>
+        <li className='list__aside list__aside--ajustes'>
+          <Link to={'/dashboard/editar-perfil'}>
+            <i className="fa-solid fa-gear icon__aside"></i>
           </Link>
-        </li> */}
+        </li>
       </ul>
     </div>
   )

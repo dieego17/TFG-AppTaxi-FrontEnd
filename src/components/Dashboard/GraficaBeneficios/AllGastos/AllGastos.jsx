@@ -87,8 +87,10 @@ function AllGastos() {
           </div>
         </div>
       </div>
-      <Link to={'/dashboard/resumen-financiero'}>Volver</Link>
-      <Link to='/dashboard/gastos/nuevo' className='btn btn--nueva'>
+      <Link className="button__volver" to={'/dashboard/resumen-financiero'}>
+        Volver
+      </Link>
+      <Link to='/dashboard/resumen-financiero/añadir-gasto' className='btn btn--nueva'>
         Nuevo Gasto
       </Link>
     </div>

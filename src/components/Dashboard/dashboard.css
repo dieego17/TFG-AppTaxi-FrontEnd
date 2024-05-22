@@ -38,3 +38,33 @@
     flex-wrap: wrap;
     justify-content: center;
 }
+
+@media screen and (min-width: 300px){
+    .aside__dashboard{
+        display: none;
+    }
+}
+
+@media screen and (min-width: 600px){
+    .aside__dashboard{
+        display: none;
+    }
+}
+
+@media screen and (min-width: 768px){
+    .aside__dashboard{
+        display: none;
+    }
+}
+
+@media screen and (min-width: 1024px){
+    .aside__dashboard{
+        display: block;
+    }
+}
+
+@media screen and (min-width: 1200px){
+    .aside__dashboard{
+        display: block;
+    }
+}

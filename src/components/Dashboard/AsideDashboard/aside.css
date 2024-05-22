@@ -26,10 +26,11 @@
     border-radius: 10px;
     cursor: pointer;
 }
-.list__aside--logout{
-    margin-top: 150px;
+.list__aside--ajustes{
+    margin-top: 170px;
 }
 .icon__aside{
     font-size: 30px;
     color: #ffffff;
 }
+

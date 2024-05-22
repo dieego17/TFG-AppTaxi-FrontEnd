@@ -3,12 +3,14 @@ import React from 'react'
 import { useClientes } from '../../../hooks/useClientes';
 import { Link } from 'react-router-dom';
 import './allclientes.css'
+import { useState, useEffect } from 'react';
 
 
 function AllClientes() {
 
-  const [idUsuario, setUsuario] = ('3')
-    
+  const [idUsuario, setUsuario] = useState('3')
+
+  
   const clientes = useClientes(idUsuario);
 
   const nombre = 'Joselu'
@@ -24,7 +26,6 @@ function AllClientes() {
             <th className='table__th'>Teléfono</th>
             <th className='table__th'>Correo electrónico</th>
             <th className='table__th'>Dirección</th>
-            <th className='table__th'>Método de pago</th>
             <th className='table__th'>Ver Reservas</th>
             <th className='table__th'>Ver Viajes</th>
           </tr>
@@ -39,7 +40,6 @@ function AllClientes() {
             <td className='table__td'>{cliente.usuario.telefono}</td>
             <td className='table__td'>{cliente.usuario.correo_electronico}</td>
             <td className='table__td'>{cliente.usuario.direccion_usuario}</td>
-            <td className='table__td'>{cliente.metodo_pago}</td>
             <td className='table__td'>
               <Link className='td__link' to={`/dashboard/clientes/reservas-detalle/${cliente.id_usuario}`}>
                 <i className="bi bi-suitcase-lg-fill link__icon"></i>

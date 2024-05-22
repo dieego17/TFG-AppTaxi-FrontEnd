@@ -86,8 +86,10 @@ function AllGanancias() {
           </div>
         </div>
       </div>
-      <Link to={'/dashboard/resumen-financiero'}>Volver</Link>
-      <Link to='/dashboard/ganancias/nueva' className='btn btn--nueva'>
+      <Link className="button__volver" to={'/dashboard/resumen-financiero'}>
+        Volver
+      </Link>
+      <Link to='/dashboard/resumen-financiero/añadir-ganancia' className='btn btn--nueva'>
         Nueva Ganancia
       </Link>
     </div>

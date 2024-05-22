@@ -3,6 +3,7 @@ import React from 'react'
 import { useAuth } from '../../auth/AuthProvider'
 import { useState, useEffect } from 'react';
 import './cliente.css'
+import ReservarViaje from './ReservarViaje/ReservarViaje';
 
 function Cliente() {
   /* const auth = useAuth();
@@ -38,12 +39,14 @@ function Cliente() {
     }
   } */
 
-  const nombre = 'Diego'
+  const [idUsuario, setUsuario] = useState('1'); // Declarar usuario usando useState
+  const nombre = 'Joselu'
 
   return (
       <section className='container container__cliente'>
         
         <h1>Bienvenido {nombre}{/*  {usuario?.usuario?.nombre} */}</h1>
+        <ReservarViaje idUsuario={idUsuario} />
       </section>
       
   );

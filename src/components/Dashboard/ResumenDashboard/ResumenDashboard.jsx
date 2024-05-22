@@ -14,14 +14,14 @@ function ResumenDashboard({ mostrar }) {
   return (
     <div className="resumen-dashboard">
       <section className='section__dashboard'>
-        <article className='article__dashboard'>
-          <Link to={'/dashboard/resumen-beneficios'} className="article-link">
+        <article className='article__dashboard col-lg-6 col-md-12'>
+          <Link to={'/dashboard/resumen-financiero'} className="article-link">
             <div className="article-content">
               <GraficaBeneficios />
             </div>
           </Link>
         </article>
-        <article className='article__dashboard'>
+        <article className='article__dashboard col-lg-6 col-md-12'>
         </article>
       </section>
       <section className='section__dashboard'>
