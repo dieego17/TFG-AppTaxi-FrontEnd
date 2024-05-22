@@ -13,7 +13,7 @@ function ReservaDetalle() {
   // Estado local para almacenar la página actual
   const [currentPage, setCurrentPage] = useState(1);
   // Reservas por página
-  const reservasPerPage = 4; 
+  const reservasPerPage = 3; 
 
   // Obtener las reservas
   const reservas = useOneReserva(id, idUsuario, currentPage, reservasPerPage);
@@ -67,14 +67,14 @@ function ReservaDetalle() {
           ))}
         </tbody>
       </table>
-      <div className="pagination">
-        <button onClick={handlePreviousPage} disabled={currentPage === 1}>
+      <div className="pagination__container">
+        <button className="button__anterior" onClick={handlePreviousPage} disabled={currentPage === 1}>
           Anterior
         </button>
-        <span>
+        <span className="span__numero">
           Página {currentPage}
         </span>
-        <button onClick={handleNextPage} disabled={reservas.length < reservasPerPage}>
+        <button className="button__siguiente" onClick={handleNextPage} disabled={reservas.length < reservasPerPage}>
           Siguiente
         </button>
       </div>

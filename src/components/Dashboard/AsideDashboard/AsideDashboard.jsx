@@ -20,7 +20,7 @@ function AsideDashboard() {
           </Link>
         </li>
         <li className='list__aside'>
-          <Link to={'/dashboard/resumen-beneficios'}>
+          <Link to={'/dashboard/resumen-financiero'}>
             <i className="fa-solid fa-chart-simple icon__aside"></i>
           </Link>
         </li>

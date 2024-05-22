@@ -6,8 +6,10 @@ import './allclientes.css'
 
 
 function AllClientes() {
+
+  const [idUsuario, setUsuario] = ('3')
     
-  const clientes = useClientes();
+  const clientes = useClientes(idUsuario);
 
   const nombre = 'Joselu'
   const inicial = nombre.charAt(0)

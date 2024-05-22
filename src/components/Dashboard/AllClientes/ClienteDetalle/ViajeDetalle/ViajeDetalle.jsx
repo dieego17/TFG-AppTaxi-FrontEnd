@@ -14,7 +14,7 @@ function ClienteDetalle() {
 
   // Estado local para almacenar la página actual
   const [currentPage, setCurrentPage] = useState(1);
-  const viajesPerPage = 4; // Viajes por página
+  const viajesPerPage = 3; // Viajes por página
 
   // Estado local para almacenar los viajes
   const [viajes, setViajes] = useState([]);
@@ -104,18 +104,20 @@ function ClienteDetalle() {
           ))}
         </tbody>
       </table>
-      <div className="pagination">
-        <button onClick={handlePreviousPage} disabled={currentPage === 1}>
+      <div className="pagination__container">
+        <button className="button__anterior" onClick={handlePreviousPage} disabled={currentPage === 1}>
           Anterior
         </button>
-        <span>
+        <span className="span__numero">
           Página {currentPage}
         </span>
-        <button onClick={handleNextPage} disabled={viajes.length < viajesPerPage}>
+        <button className="button__siguiente" onClick={handleNextPage} disabled={viajes.length < viajesPerPage}>
           Siguiente
         </button>
       </div>
-      <Link className="button__volver" to={"/dashboard/clientes"}>Volver</Link>
+      <Link className="button__volver" to={"/dashboard/clientes"}>
+        Volver
+      </Link>
     </div>
   );
 }

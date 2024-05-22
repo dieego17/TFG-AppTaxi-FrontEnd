@@ -2,6 +2,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import Chart from 'chart.js/auto';
 import './grafica.css';
+import { Link } from 'react-router-dom';
 
 function GraficaBeneficios() {
     const [ganancias, setGanancias] = useState([]);
@@ -21,6 +22,7 @@ function GraficaBeneficios() {
         };
 
         fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     useEffect(() => {
@@ -74,20 +76,7 @@ function GraficaBeneficios() {
                 },
                 animation: {
                     duration: 1500,
-                },
-                plugins: {
-                    title: {
-                        display: true,
-                        text: 'Resumen Financiero',
-                        font: {
-                            size: 24,
-                            weight: 'bold',
-                            family: 'Arial',
-                        },
-                        color: 'rgba(0, 0, 0, 0.8)',
-                        padding: 20,
-                    },
-                },
+                }
             },
         });
 
@@ -95,9 +84,21 @@ function GraficaBeneficios() {
     }, [ganancias, perdidas]);
 
     return (
-        <div className="chart-container">
-            <canvas id="myChart" width="600" height="400"></canvas>
+        <div>
+            <div className="chart-container">
+                <h2>RESUMEN FINANCIERO</h2>
+                <canvas id="myChart" width="600" height="400"></canvas>
+            </div>
+            <div className='link__container'>
+                <Link className='link__text' to={'/dashboard/resumen-financiero/todas-ganancias'} >
+                    Ver todas las Ganancias
+                </Link>
+                <Link className='link__text link__text--perdidas' to={'/dashboard/resumen-financiero/todos-gastos'} >
+                    Ver todos los Gastos
+                </Link>
+            </div>
         </div>
+        
     );
 }
 
