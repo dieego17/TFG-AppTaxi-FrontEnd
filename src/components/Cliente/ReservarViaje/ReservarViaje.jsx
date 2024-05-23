@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
+import { useTaxistas } from '../../../hooks/useTaxistas';
 
 function ReservarViaje() {
   const [origen, setOrigen] = useState('');
@@ -9,28 +10,29 @@ function ReservarViaje() {
   const [distancia, setDistancia] = useState(null);
   const [precioTotal, setPrecioTotal] = useState(0);
   const [error, setError] = useState(null);
+  const [taxistaSeleccionado, setTaxistaSeleccionado] = useState('');
+  const [recibirFactura, setRecibirFactura] = useState('No');
+  const [idUsuario, setIdUsuario] = useState(1);
+  const [isDistanceCalculated, setIsDistanceCalculated] = useState(false);
 
-  // Función para buscar la distancia entre dos ubicaciones
+  const taxistas = useTaxistas();
+
   const handleBuscarDistancia = async () => {
-
-    const API_KEY = import.meta.env.VITE_GOOGLE_MAPS_API 
+    const API_KEY = import.meta.env.VITE_GOOGLE_MAPS_API;
 
     try {
-      const apiKey = API_KEY
-      // Validar que los campos de origen y destino no estén vacíos 
-      const url = `https://maps.googleapis.com/maps/api/distancematrix/json?origins=${origen}&destinations=${destino}&key=${apiKey}`;
+      const url = `https://maps.googleapis.com/maps/api/distancematrix/json?origins=${origen}&destinations=${destino}&key=${API_KEY}`;
 
       const response = await fetch(url);
       const data = await response.json();
 
       if (data.status === 'OK') {
-        // Obtener la distancia en metros y convertirla a kilómetros
         const distanciaEnMetros = data.rows[0].elements[0].distance.value;
         const distanciaEnKilometros = distanciaEnMetros / 1000;
         setDistancia(distanciaEnKilometros);
         setError(null);
-        // Calcular el precio total basado en la distancia
         calcularPrecioTotal(distanciaEnKilometros);
+        setIsDistanceCalculated(true);
       } else {
         setError('Hubo un problema al buscar la distancia. Por favor, intenta de nuevo.');
       }
@@ -40,25 +42,49 @@ function ReservarViaje() {
   };
 
   const calcularPrecioTotal = (distancia) => {
-    // Precio por kilómetro en euros
-    const precioPorKilometro = 1; 
+    const precioPorKilometro = 1;
     let precio;
-  
-    // Si la distancia es menor a 5 km, sumar 4€ al precio total
+
     if (distancia < 5) {
       precio = 4 + (distancia + 1) * precioPorKilometro;
     } else {
-      // Calcular el precio total basado en la distancia
       precio = distancia * precioPorKilometro;
     }
-    
+
     setPrecioTotal(precio);
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    const datosFormulario = {
+      id_taxista: taxistaSeleccionado,
+      origen_viaje: origen,
+      destino_viaje: destino,
+      fecha_viaje: fecha,
+      hora_viaje: hora,
+      precioTotal_viaje: precioTotal,
+      factura_viaje: recibirFactura 
+    };
+
+    console.log('Datos del formulario:', datosFormulario);
+
+    fetch(`http://localhost:3000/appTaxio/v1/viajes/${idUsuario}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(datosFormulario),
+    })
+    .then(response => response.json())
+    .then(data => console.log('Respuesta del servidor:', data))
+    .catch(error => console.error('Error al enviar los datos:', error));
   };
 
   return (
     <div>
       <h2>Reservar un viaje</h2>
-      <form className='d-flex flex-column' onSubmit={(e) => e.preventDefault()}>
+      <form className='d-flex flex-column' onSubmit={handleSubmit}>
         <label htmlFor='origen'>Origen:</label>
         <input
           type='text'
@@ -91,15 +117,31 @@ function ReservarViaje() {
           value={hora}
           onChange={(e) => setHora(e.target.value)}
         />
-        <label htmlFor='precioTotal'>Precio Total:</label>
-        <input
-          type='hidden'
-          id='precioTotal'
-          name='precioTotal'
-          value={precioTotal}
-          readOnly
-        />
-        <button onClick={handleBuscarDistancia}>Buscar</button>
+        <label htmlFor="taxistas">Elige tu conductor</label>
+        <select 
+          name="taxistas" 
+          id="taxistas"
+          value={taxistaSeleccionado}
+          onChange={(e) => setTaxistaSeleccionado(e.target.value)}
+        >
+          <option value="">Selecciona un taxista</option>
+          {taxistas.map(taxista => (
+            console.log(taxista),
+            <option key={taxista.id_usuario} value={taxista.id_usuario}>{taxista.nombre} {taxista.apellidos}</option>
+          ))}
+        </select>
+        <label htmlFor="factura">Recibir Factura</label>
+        <select 
+          id="factura" 
+          value={recibirFactura}
+          onChange={(e) => setRecibirFactura(e.target.value)}
+        >
+          <option value="Si">Sí</option>
+          <option value="No">No</option>
+        </select>
+
+        <button type="button" onClick={handleBuscarDistancia}>Calcular Precio</button>
+        <button type="submit" disabled={!isDistanceCalculated}>Reservar</button>
       </form>
       {error && <p>{error}</p>}
       {distancia !== null && <p>Distancia: {distancia} kilómetros</p>}

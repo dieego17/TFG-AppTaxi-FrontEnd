@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
-import React, { useEffect } from "react";
+import React from "react";
 import {
   Page,
   Text,
@@ -9,7 +9,7 @@ import {
   StyleSheet,
   Image,
 } from "@react-pdf/renderer";
-import logo from "../../assets//images/logo.png";
+import logo from "../../assets/images/logo.png";
 import { useOneViajeCliente } from "../../hooks/useOneViajeCliente";
 
 // Estilos para el documento PDF
@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
     borderBottom: "1px solid #000",
   },
   logo: {
-    width: 100,
+    width: 100
   },
   logoText: {
     flexDirection: "row",
@@ -102,14 +102,24 @@ const styles = StyleSheet.create({
 
 function Pdf({ viaje }) {
   const fecha = new Date();
-  const fechaFormateada =
-    fecha.getDate() + "/" + (fecha.getMonth() + 1) + "/" + fecha.getFullYear();
+  const fechaFormateada = fecha.getDate() + "/" + (fecha.getMonth() + 1) + "/" + fecha.getFullYear();
+
+  const fechaFormateadaViaje = (fecha) => {
+    const date = new Date(fecha);
+    return date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear();
+  };
 
   const IVA = (viaje.precioTotal_viaje * 0.1).toFixed(1);
   const precioTotal = parseFloat(IVA) + viaje.precioTotal_viaje;
 
+
+  const id_viaje = viaje.id_viaje;
+
   // Hook para obtener los clientes de un viaje
-  const clientes = useOneViajeCliente(viaje.id_viaje);
+  const clientes = useOneViajeCliente(id_viaje);
+
+  
+
 
   return (
     <Document>
@@ -146,15 +156,15 @@ function Pdf({ viaje }) {
                 </Text>
               </View>
               {
-                clientes.reservas && clientes.reservas.map((reserva) => (
-                  <View key={reserva.cliente.id_usuario}>
+                clientes.reserva &&
+                  <View key={clientes.reserva.cliente.id_usuario}>
                     <Text style={styles.title}>Cliente</Text>
-                    <Text style={styles.text}>Nombre: {reserva.cliente.usuario.nombre} {reserva.cliente.usuario.apellidos}</Text>
+                    <Text style={styles.text}>Nombre: {clientes.reserva.cliente.usuario.nombre} {clientes.reserva.cliente.usuario.apellidos}</Text>
                     <Text style={styles.text}>DNI: A08479297</Text>
-                    <Text style={styles.text}>Dirección: {reserva.cliente.usuario.direccion_usuario}</Text>
-                    <Text style={styles.text}>Teléfono: {reserva.cliente.usuario.telefono}</Text>
+                    <Text style={styles.text}>Dirección: {clientes.reserva.cliente.usuario.direccion_usuario}</Text>
+                    <Text style={styles.text}>Teléfono: {clientes.reserva.cliente.usuario.telefono}</Text>
                   </View>
-                ))
+                
               }
               
             </View>
@@ -180,7 +190,7 @@ function Pdf({ viaje }) {
                 </View>
                 <View style={styles.tableCol}>
                   <Text style={styles.textImporteCant}>
-                    Viaje de {viaje.origen_viaje} a {viaje.destino_viaje}
+                    Viaje de {viaje.origen_viaje} a {viaje.destino_viaje}, el día {fechaFormateadaViaje(viaje.fecha_viaje)}
                   </Text>
                 </View>
                 <View style={styles.tableCol}>
@@ -192,7 +202,6 @@ function Pdf({ viaje }) {
               {/* Resumen */}
               <View style={styles.tableRow}>
                 <View style={styles.tableColResumen}>
-                  {/* <Text>Resumen</Text> */}
                 </View>
                 <View style={styles.tableColResumen}></View>
                 <View style={styles.tableColResumen}>
