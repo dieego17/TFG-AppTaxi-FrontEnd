@@ -22,6 +22,7 @@ import AllGastos from "./components/Dashboard/GraficaBeneficios/AllGastos/AllGas
 import InsertarGanancias from "./components/Dashboard/GraficaBeneficios/AllGanancias/InsertarGanancia/InsertarGanancia";
 import InsertarGasto from "./components/Dashboard/GraficaBeneficios/AllGastos/InsertarGasto/InsertarGasto";
 import CorreoFactura from "./components/Dashboard/CorreoFactura/CorreoFactura";
+import MisReservas from "./components/Cliente/MisReservas/MisReservas";
 
  /* import ProtectRoute from "./auth/ProtectRoute";
 import AuthProvider from "./auth/AuthProvider"; */
@@ -44,6 +45,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
           <Route path="/servicios/viaje-por-horas" element={<ViajeHoras />} />
 
           <Route path="/cliente" element={<Cliente />} />
+          <Route path="/cliente/mis-reservas" element={<MisReservas />} />
 
         </Route>
         

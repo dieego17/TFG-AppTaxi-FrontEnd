@@ -68,10 +68,14 @@ function Header() {
             
                       </li>
                       <li>
-                        <Link to={'/cliente/reservas'} className='dropdown-item'>
+                        <Link to={'/cliente/mis-reservas'} className='dropdown-item'>
                           <p>Mis Reservas</p>
                         </Link>
-            
+                      </li>
+                      <li>
+                        <Link to={'/cliente/mis-viajes'} className='dropdown-item'>
+                          <p>Mis Viajes</p>
+                        </Link>
                       </li>
                       <li>
                         <Link to={'/'} className='dropdown-item'>

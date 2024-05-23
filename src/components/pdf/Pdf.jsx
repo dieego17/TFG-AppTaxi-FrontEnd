@@ -133,7 +133,6 @@ function Pdf({ viaje }) {
             </View>
             <View>
               <Text>FACTURA</Text>
-              <Text>Nº de factura: 1</Text>
               <Text>Fecha: {fechaFormateada}</Text>
             </View>
           </View>

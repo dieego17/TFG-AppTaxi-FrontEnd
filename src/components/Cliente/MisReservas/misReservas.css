@@ -1,0 +1,25 @@
+.container__reservas{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 140px;
+    margin-bottom: 50px;
+}
+
+.estado__confirmado{
+    color: #ffffff;
+    border: 1px solid #008000;
+    padding: 5px;
+    border-radius: 5px;
+    background-color: #008000;
+    margin: 5px 5px;
+}
+.estado__cancelado{
+    color: #ffffff;
+    border: 1px solid #ff0000;
+    padding: 5px;
+    border-radius: 5px;
+    background-color: #ff0000;
+    margin: 5px 5px;
+}
