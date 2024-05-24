@@ -17,7 +17,7 @@ function Header() {
     };
 
     if (user.loggedIn) {
-      setIsLoggedIn(true);
+      setIsLoggedIn(false);
       setUserName(user.name);
     }
   }, []);

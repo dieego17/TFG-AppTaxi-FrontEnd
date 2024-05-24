@@ -1,0 +1,21 @@
+.container__reseña{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 140px;
+    margin-bottom: 30px;
+    padding: 20px;
+    border-radius: 10px;
+    width: 100%;
+}
+
+.fa-solid.fa-star {
+    font-size: 24px; 
+    color: #ccc; 
+}
+
+.fa-solid.fa-star.selected {
+    color: gold; 
+}
+

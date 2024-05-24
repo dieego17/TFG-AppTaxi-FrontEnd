@@ -80,6 +80,7 @@ function ClienteDetalle() {
                 <th>Estado Viaje</th>
                 <th>Precio Viaje</th>
                 <th>Factura</th>
+                <th>Visualizar Ruta</th>
               </tr>
             </thead>
             <tbody>
@@ -106,6 +107,11 @@ function ClienteDetalle() {
                     ) : (
                       <p>Factura no disponible</p>
                     )}
+                  </td>
+                  <td>
+                    <Link to={`/dashboard/clientes/viajes-detalles/ruta/${viaje.id_viaje}`}> 
+                      <i className="fa-solid fa-car-side"></i>
+                    </Link>
                   </td>
                 </tr>
               ))}

@@ -5,6 +5,6 @@ export const getAllTaxistas = async () => {
           const data = await response.json()
           return data
       } catch (error) {
-          console.log('Error en la petición getAllTaxistass:', error)
+          console.log('Error en la petición getAllTaxistas:', error)
       }
   }

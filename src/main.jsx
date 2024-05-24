@@ -23,6 +23,10 @@ import InsertarGanancias from "./components/Dashboard/GraficaBeneficios/AllGanan
 import InsertarGasto from "./components/Dashboard/GraficaBeneficios/AllGastos/InsertarGasto/InsertarGasto";
 import CorreoFactura from "./components/Dashboard/CorreoFactura/CorreoFactura";
 import MisReservas from "./components/Cliente/MisReservas/MisReservas";
+import MisViajes from "./components/Cliente/MisViajes/MisViajes";
+import DetalleViaje from "./components/Cliente/MisViajes/DetallesViaje/DetalleViaje";
+import Reseña from "./components/Cliente/Reseña/Reseña";
+import RutaMapa from "./components/Dashboard/AllClientes/ClienteDetalle/ViajeDetalle/RutaMapa/RutaMapa";
 
  /* import ProtectRoute from "./auth/ProtectRoute";
 import AuthProvider from "./auth/AuthProvider"; */
@@ -46,6 +50,9 @@ ReactDOM.createRoot(document.getElementById("root")).render(
 
           <Route path="/cliente" element={<Cliente />} />
           <Route path="/cliente/mis-reservas" element={<MisReservas />} />
+          <Route path="/cliente/mis-viajes" element={<MisViajes/>} />
+          <Route path="/cliente/mis-viajes/detalles/:id" element={<DetalleViaje/>} />
+          <Route path="/cliente/crear-reseña" element={<Reseña />} />
 
         </Route>
         
@@ -57,6 +64,8 @@ ReactDOM.createRoot(document.getElementById("root")).render(
             <Route path="/dashboard/clientes" element={<AllClientes />} />
             <Route path="/dashboard/clientes/reservas-detalle/:id" element={<ReservaDetalle />} />
             <Route path="/dashboard/clientes/viajes-detalle/:id" element={<ViajeDetalle />} />
+            <Route path="/dashboard/clientes/viajes-detalles/ruta/:id" element={<RutaMapa />} />
+          
 
             <Route path="/dashboard/editar-perfil" element={<EditarPerfiil />} />
 
