@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import { useTaxistas } from '../../../hooks/useTaxistas';
+import './reservarViaje.css';
 
 function ReservarViaje() {
   const [origen, setOrigen] = useState('');
@@ -109,7 +110,7 @@ function ReservarViaje() {
   };
 
   return (
-    <div>
+    <div className='container__crear--reservas'>
       <h2>Reservar un viaje</h2>
       {
         // Mostrar mensaje de éxito si se ha creado la reserva

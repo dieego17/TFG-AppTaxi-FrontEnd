@@ -5,14 +5,15 @@ import { Link } from 'react-router-dom'
 
 function HeaderDashboard() {
 
+  /* const userName = localStorage.getItem('userName') */
+  const userName = 'Diego'
 
-  const nombre = 'Diego'
-  const inicial = nombre.charAt(0)
+  const inicial = userName.charAt(0)
 
   return (
     <div className='container__header'>
       <div className='header__bienvenida'>
-        <h2>Bienvenido/a Diego</h2>
+        <h2>Bienvenido/a {userName}</h2>
       </div>
       <div className="dropdown">
         <button className="button__perfil" type="button" data-bs-toggle="dropdown" aria-expanded="false">

@@ -3,6 +3,8 @@ import React from 'react'
 import { useState, useEffect } from 'react';
 import './cliente.css'
 import ReservarViaje from './ReservarViaje/ReservarViaje';
+import HeaderCliente from './HeaderCliente/HeaderCliente';
+import { Outlet } from 'react-router-dom';
 
 function Cliente() {
 
@@ -10,11 +12,17 @@ function Cliente() {
   const nombre = 'Joselu'
 
   return (
-      <section className='container container__cliente'>
-        
-        <h1>Bienvenido {nombre}{/*  {usuario?.usuario?.nombre} */}</h1>
-        <ReservarViaje idUsuario={idUsuario} />
-      </section>
+      <div className=''>
+        <header>
+          <HeaderCliente />
+        </header>
+        <main>
+          <Outlet />
+        </main>
+        <footer>
+
+        </footer>
+      </div>
       
   );
 }

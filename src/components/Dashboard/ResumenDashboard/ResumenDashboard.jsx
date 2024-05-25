@@ -11,17 +11,22 @@ function ResumenDashboard({ mostrar }) {
     return null; // Si mostrar es falso, no renderizar nada
   }
 
+  const userName = localStorage.getItem('userName');
+
   return (
     <div className="resumen-dashboard">
       <section className='section__dashboard'>
+      <article className='article__dashboard col-lg-6 col-md-12'>
+        <h1>BIENVENIDO,
+          {userName}
+        </h1>
+      </article>
         <article className='article__dashboard col-lg-6 col-md-12'>
           <Link to={'/dashboard/resumen-financiero'} className="article-link">
             <div className="article-content">
               <GraficaBeneficios />
             </div>
           </Link>
-        </article>
-        <article className='article__dashboard col-lg-6 col-md-12'>
         </article>
       </section>
       <section className='section__dashboard'>

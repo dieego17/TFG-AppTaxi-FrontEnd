@@ -6,10 +6,12 @@ import { deleteReserva } from "../../../services/deleteReserva";
 import "./misReservas.css";
 import { Link } from "react-router-dom";
 
+
 function MisReservas() {
   const [idUsuario, setIdUsuario] = useState(1);
   const reservasData = useReservasClientes(idUsuario);
   const [reservas, setReservas] = useState([]);
+  const [reservaAEliminar, setReservaAEliminar] = useState(null);
 
   // use effect para actualizar las reservas
   useEffect(() => {
@@ -82,9 +84,9 @@ function MisReservas() {
                   <td className="table__td">
                     <div>
                       {reserva.estado_reserva === "Pendiente" ? (
-                        <p>Reserva Pendiente</p>
+                        <p className="texto__pendiente">Pendiente</p>
                       ) : reserva.estado_reserva === "Confirmada" ? (
-                        <p>Reserva Confirmada</p>
+                        <p className="texto__confirmado">Confirmada</p>
                       ) : null}
                     </div>
                   </td>
@@ -98,25 +100,23 @@ function MisReservas() {
                           type="button"
                           className="estado__cancelado"
                           data-bs-toggle="modal"
-                          data-bs-target={`#exampleModal-${reserva.id_reserva}`}
+                          data-bs-target="#exampleModal"
+                          onClick={() => setReservaAEliminar(reserva.id_reserva)}
                         >
                           Cancelar
                         </button>
 
                         <div
                           className="modal fade"
-                          id={`exampleModal-${reserva.id_reserva}`}
+                          id="exampleModal"
                           aria-labelledby="exampleModalLabel"
                           aria-hidden="true"
                         >
                           <div className="modal-dialog">
                             <div className="modal-content">
                               <div className="modal-header">
-                                <h1
-                                  className="modal-title fs-5"
-                                  id="exampleModalLabel"
-                                >
-                                  Cancelar Reserva
+                                <h1 className="modal-title fs-5" id="exampleModalLabel">
+                                  Cancelar reserva
                                 </h1>
                                 <button
                                   type="button"
@@ -126,8 +126,7 @@ function MisReservas() {
                                 ></button>
                               </div>
                               <div className="modal-body">
-                                ¿Seguro que quieres cancelar y eliminar la
-                                reservas?
+                                ¿Estás seguro que quieres cancelar y eliminar la reserva?
                               </div>
                               <div className="modal-footer">
                                 <button
@@ -140,9 +139,8 @@ function MisReservas() {
                                 <button
                                   type="button"
                                   className="estado__cancelado"
-                                  onClick={(event) =>
-                                    cancelarReserva(event, reserva.id_reserva)
-                                  }
+                                  onClick={(event) => cancelarReserva(event, reservaAEliminar)}
+                                  data-bs-dismiss="modal"
                                 >
                                   Eliminar
                                 </button>
@@ -152,9 +150,7 @@ function MisReservas() {
                         </div>
                         <button
                           className="estado__confirmado"
-                          onClick={(event) =>
-                            confirmarReserva(event, reserva.id_reserva)
-                          }
+                          onClick={(event) => confirmarReserva(event, reserva.id_reserva)}
                         >
                           Confirmar
                         </button>

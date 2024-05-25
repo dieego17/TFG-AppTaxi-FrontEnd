@@ -28,11 +28,6 @@ function AsideDashboard() {
             <i className="fa-solid fa-users icon__aside"></i>
           </Link>
         </li>
-        <li className='list__aside'>
-          <Link to={`/dashboard/clientes-facturas`}>
-            <i className="fa-solid fa-envelope icon__aside"></i>
-          </Link>
-        </li>
         <li className='list__aside list__aside--ajustes'>
           <Link to={'/dashboard/editar-perfil'}>
             <i className="fa-solid fa-gear icon__aside"></i>

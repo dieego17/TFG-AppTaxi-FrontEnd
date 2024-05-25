@@ -28,7 +28,10 @@ function DetalleViaje() {
             <p>Fecha: {formatearFecha(viaje.fecha_viaje)}</p>
             <p>Hora: {viaje.hora_viaje}</p>
             <p>Precio Total: {viaje.precioTotal_viaje}€</p>
-            <p>Factura: {viaje.factura_viaje}</p>
+            <p>Taxista: {viaje.taxistum?.usuario?.nombre} {viaje.taxistum?.usuario?.apellidos}</p>
+            <p>Vehículo: {viaje.taxistum?.vehiculo}</p>
+            <p>Número de Licencia: {viaje.taxistum?.num_licencia}</p>
+            
         </article>
         <Link to={'/cliente/mis-viajes'}>
             Volver

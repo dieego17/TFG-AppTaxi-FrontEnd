@@ -21,15 +21,13 @@ import AllGanancias from "./components/Dashboard/GraficaBeneficios/AllGanancias/
 import AllGastos from "./components/Dashboard/GraficaBeneficios/AllGastos/AllGastos";
 import InsertarGanancias from "./components/Dashboard/GraficaBeneficios/AllGanancias/InsertarGanancia/InsertarGanancia";
 import InsertarGasto from "./components/Dashboard/GraficaBeneficios/AllGastos/InsertarGasto/InsertarGasto";
-import CorreoFactura from "./components/Dashboard/CorreoFactura/CorreoFactura";
 import MisReservas from "./components/Cliente/MisReservas/MisReservas";
 import MisViajes from "./components/Cliente/MisViajes/MisViajes";
 import DetalleViaje from "./components/Cliente/MisViajes/DetallesViaje/DetalleViaje";
 import Reseña from "./components/Cliente/Reseña/Reseña";
 import RutaMapa from "./components/Dashboard/AllClientes/ClienteDetalle/ViajeDetalle/RutaMapa/RutaMapa";
+import ReservarViaje from "./components/Cliente/ReservarViaje/ReservarViaje";
 
- /* import ProtectRoute from "./auth/ProtectRoute";
-import AuthProvider from "./auth/AuthProvider"; */
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <BrowserRouter>
@@ -48,17 +46,21 @@ ReactDOM.createRoot(document.getElementById("root")).render(
           />
           <Route path="/servicios/viaje-por-horas" element={<ViajeHoras />} />
 
-          <Route path="/cliente" element={<Cliente />} />
-          <Route path="/cliente/mis-reservas" element={<MisReservas />} />
-          <Route path="/cliente/mis-viajes" element={<MisViajes/>} />
-          <Route path="/cliente/mis-viajes/detalles/:id" element={<DetalleViaje/>} />
-          <Route path="/cliente/crear-reseña" element={<Reseña />} />
-
         </Route>
         
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
 
+          {/* Ruta clientes */}
+          <Route path="/cliente" element={<Cliente />} >
+            <Route path="/cliente/nuevo-viaje" element={<ReservarViaje />} />
+            <Route path="/cliente/mis-reservas" element={<MisReservas />} />
+            <Route path="/cliente/mis-viajes" element={<MisViajes/>} />
+            <Route path="/cliente/mis-viajes/detalles/:id" element={<DetalleViaje/>} />
+            <Route path="/cliente/crear-reseña" element={<Reseña />} />
+          </Route>
+
+          {/* Ruta dashboard */}
           <Route path="/dashboard" element={<Dashboard />}>
 
             <Route path="/dashboard/clientes" element={<AllClientes />} />
@@ -74,8 +76,6 @@ ReactDOM.createRoot(document.getElementById("root")).render(
             <Route path="/dashboard/resumen-financiero/añadir-ganancia" element={<InsertarGanancias />} />
             <Route path="/dashboard/resumen-financiero/añadir-gasto" element={<InsertarGasto />} />
             <Route path="/dashboard/resumen-financiero/todos-gastos" element={<AllGastos />} />
-
-            <Route path="/dashboard/clientes-facturas" element={<CorreoFactura />} />
           </Route>
 
         <Route path="*" element={<Navigate to={"/"} />} />
@@ -83,12 +83,6 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     </BrowserRouter>
   
 );
-
-{/* <AuthProvider>
-    <Route path="/" element={<ProtectRoute />}>
-          
-      </Route>
-  </AuthProvider>  */}
 
  
 
