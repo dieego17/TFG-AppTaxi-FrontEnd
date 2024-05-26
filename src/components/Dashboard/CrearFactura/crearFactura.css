@@ -10,3 +10,15 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     width: 100%;
 }
+
+.button__pdf-wrapper {
+    display: inline-block;
+}
+.button__pdf{
+    background-color: #008cff;
+    color: #ffffff;
+    border: none;
+    padding: 5px;
+    border-radius: 5px;
+    margin: 5px 0px;
+}

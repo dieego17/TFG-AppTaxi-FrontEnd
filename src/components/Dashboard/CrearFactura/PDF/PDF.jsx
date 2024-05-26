@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 import React from "react";
@@ -25,7 +26,7 @@ const styles = StyleSheet.create({
     borderBottom: "1px solid #000",
   },
   logo: {
-    width: 100,
+    width: 150,
   },
   logoText: {
     flexDirection: "row",
@@ -99,7 +100,7 @@ const styles = StyleSheet.create({
   },
 });
 
-function FacturaCreada({ datosFactura }) {
+function PDF({ datosFactura }) {
 
   const fecha = new Date();
   const fechaFormateada = `${fecha.getDate()}/${fecha.getMonth() + 1}/${fecha.getFullYear()}`;
@@ -127,7 +128,6 @@ function FacturaCreada({ datosFactura }) {
                 style={styles.logo}
                 src={logoVerde}
               />
-              <Text>App Taxio</Text>
             </View>
             <View>
               <Text>FACTURA</Text>
@@ -225,4 +225,4 @@ function FacturaCreada({ datosFactura }) {
   );
 }
 
-export default FacturaCreada;
+export default PDF;

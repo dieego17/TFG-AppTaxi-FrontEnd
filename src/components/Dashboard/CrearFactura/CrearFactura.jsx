@@ -1,8 +1,8 @@
 /* eslint-disable no-unused-vars */
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./crearFactura.css";
-import { PDFDownloadLink } from "@react-pdf/renderer";
-import FacturaCreada from "./PDF/FacturaCreada";
+import { PDFDownloadLink } from '@react-pdf/renderer';
+import PDF from "./PDF/PDF";
 
 function CrearFactura() {
   const [datosFactura, setDatosFactura] = useState({
@@ -17,6 +17,8 @@ function CrearFactura() {
     fechaViaje: "",
   });
 
+  const [formularioCompleto, setFormularioCompleto] = useState(false);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setDatosFactura((prevState) => ({
@@ -24,6 +26,22 @@ function CrearFactura() {
       [name]: value,
     }));
   };
+
+  // Verificar si todos los campos están completos
+  const verificarFormularioCompleto = () => {
+    const { nombreCliente, apellidosCliente, dniCliente, direccionCliente, telefonoCliente, precio, origenViaje, destinoViaje, fechaViaje } = datosFactura;
+    if (nombreCliente !== "" && apellidosCliente !== "" && dniCliente !== "" && direccionCliente !== "" && telefonoCliente !== "" && precio !== "" && origenViaje !== "" && destinoViaje !== "" && fechaViaje !== "") {
+      setFormularioCompleto(true);
+    } else {
+      setFormularioCompleto(false);
+    }
+  };
+
+  // Llamar a verificarFormularioCompleto cada vez que cambie algún campo
+  useEffect(() => {
+    verificarFormularioCompleto();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [datosFactura]);
 
   return (
     <div>
@@ -69,7 +87,6 @@ function CrearFactura() {
           value={datosFactura.telefonoCliente}
           onChange={handleChange}
         />
-
         <label htmlFor="origenViaje">Introduce el origen del viaje</label>
         <input
           type="text"
@@ -94,7 +111,6 @@ function CrearFactura() {
           value={datosFactura.fechaViaje}
           onChange={handleChange}
         />
-
         <label htmlFor="precio">Precio:</label>
         <input
           type="text"
@@ -103,17 +119,17 @@ function CrearFactura() {
           value={datosFactura.precio}
           onChange={handleChange}
         />
-
-        <PDFDownloadLink
-          document={<FacturaCreada datosFactura={datosFactura} />}
-          fileName="factura.pdf"
-        >
-          {({ blob, url, loading, error }) => (
-            <button className="button__pdf" >
-              Descargar Factura <i className="bi bi-download"></i>
-            </button>
-          )}
-        </PDFDownloadLink>
+        {formularioCompleto ? (
+          <PDFDownloadLink document={<PDF datosFactura={datosFactura} />} fileName="factura.pdf">
+            {({ blob, url, loading, error }) => (
+              <button type="button" className="button__pdf button__pdf-wrapper">
+                Descargar Factura <i className="bi bi-download"></i>
+              </button>
+            )}
+          </PDFDownloadLink>
+        ) : (
+          <p>Por favor, complete todos los campos.</p>
+        )}
       </form>
     </div>
   );
