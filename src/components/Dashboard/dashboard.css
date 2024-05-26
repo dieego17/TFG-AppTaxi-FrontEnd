@@ -17,7 +17,7 @@
 .aside__dashboard {
     background-color: #006431;
     width: 170px;
-    padding: 20px;
+    padding: 0px 20px;
     height: 100%;
     position: fixed;
 }

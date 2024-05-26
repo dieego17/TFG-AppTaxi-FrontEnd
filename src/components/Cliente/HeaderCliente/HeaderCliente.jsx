@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import logo from '../../../assets/images/logo.png';
+import logo from '../../../assets/images/logoBlanco.png';
 import './headerCliente.css';
 
 function HeaderCliente() {
@@ -32,7 +32,7 @@ function HeaderCliente() {
               </li>
               <li className="nav-item dropdown">
                 <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Dropdown
+                  Historial
                 </a>
                 <ul className="dropdown-menu">
                   <li><Link to={'/cliente/mis-reservas'} className="dropdown-item" href="#">Mis Reservas</Link></li>

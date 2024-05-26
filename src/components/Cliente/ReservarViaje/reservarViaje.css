@@ -1,10 +1,18 @@
 .container__crear--reservas{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
     margin-top: 150px;
     margin-bottom: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    width: 100%;
+}
+.title__pagar{
+    text-align: center;
+}
+.section__reserva{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 20px;
     padding: 20px;
     border-radius: 10px;
     background-color: #f5f5f5;

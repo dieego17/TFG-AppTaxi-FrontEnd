@@ -2,7 +2,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import './aside.css'
-import logo from '../../../assets/images/logo.png'
+import logo from '../../../assets/images/logoBlanco.png'
 
 function AsideDashboard() {
   return (
@@ -26,6 +26,11 @@ function AsideDashboard() {
         <li className='list__aside'>
           <Link to={`/dashboard/clientes`}>
             <i className="fa-solid fa-users icon__aside"></i>
+          </Link>
+        </li>
+        <li className='list__aside'>
+          <Link to={`/dashboard/crear-factura`}>
+            <i className="fa-solid fa-file-invoice-dollar icon__aside"></i>
           </Link>
         </li>
         <li className='list__aside list__aside--ajustes'>

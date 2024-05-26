@@ -27,6 +27,7 @@ import DetalleViaje from "./components/Cliente/MisViajes/DetallesViaje/DetalleVi
 import Reseña from "./components/Cliente/Reseña/Reseña";
 import RutaMapa from "./components/Dashboard/AllClientes/ClienteDetalle/ViajeDetalle/RutaMapa/RutaMapa";
 import ReservarViaje from "./components/Cliente/ReservarViaje/ReservarViaje";
+import CrearFactura from "./components/Dashboard/CrearFactura/CrearFactura";
 
 
 ReactDOM.createRoot(document.getElementById("root")).render(
@@ -67,6 +68,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
             <Route path="/dashboard/clientes/reservas-detalle/:id" element={<ReservaDetalle />} />
             <Route path="/dashboard/clientes/viajes-detalle/:id" element={<ViajeDetalle />} />
             <Route path="/dashboard/clientes/viajes-detalles/ruta/:id" element={<RutaMapa />} />
+            <Route path="/dashboard/crear-factura" element={<CrearFactura />} />
           
 
             <Route path="/dashboard/editar-perfil" element={<EditarPerfiil />} />

@@ -8,7 +8,7 @@
 }
 
 .logo__img {
-    width: 70px;
+    max-width: 120px;
     transition: transform 1s ease;
 }
 

@@ -9,10 +9,9 @@ import {
   StyleSheet,
   Image,
 } from "@react-pdf/renderer";
-import logo from "../../assets/images/logoVerde.png";
-import { useOneViajeCliente } from "../../hooks/useOneViajeCliente";
+import { useOneTaxista } from "../../../../hooks/useOneTaxista";
+import logoVerde from "../../../../assets/images/logoVerde.png";
 
-// Estilos para el documento PDF
 const styles = StyleSheet.create({
   page: {
     padding: 20,
@@ -26,7 +25,7 @@ const styles = StyleSheet.create({
     borderBottom: "1px solid #000",
   },
   logo: {
-    width: 150
+    width: 100,
   },
   logoText: {
     flexDirection: "row",
@@ -97,31 +96,25 @@ const styles = StyleSheet.create({
   },
   importeTotal: {
     fontWeight: "bold",
-    color: "red",
   },
 });
 
-function Pdf({ viaje }) {
+function FacturaCreada({ datosFactura }) {
 
   const fecha = new Date();
-  const fechaFormateada = fecha.getDate() + "/" + (fecha.getMonth() + 1) + "/" + fecha.getFullYear();
+  const fechaFormateada = `${fecha.getDate()}/${fecha.getMonth() + 1}/${fecha.getFullYear()}`;
 
   const fechaFormateadaViaje = (fecha) => {
     const date = new Date(fecha);
-    return date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear();
+    return `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
   };
 
-  const IVA = (viaje.precioTotal_viaje * 0.1).toFixed(1);
-  const precioTotal = parseFloat(IVA) + viaje.precioTotal_viaje;
+  const precio = parseFloat(datosFactura.precio);
+  const IVA = (precio * 0.1).toFixed(1);
+  const precioTotal = (precio + parseFloat(IVA)).toFixed(2);
 
-
-  const id_viaje = viaje.id_viaje;
-
-  // Hook para obtener los clientes de un viaje
-  const clientes = useOneViajeCliente(id_viaje);
-
-  
-
+  const userId = 3;
+  const taxista = useOneTaxista(userId);
 
   return (
     <Document>
@@ -130,7 +123,11 @@ function Pdf({ viaje }) {
           {/* Header */}
           <View style={styles.header}>
             <View style={styles.logoText}>
-              <Image style={styles.logo} src={logo} />
+              <Image
+                style={styles.logo}
+                src={logoVerde}
+              />
+              <Text>App Taxio</Text>
             </View>
             <View>
               <Text>FACTURA</Text>
@@ -140,33 +137,27 @@ function Pdf({ viaje }) {
 
           {/* Emisor y Cliente */}
           <View style={styles.section}>
-            <View
-              style={{ flexDirection: "row", justifyContent: "space-between" }}
-            >
+            <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
               <View>
                 <Text style={styles.title}>Taxista</Text>
                 <Text style={styles.text}>
-                  Nº de Licencia: {viaje.taxistum.num_licencia}
+                  Nº de Licencia: {taxista.taxistum?.num_licencia}
                 </Text>
-                <Text style={styles.text}>Nombre: {viaje.taxistum.usuario.nombre} {viaje.taxistum.usuario.apellidos}</Text>
-                <Text style={styles.text}>DNI: {viaje.taxistum.usuario.DNI}</Text>
-                <Text style={styles.text}>Dirección: {viaje.taxistum.usuario.direccion_usuario}</Text>
+                <Text style={styles.text}>Nombre: {taxista?.nombre} {taxista?.apellidos}</Text>
+                <Text style={styles.text}>DNI: {taxista?.DNI}</Text>
+                <Text style={styles.text}>Dirección: {taxista?.direccion_usuario}</Text>
+                <Text style={styles.text}>Teléfono: {taxista?.telefono}</Text>
                 <Text style={styles.text}>
-                  Nº de cuenta: {viaje.taxistum.numero_cuenta}
+                  Nº de cuenta: {taxista.taxistum?.numero_cuenta}
                 </Text>
               </View>
-              {
-                clientes.reserva &&
-                  <View key={clientes.reserva.cliente.id_usuario}>
-                    <Text style={styles.title}>Cliente</Text>
-                    <Text style={styles.text}>Nombre: {clientes.reserva.cliente.usuario.nombre} {clientes.reserva.cliente.usuario.apellidos}</Text>
-                    <Text style={styles.text}>DNI: A08479297</Text>
-                    <Text style={styles.text}>Dirección: {clientes.reserva.cliente.usuario.direccion_usuario}</Text>
-                    <Text style={styles.text}>Teléfono: {clientes.reserva.cliente.usuario.telefono}</Text>
-                  </View>
-                
-              }
-              
+              <View>
+                <Text style={styles.title}>Cliente</Text>
+                <Text style={styles.text}>Nombre: {datosFactura.nombreCliente} {datosFactura.apellidosCliente}</Text>
+                <Text style={styles.text}>DNI: {datosFactura.dniCliente}</Text>
+                <Text style={styles.text}>Dirección: {datosFactura.direccionCliente}</Text>
+                <Text style={styles.text}>Teléfono: {datosFactura.telefonoCliente}</Text>
+              </View>
             </View>
           </View>
 
@@ -190,24 +181,21 @@ function Pdf({ viaje }) {
                 </View>
                 <View style={styles.tableCol}>
                   <Text style={styles.textImporteCant}>
-                    Viaje de {viaje.origen_viaje} a {viaje.destino_viaje}, el día {fechaFormateadaViaje(viaje.fecha_viaje)}
+                    Viaje de {datosFactura.origenViaje} a {datosFactura.destinoViaje}, el día {fechaFormateadaViaje(datosFactura.fechaViaje)}
                   </Text>
                 </View>
                 <View style={styles.tableCol}>
-                  <Text style={styles.textImporteCant}>
-                    {viaje.precioTotal_viaje}€
-                  </Text>
+                  <Text style={styles.textImporteCant}>{precio.toFixed(2)}€</Text>
                 </View>
               </View>
               {/* Resumen */}
               <View style={styles.tableRow}>
-                <View style={styles.tableColResumen}>
-                </View>
+                <View style={styles.tableColResumen}></View>
                 <View style={styles.tableColResumen}></View>
                 <View style={styles.tableColResumen}>
                   <View style={styles.summaryRow}>
                     <Text>BASE IMPONIBLE:</Text>
-                    <Text>{viaje.precioTotal_viaje}€</Text>
+                    <Text>{precio.toFixed(2)}€</Text>
                   </View>
                   <View style={styles.summaryRow}>
                     <Text>IVA 10%:</Text>
@@ -223,14 +211,12 @@ function Pdf({ viaje }) {
           </View>
 
           {/* Sello de la factura */}
-          <View style={styles.section}>
-            
-          </View>
+          <View style={styles.section}></View>
 
           {/* Cobros y vencimientos */}
           <View style={styles.section}>
             <View style={styles.correo}>
-              <Text style={styles.correoText}>{viaje.taxistum.usuario.correo_electronico}</Text>
+              <Text>{taxista?.correo_electronico}</Text>
             </View>
           </View>
         </View>
@@ -239,4 +225,4 @@ function Pdf({ viaje }) {
   );
 }
 
-export default Pdf;
+export default FacturaCreada;

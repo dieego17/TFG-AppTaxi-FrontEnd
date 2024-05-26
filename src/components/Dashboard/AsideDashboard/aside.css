@@ -1,11 +1,12 @@
+
 .section__logo{
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 5px 0px 50px;
+    margin: 0px 0px 20px;
 }
 .logo__aside{
-    width: 70px;
+    width: 180px;
 }
 
 .ul__aside{
@@ -27,7 +28,7 @@
     cursor: pointer;
 }
 .list__aside--ajustes{
-    margin-top: 170px;
+    margin-top: 120px;
 }
 .icon__aside{
     font-size: 30px;
