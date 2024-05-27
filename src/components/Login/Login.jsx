@@ -3,6 +3,17 @@ import React, { useState } from 'react';
 import './login.css';
 import { Link, useNavigate } from 'react-router-dom';
 
+
+function parseJwt (token) {
+  const base64Url = token.split('.')[1];
+  const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+  const jsonPayload = decodeURIComponent(window.atob(base64).split('').map(function(c) {
+      return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+  }).join(''));
+
+  return JSON.parse(jsonPayload);
+}
+
 function Login() {
 
   //creo el estado para el email y la contraseña y guardo el valor en el estado
@@ -16,11 +27,11 @@ function Login() {
   const handleLogin = (e) =>{
     e.preventDefault();
 
-    // Crear un objeto con los datos del formulario
-    const data = {
+    const data ={
       correo_electronico: email,
       contraseña: password
     }
+
 
     // Hacer una petición POST a la API para iniciar sesión
     fetch('http://localhost:3000/appTaxio/v1/login', {
@@ -31,16 +42,20 @@ function Login() {
       body: JSON.stringify(data)
     })
     .then(response => response.json())
-    // Guardar el token en el localStorage
     .then(data => {
       if(data.token){
-        const token = data.token
-        localStorage.setItem('token', token)
+        localStorage.setItem('token', data.token);
+        const usuario = parseJwt(data.token);
+        console.log(usuario.rol);
+        if(usuario.rol === 'cliente'){
+          window.location.href = '/cliente';
+        }else if(usuario.rol === 'admin'){
+          window.location.href = '/dashboard';
+        }
       }
     })
 
 
-    console.log({correo_electronico: email, contraseña: password});
   }
 
   return (
@@ -79,7 +94,8 @@ function Login() {
                   </div>
                 </div>
                 <button onClick={handleLogin} type="submit" className="btn btn-primary btn-block">Iniciar Sesión</button>
-                <Link to={'/register'} className="btn btn-primary btn-block">Registro</Link>
+                <Link to={'/register-taxista'} className="btn btn-primary btn-block">Registro como conductor</Link>
+                <Link to={'/register-cliente'} className="btn btn-primary btn-block">Registro como cliente</Link>
               </form>
             </div>
           </div>

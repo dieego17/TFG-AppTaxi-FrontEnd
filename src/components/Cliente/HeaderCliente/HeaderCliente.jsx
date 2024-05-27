@@ -12,7 +12,7 @@ function HeaderCliente() {
     <section className='section__header'>
       <nav className="navbar navbar-expand-lg navbar-light">
         <div className="container-fluid container">
-          <Link to={'/'}>
+          <Link to={'/cliente'}>
             <img src={logo} alt="logo" className="logo__img" />
           </Link>
           <button className="button__nav" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

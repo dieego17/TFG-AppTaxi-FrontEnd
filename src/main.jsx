@@ -7,7 +7,8 @@ import Layout from "./components/Layout";
 import QuienesSomos from "./components/QuienesSomos";
 import Login from "./components/Login/Login";
 import Dashboard from "./components/Dashboard/Dashboard";
-import Register from "./components/Register/Register";
+import RegisterTaxista from "./components/Register/RegisterTaxista";
+import RegisterCliente from "./components/Register/RegisterCliente";
 import RecogidaInmedia from "./components/RecogidaInmediata/RecogidaInmedia";
 import CiudadaCiudad from "./components/CiudadaCiudad/CiudadaCiudad";
 import ViajeHoras from "./components/ViajeHoras/ViajeHoras";
@@ -29,9 +30,9 @@ import RutaMapa from "./components/Dashboard/AllClientes/ClienteDetalle/ViajeDet
 import ReservarViaje from "./components/Cliente/ReservarViaje/ReservarViaje";
 import CrearFactura from "./components/Dashboard/CrearFactura/CrearFactura";
 
-
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <BrowserRouter>
+  
+    <BrowserRouter>
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
@@ -46,45 +47,39 @@ ReactDOM.createRoot(document.getElementById("root")).render(
             element={<CiudadaCiudad />}
           />
           <Route path="/servicios/viaje-por-horas" element={<ViajeHoras />} />
-
         </Route>
-        
+
         <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
+        <Route path="/register-taxista" element={<RegisterTaxista />} />
+        <Route path="/register-cliente" element={<RegisterCliente />} />
 
-          {/* Ruta clientes */}
-          <Route path="/cliente" element={<Cliente />} >
-            <Route path="/cliente/nuevo-viaje" element={<ReservarViaje />} />
-            <Route path="/cliente/mis-reservas" element={<MisReservas />} />
-            <Route path="/cliente/mis-viajes" element={<MisViajes/>} />
-            <Route path="/cliente/mis-viajes/detalles/:id" element={<DetalleViaje/>} />
-            <Route path="/cliente/crear-reseña" element={<Reseña />} />
-          </Route>
+        {/* Ruta clientes */}
+        <Route path="/cliente" element={<Cliente />}>
+          <Route path="/cliente/nuevo-viaje" element={<ReservarViaje />} />
+          <Route path="/cliente/mis-reservas" element={<MisReservas />} />
+          <Route path="/cliente/mis-viajes" element={<MisViajes />} />
+          <Route path="/cliente/mis-viajes/detalles/:id" element={<DetalleViaje />} />
+          <Route path="/cliente/crear-reseña" element={<Reseña />} />
+        </Route>
 
-          {/* Ruta dashboard */}
-          <Route path="/dashboard" element={<Dashboard />}>
+        {/* Ruta dashboard */}
+        <Route path="/dashboard" element={<Dashboard />}>
+          <Route path="/dashboard/clientes" element={<AllClientes />} />
+          <Route path="/dashboard/clientes/reservas-detalle/:id" element={<ReservaDetalle />} />
+          <Route path="/dashboard/clientes/viajes-detalle/:id" element={<ViajeDetalle />} />
+          <Route path="/dashboard/clientes/viajes-detalles/ruta/:id" element={<RutaMapa />} />
+          <Route path="/dashboard/crear-factura" element={<CrearFactura />} />
 
-            <Route path="/dashboard/clientes" element={<AllClientes />} />
-            <Route path="/dashboard/clientes/reservas-detalle/:id" element={<ReservaDetalle />} />
-            <Route path="/dashboard/clientes/viajes-detalle/:id" element={<ViajeDetalle />} />
-            <Route path="/dashboard/clientes/viajes-detalles/ruta/:id" element={<RutaMapa />} />
-            <Route path="/dashboard/crear-factura" element={<CrearFactura />} />
-          
+          <Route path="/dashboard/editar-perfil" element={<EditarPerfiil />} />
 
-            <Route path="/dashboard/editar-perfil" element={<EditarPerfiil />} />
-
-            <Route path="/dashboard/resumen-financiero" element={<GraficaBeneficios />} />
-            <Route path="/dashboard/resumen-financiero/todas-ganancias" element={<AllGanancias />} />
-            <Route path="/dashboard/resumen-financiero/añadir-ganancia" element={<InsertarGanancias />} />
-            <Route path="/dashboard/resumen-financiero/añadir-gasto" element={<InsertarGasto />} />
-            <Route path="/dashboard/resumen-financiero/todos-gastos" element={<AllGastos />} />
-          </Route>
+          <Route path="/dashboard/resumen-financiero" element={<GraficaBeneficios />} />
+          <Route path="/dashboard/resumen-financiero/todas-ganancias" element={<AllGanancias />} />
+          <Route path="/dashboard/resumen-financiero/añadir-ganancia" element={<InsertarGanancias />} />
+          <Route path="/dashboard/resumen-financiero/añadir-gasto" element={<InsertarGasto />} />
+          <Route path="/dashboard/resumen-financiero/todos-gastos" element={<AllGastos />} />
+        </Route>
 
         <Route path="*" element={<Navigate to={"/"} />} />
       </Routes>
     </BrowserRouter>
-  
 );
-
- 
-

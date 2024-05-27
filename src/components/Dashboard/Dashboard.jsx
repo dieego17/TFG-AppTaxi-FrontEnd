@@ -9,6 +9,8 @@ import ResumenDashboard from './ResumenDashboard/ResumenDashboard';
 import './dashboard.css';
 import { Link } from 'react-router-dom';
 
+
+
 function Dashboard() {
   const [usuario, setUsuario] = useState(null);
   // Obtiene la ubicación actual

@@ -97,6 +97,7 @@ const styles = StyleSheet.create({
   },
   importeTotal: {
     fontWeight: "bold",
+    color: "red",
   },
 });
 

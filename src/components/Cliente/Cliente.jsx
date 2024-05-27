@@ -6,6 +6,7 @@ import ReservarViaje from './ReservarViaje/ReservarViaje';
 import HeaderCliente from './HeaderCliente/HeaderCliente';
 import { Outlet } from 'react-router-dom';
 
+
 function Cliente() {
 
   const [idUsuario, setUsuario] = useState('1'); // Declarar usuario usando useState
