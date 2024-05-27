@@ -6,7 +6,11 @@ import './headerCliente.css';
 
 function HeaderCliente() {
 
-  const userName = 'Joselu Mato'
+  // Obtener el nombre y el apellido del usuario del token
+  const token = localStorage.getItem('token');
+  const userName = token ? JSON.parse(atob(token.split('.')[1])).nombre : '';
+  const apellido = token ? JSON.parse(atob(token.split('.')[1])).apellidos : '';
+
 
   return (
     <section className='section__header'>
@@ -46,7 +50,7 @@ function HeaderCliente() {
               </li>
               <li className="nav-item">
                 <Link to={'/'} className="nav-link btn btn-light button__login">
-                  {userName} <i className="fa-solid fa-arrow-right-to-bracket"></i>
+                  {userName} {apellido} <i className="fa-solid fa-arrow-right-to-bracket"></i>
                 </Link>
               </li>
   

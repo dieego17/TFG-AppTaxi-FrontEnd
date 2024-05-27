@@ -11,14 +11,16 @@ function ResumenDashboard({ mostrar }) {
     return null; // Si mostrar es falso, no renderizar nada
   }
 
-  const userName = localStorage.getItem('userName');
+  const token = localStorage.getItem('token');
+  const userName = token ? JSON.parse(atob(token.split('.')[1])).nombre : '';
+  const apellidos = token ? JSON.parse(atob(token.split('.')[1])).apellidos : '';
 
   return (
     <div className="resumen-dashboard">
       <section className='section__dashboard'>
       <article className='article__dashboard col-lg-6 col-md-12'>
-        <h1>BIENVENIDO,
-          {userName}
+        <h1>BIENVENIDO,<br />
+          {userName} {apellidos}
         </h1>
       </article>
         <article className='article__dashboard col-lg-6 col-md-12'>

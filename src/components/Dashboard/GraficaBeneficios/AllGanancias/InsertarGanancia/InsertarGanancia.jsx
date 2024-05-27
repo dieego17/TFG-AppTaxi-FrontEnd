@@ -9,7 +9,8 @@ function InsertarGanancias() {
     const [fechaGanancia, setFechaGanancia] = useState('');
 
     // ID del usuario logueado
-    const [idTaxista, setIdTaxista] = useState('3');   
+    const token = localStorage.getItem('token');
+    const idTaxista = token ? JSON.parse(atob(token.split('.')[1])).id_usuario : '';  
 
     // Estado para mostrar la Alerta de error
     const [showAlertError, setShowAlertError] = useState(false);

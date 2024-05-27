@@ -5,7 +5,11 @@ import { useGanancias } from '../../../../hooks/useGanancias';
 import { deleteGanancia } from '../../../../services/deleteGanancia';
 
 function AllGanancias() {
-  const ganancias = useGanancias();
+
+  const token = localStorage.getItem('token');
+  const idUsuario = token ? JSON.parse(atob(token.split('.')[1])).id_usuario : '';
+
+  const ganancias = useGanancias(idUsuario);
 
   // Estado para almacenar la ganancia seleccionada
   const [gananciaSeleccionada, setGananciaSeleccionada] = useState(null);

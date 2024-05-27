@@ -26,7 +26,9 @@ const opcionesMapa = {
 function RutaMapa() {
   const API_KEY = import.meta.env.VITE_GOOGLE_MAPS_API;
 
-  const [idUsuario, setIdUsuario] = useState("3");
+  const token = localStorage.getItem("token");
+  const idUsuario = token ? JSON.parse(atob(token.split(".")[1])).id_usuario : "";
+
   const [directions, setDirections] = useState(null);
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: API_KEY,

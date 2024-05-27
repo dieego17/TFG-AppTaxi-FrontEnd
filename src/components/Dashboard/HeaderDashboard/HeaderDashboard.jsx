@@ -5,10 +5,16 @@ import { Link } from 'react-router-dom'
 
 function HeaderDashboard() {
 
-  /* const userName = localStorage.getItem('userName') */
-  const userName = 'Diego'
+  const token = localStorage.getItem('token')
+  const userName = token ? JSON.parse(atob(token.split('.')[1])).nombre : ''
 
   const inicial = userName.charAt(0)
+
+  //cerrar sesión
+  const handleLogout = () => {
+    localStorage.clear()
+    window.location.href = '/'
+  }
 
   return (
     <div className='container__header'>
@@ -23,9 +29,9 @@ function HeaderDashboard() {
         </button>
         <ul className="dropdown-menu">
           <li>
-            <Link to={'/'} className='dropdown-item'>
+            <button onClick={handleLogout} className='dropdown-item'>
               <p>Cerrar Sesión</p>
-            </Link>
+            </button>
           </li>
         </ul>
       </div>

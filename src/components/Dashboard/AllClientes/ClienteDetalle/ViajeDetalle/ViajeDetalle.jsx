@@ -10,8 +10,10 @@ import "./viaje.css";
 function ClienteDetalle() {
 
   /* Solo aparecen los viajes del cliente que haya confirmado la reserva */
+  // Obtener el id del usuario
+  const token = localStorage.getItem("token");
+  const idUsuario = token ? JSON.parse(atob(token.split(".")[1])).id_usuario : "";
 
-  const [idUsuario, setIdUsuario] = useState("3"); // idUsuario de prueba
   const params = useParams();
   const id = params.id;
 

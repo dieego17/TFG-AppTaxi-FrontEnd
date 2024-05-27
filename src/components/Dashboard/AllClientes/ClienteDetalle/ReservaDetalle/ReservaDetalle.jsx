@@ -6,7 +6,9 @@ import { Link } from "react-router-dom";
 import "./reserva.css";
 
 function ReservaDetalle() {
-  const [idUsuario, setIdUsuario] = useState("3"); // idUsuario de prueba
+  // Obtener el id del usuario
+  const token = localStorage.getItem("token");
+  const idUsuario = token ? JSON.parse(atob(token.split(".")[1])).id_usuario : "";
   const params = useParams();
   const id = params.id;
 

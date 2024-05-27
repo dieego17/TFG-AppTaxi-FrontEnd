@@ -8,10 +8,15 @@ import { Link } from "react-router-dom";
 
 
 function MisReservas() {
-  const [idUsuario, setIdUsuario] = useState(1);
+
+  // ID del usuario
+  const token = localStorage.getItem("token");
+  const idUsuario = token ? JSON.parse(atob(token.split(".")[1])).id_usuario : "";
+
   const reservasData = useReservasClientes(idUsuario);
   const [reservas, setReservas] = useState([]);
   const [reservaAEliminar, setReservaAEliminar] = useState(null);
+
 
   // use effect para actualizar las reservas
   useEffect(() => {

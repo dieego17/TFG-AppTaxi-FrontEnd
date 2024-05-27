@@ -5,7 +5,11 @@ import { useGastos } from '../../../../hooks/useGastos';
 import { deleteGasto } from '../../../../services/deleteGasto';
 
 function AllGastos() {
-  const gastos = useGastos();
+
+  const token = localStorage.getItem('token');
+  const idUsuario = token ? JSON.parse(atob(token.split('.')[1])).id_usuario : '';
+
+  const gastos = useGastos(idUsuario);
 
   // Estado para almacenar el gasto seleccionado
   const [gastoSeleccionado, setGastoSeleccionado] = useState(null);

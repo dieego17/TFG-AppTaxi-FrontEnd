@@ -7,12 +7,23 @@ import AsideDashboard from './AsideDashboard/AsideDashboard';
 import HeaderDashboard from './HeaderDashboard/HeaderDashboard';
 import ResumenDashboard from './ResumenDashboard/ResumenDashboard';
 import './dashboard.css';
-import { Link } from 'react-router-dom';
 
 
 
 function Dashboard() {
-  const [usuario, setUsuario] = useState(null);
+
+  //comprobar si tiene rol de administrador
+  const token = localStorage.getItem('token');
+  const rol = token ? JSON.parse(atob(token.split('.')[1])).rol : '';
+
+  //crear estado para enseñar un aviso si no tiene rol de administrador
+  const [noAdmin, setNoAdmin] = useState(false);
+
+  //actualizar el estado de noAdmin si el rol no es administrador
+  if (rol !== 'admin') {
+    setNoAdmin(true);
+  }
+
   // Obtiene la ubicación actual
   const location = useLocation();
 
@@ -21,6 +32,7 @@ function Dashboard() {
 
   return (
     <div className='container__dashboard'>
+      {noAdmin && <div className='aviso'>No tienes permisos para acceder a esta página</div>}
       <header className='header__dashboard'>
         <HeaderDashboard />
       </header>

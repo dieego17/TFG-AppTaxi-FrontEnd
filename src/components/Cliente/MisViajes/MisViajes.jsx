@@ -5,7 +5,10 @@ import { Link } from "react-router-dom";
 
 
 function MisViajes() {
-  const [idUsuario, setIdUsuario] = useState(1);
+
+  // Obtener el id del usuario del token
+  const token = localStorage.getItem('token');
+  const idUsuario = token ? JSON.parse(atob(token.split('.')[1])).id_usuario : '';
 
   const viajes = useViajesCliente(idUsuario);
 

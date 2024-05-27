@@ -6,10 +6,14 @@ import { createTestimonio } from '../../../services/createTestimonio';
 function Reseña() {
     // Estado para la puntuación
     const [puntuacion, setPuntuacion] = useState(0);
-    const [idUsuario, setIdUsuario] = useState(1);
     const [mensaje, setMensaje] = useState('');
     const [success, setSuccess] = useState(false);
     const [error, setError] = useState(false);
+
+    // ID del usuario
+    const token = localStorage.getItem('token');
+
+    const idUsuario = token ? JSON.parse(atob(token.split('.')[1])).id_usuario : '';
 
     // Función para manejar el click en las estrellas
     const handleClick = (valor) => {

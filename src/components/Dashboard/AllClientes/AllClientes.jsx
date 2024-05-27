@@ -6,7 +6,9 @@ import "./allclientes.css";
 import { useState, useEffect } from "react";
 
 function AllClientes() {
-  const [idUsuario, setUsuario] = useState("3");
+
+  const token = localStorage.getItem("token");
+  const idUsuario = token ? JSON.parse(atob(token.split(".")[1])).id_usuario : "";
 
   const clientes = useClientes(idUsuario);
 

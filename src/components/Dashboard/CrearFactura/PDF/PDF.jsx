@@ -115,7 +115,8 @@ function PDF({ datosFactura }) {
   const IVA = (precio * 0.1).toFixed(1);
   const precioTotal = (precio + parseFloat(IVA)).toFixed(2);
 
-  const userId = 3;
+  const token = localStorage.getItem("token");
+  const userId = token ? JSON.parse(atob(token.split(".")[1])).id_usuario : "";
   const taxista = useOneTaxista(userId);
 
   return (

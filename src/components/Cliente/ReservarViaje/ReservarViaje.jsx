@@ -13,10 +13,13 @@ function ReservarViaje() {
   const [precioTotal, setPrecioTotal] = useState(0);
   const [error, setError] = useState(null);
   const [taxistaSeleccionado, setTaxistaSeleccionado] = useState("");
-  const [idUsuario, setIdUsuario] = useState(1);
   const [isDistanceCalculated, setIsDistanceCalculated] = useState(false);
   const [success, setSuccess] = useState(false);
   const [showTarjetaForm, setShowTarjetaForm] = useState(false); // Nuevo estado para mostrar el formulario de tarjeta
+
+  // Coger el id del usuario del token
+  const token = localStorage.getItem("token");
+  const idUsuario = token ? JSON.parse(atob(token.split(".")[1])).id_usuario : "";
 
   const taxistas = useTaxistas();
 

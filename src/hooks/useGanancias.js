@@ -2,11 +2,11 @@ import { useState, useEffect } from 'react'
 import { getAllGanancias } from '../services/getAllGanancias'
 
 //hook para conseguir todos los clientes
-export const useGanancias = () => {
+export const useGanancias = (idUsuario) => {
     const [ganancias, setGanancias] = useState([])
 
     const loadGanancias = async () =>{
-        const allGanancias = await getAllGanancias()
+        const allGanancias = await getAllGanancias(idUsuario)
         setGanancias(allGanancias)
     }
     

@@ -10,10 +10,13 @@ function GraficaBeneficios() {
     const chartRef = useRef(null);
     const ApiUrl = import.meta.env.VITE_REACT_URL_API;
 
+    const token = localStorage.getItem('token');
+    const idUsuario = token ? JSON.parse(atob(token.split('.')[1])).id_usuario : '';
+
     useEffect(() => {
         const fetchData = async () => {
-            const responseGanancias = await fetch(`${ApiUrl}/ganancias/3`);
-            const responsePerdidas = await fetch(`${ApiUrl}/perdidas/3`);
+            const responseGanancias = await fetch(`${ApiUrl}/ganancias/${idUsuario}`);
+            const responsePerdidas = await fetch(`${ApiUrl}/perdidas/${idUsuario}`);
             const dataGanancias = await responseGanancias.json();
             const dataPerdidas = await responsePerdidas.json();
 
