@@ -11,7 +11,9 @@
   },
   "dependencies": {
     "@react-google-maps/api": "2.19.3",
-    "@react-pdf/renderer": "^3.4.4",
+    "@react-pdf/renderer": "3.4.4",
+    "@stripe/react-stripe-js": "^2.7.1",
+    "@stripe/stripe-js": "3.4.1",
     "bootstrap": "5.3.3",
     "bootstrap-icons": "1.11.3",
     "chart.js": "4.4.2",

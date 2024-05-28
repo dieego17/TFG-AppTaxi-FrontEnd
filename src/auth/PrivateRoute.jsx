@@ -11,6 +11,7 @@ const PrivateRoute = ({ roles }) => {
         return <Navigate to="/login" />;
     }
 
+    // Función para decodificar el token JWT
     const parseJwt = (token) => {
         try {
             const base64Url = token.split('.')[1];
@@ -28,17 +29,26 @@ const PrivateRoute = ({ roles }) => {
         }
     };
 
+    // Decodificar el token
     const usuario = parseJwt(token);
+
+    // Verificar si el token ha expirado
+    if (usuario && usuario.exp && usuario.exp * 1000 < Date.now()) {
+        // El token ha expirado, borrar token y redirigir a la página de inicio de sesión
+        localStorage.removeItem('token');
+        return <Navigate to="/login" />;
+    }
 
     // Si el usuario no existe o no tiene el rol necesario, redirigir a la página de inicio de sesión
     if (!usuario || !roles.includes(usuario.rol)) {
-        //borrar token
+        // Borrar token y redirigir a la página de inicio de sesión
         localStorage.removeItem('token');
         return <Navigate to="/login" />;
-
     }
 
+    // Si el usuario existe y tiene el rol necesario, mostrar el contenido
     return <Outlet />;
 };
 
 export default PrivateRoute;
+

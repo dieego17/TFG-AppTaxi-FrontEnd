@@ -188,7 +188,7 @@ function ReservarViaje() {
         >
           <option value="">Selecciona un método de pago</option>
           <option value="Pago en efectivo">Efectivo</option>
-          <option value="Pagado con tarjeta">Tarjeta</option>
+          <option value="Pago con tarjeta">Tarjeta</option>
         </select>
 
         {/* Formulario de tarjeta */}
