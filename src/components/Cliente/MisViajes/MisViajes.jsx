@@ -12,6 +12,19 @@ function MisViajes() {
 
   const viajes = useViajesCliente(idUsuario);
 
+  // Estado local para el número de página actual
+  const [currentPage, setCurrentPage] = useState(1);
+  // Lógica para calcular el índice de inicio y fin de los viajes a mostrar en la página actual
+  const viajesPerPage = 3;
+
+  // Obtener el índice de la última reserva y el índice de la primera reserva
+  const indexOfLastViaje = currentPage * viajesPerPage;
+  // Obtener el índice de la primera reserva
+  const indexOfFirstViaje = indexOfLastViaje - viajesPerPage;
+
+  // Obtener los viajes a mostrar en la página actual
+  const currentViajes = viajes.slice(indexOfFirstViaje, indexOfLastViaje);
+
 
   // Función para formatear la fecha
   const formatearFecha = (fecha) => {
@@ -23,7 +36,7 @@ function MisViajes() {
   return (
     <div className="container__reservas container">
       <h2>Mis Viajes</h2>
-      {viajes && viajes.length > 0 ? (
+      {currentViajes && currentViajes.length > 0 ? (
         <div>
           <table className="table">
             <thead className="table__thead">
@@ -38,7 +51,7 @@ function MisViajes() {
               </tr>
             </thead>
             <tbody className="table__tbody">
-              {viajes.map((viaje) => (
+              {currentViajes.map((viaje) => (
                 <tr className="table__tr" key={viaje.id_viaje}>
                     <td className="table__td">{viaje.origen_viaje}</td>
                     <td className="table__td">{viaje.destino_viaje}</td>
@@ -57,6 +70,24 @@ function MisViajes() {
               ))}
             </tbody>
           </table>
+          {/* Botones de paginación */}
+          <div className="pagination__container">
+            <button className="button__anterior"
+              onClick={() => setCurrentPage(currentPage - 1)}
+              disabled={currentPage === 1}
+            >
+              Anterior
+            </button>
+            <span className="span__numero">
+              Página {currentPage}
+            </span>
+            <button className="button__siguiente"
+              onClick={() => setCurrentPage(currentPage + 1)}
+              disabled={indexOfLastViaje >= viajes.length}
+            >
+              Siguiente
+            </button>
+          </div>
         </div>
       ) : (
         <p>No existen viajes para este usuario</p>

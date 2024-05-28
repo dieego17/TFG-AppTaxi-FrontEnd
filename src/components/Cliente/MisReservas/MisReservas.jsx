@@ -17,6 +17,19 @@ function MisReservas() {
   const [reservas, setReservas] = useState([]);
   const [reservaAEliminar, setReservaAEliminar] = useState(null);
 
+  // Estado local para el número de página actual
+  const [currentPage, setCurrentPage] = useState(1);
+  // Lógica para calcular el índice de inicio y fin de las reservas a mostrar en la página actual
+  const reservasPerPage = 3;
+
+  // Obtener el índice de la última reserva y el índice de la primera reserva
+  const indexOfLastReserva = currentPage * reservasPerPage;
+  // Obtener el índice de la primera reserva
+  const indexOfFirstReserva = indexOfLastReserva - reservasPerPage;
+
+  // Obtener las reservas a mostrar en la página actual
+  const currentReservas = reservas.slice(indexOfFirstReserva, indexOfLastReserva);
+
 
   // use effect para actualizar las reservas
   useEffect(() => {
@@ -67,7 +80,7 @@ function MisReservas() {
   return (
     <div className="container__reservas container">
       <h2>Mis Reservas</h2>
-      {reservas && reservas.length > 0 ? (
+      {currentReservas && currentReservas.length > 0 ? (
         <div>
           <table className="table">
             <thead className="table__thead">
@@ -81,7 +94,7 @@ function MisReservas() {
               </tr>
             </thead>
             <tbody className="table__tbody">
-              {reservas.map((reserva) => (
+              {currentReservas.map((reserva) => (
                 <tr className="table__tr" key={reserva.id_reserva}>
                   <td className="table__td">
                     {formatearFecha(reserva.fecha_reserva)}
@@ -166,6 +179,23 @@ function MisReservas() {
               ))}
             </tbody>
           </table>
+          <div className="pagination__container">
+            <button className="button__anterior"
+              onClick={() => setCurrentPage(currentPage - 1)}
+              disabled={currentPage === 1}
+            >
+              Anterior
+            </button>
+            <span className="span__numero">
+              Página {currentPage}
+            </span>
+            <button className="button__siguiente"
+              onClick={() => setCurrentPage(currentPage + 1)}
+              disabled={indexOfLastReserva >= reservasData.length}
+            >
+              Siguiente
+            </button>
+          </div>
         </div>
       ) : (
         <p>No existen reservas para este usuario</p>

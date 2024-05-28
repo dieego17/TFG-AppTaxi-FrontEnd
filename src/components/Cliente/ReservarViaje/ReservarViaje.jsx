@@ -190,14 +190,7 @@ function ReservarViaje() {
           <option value="Pago en efectivo">Efectivo</option>
           <option value="Pago con tarjeta">Tarjeta</option>
         </select>
-
-        {/* Formulario de tarjeta */}
-        {showTarjetaForm && (
-          <div>
-            {/* <PlataformaPago /> */}
-          </div>
-        )}
-
+        
         <label htmlFor="taxistas">Elige tu conductor</label>
         <select
           name="taxistas"

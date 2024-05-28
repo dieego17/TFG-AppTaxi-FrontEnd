@@ -14,25 +14,20 @@ function ClienteDetalle() {
   const token = localStorage.getItem("token");
   const idUsuario = token ? JSON.parse(atob(token.split(".")[1])).id_usuario : "";
 
+  // Obtener el id del viaje de la ruta
   const params = useParams();
   const id = params.id;
 
   // Estado local para almacenar la página actual
   const [currentPage, setCurrentPage] = useState(1);
   const viajesPerPage = 3; // Viajes por página
+  // Calcular el índice de inicio y fin de los viajes a mostrar en la página actual
+  const indexOfLastViaje = currentPage * viajesPerPage;
+  // Obtener el índice de la primera reserva
+  const indexOfFirstViaje = indexOfLastViaje - viajesPerPage;
 
   // Estado local para almacenar los viajes
   const [viajes, setViajes] = useState([]);
-
-  // Funcion para ir a la página siguiente
-  const handleNextPage = () => {
-    setCurrentPage((prevPage) => prevPage + 1);
-  };
-
-  // Funcion para ir a la página anterior
-  const handlePreviousPage = () => {
-    setCurrentPage((prevPage) => prevPage - 1);
-  };
 
   // Funcion para formatear la fecha
   const formatDate = (date) => {
@@ -59,7 +54,10 @@ function ClienteDetalle() {
   };
 
   // Obtener los datos del viaje
-  const fetchedViajes = useOneViaje(id, idUsuario, currentPage, viajesPerPage);
+  const fetchedViajes = useOneViaje(id, idUsuario);
+
+  // Obtener los viajes a mostrar en la página actual
+  const currentViajes = viajes.slice(indexOfFirstViaje, indexOfLastViaje);
 
   // Actualizar el estado localmente
   useEffect(() => {
@@ -68,7 +66,7 @@ function ClienteDetalle() {
 
   return (
     <div>
-      {viajes.length === 0 ? (
+      {currentViajes.length === 0 ? (
         <p>No existen viajes para este cliente</p>
       ) : (
         <div>
@@ -86,7 +84,7 @@ function ClienteDetalle() {
               </tr>
             </thead>
             <tbody>
-              {viajes.map((viaje) => (
+              {currentViajes.map((viaje) => (
                 <tr key={viaje.id_viaje}>
                   <td>{viaje.origen_viaje}</td>
                   <td>{viaje.destino_viaje}</td>
@@ -120,13 +118,13 @@ function ClienteDetalle() {
             </tbody>
           </table>
           <div className="pagination__container">
-            <button className="button__anterior" onClick={handlePreviousPage} disabled={currentPage === 1}>
+            <button className="button__anterior" onClick={() => setCurrentPage(currentPage - 1)} disabled={currentPage === 1}>
               Anterior
             </button>
             <span className="span__numero">
               Página {currentPage}
             </span>
-            <button className="button__siguiente" onClick={handleNextPage} disabled={viajes.length < viajesPerPage}>
+            <button className="button__siguiente" onClick={() => setCurrentPage(currentPage + 1)} disabled={indexOfLastViaje >= fetchedViajes.length}>
               Siguiente
             </button>
           </div>

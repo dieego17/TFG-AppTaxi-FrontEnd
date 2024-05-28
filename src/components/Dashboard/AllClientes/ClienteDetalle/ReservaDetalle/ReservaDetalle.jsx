@@ -9,6 +9,8 @@ function ReservaDetalle() {
   // Obtener el id del usuario
   const token = localStorage.getItem("token");
   const idUsuario = token ? JSON.parse(atob(token.split(".")[1])).id_usuario : "";
+
+  // Obtener el id de la reserva de la ruta
   const params = useParams();
   const id = params.id;
 
@@ -16,19 +18,16 @@ function ReservaDetalle() {
   const [currentPage, setCurrentPage] = useState(1);
   // Reservas por página
   const reservasPerPage = 3; 
+  // Calcular el índice de inicio y fin de las reservas a mostrar en la página actual
+  const indexOfLastReserva = currentPage * reservasPerPage;
+  // Obtener el índice de la primera reserva
+  const indexOfFirstReserva = indexOfLastReserva - reservasPerPage;
 
   // Obtener las reservas
-  const reservas = useOneReserva(id, idUsuario, currentPage, reservasPerPage);
+  const reservas = useOneReserva(id, idUsuario);
 
-  // Función para ir a la página siguiente
-  const handleNextPage = () => {
-    setCurrentPage((prevPage) => prevPage + 1);
-  };
-
-  // Función para ir a la página anterior
-  const handlePreviousPage = () => {
-    setCurrentPage((prevPage) => prevPage - 1);
-  };
+  // Obtener las reservas a mostrar en la página actual
+  const currentReservas = reservas.slice(indexOfFirstReserva, indexOfLastReserva);
 
   // Función para formatear la fecha
   const formatDate = (date) => {
@@ -52,7 +51,7 @@ function ReservaDetalle() {
           </tr>
         </thead>
         <tbody>
-          {reservas.map((reserva) => (
+          {currentReservas.map((reserva) => (
             <tr key={reserva.id_reserva}>
               <td>{formatDate(reserva.fecha_reserva)}</td>
               <td>{formatTime(reserva.hora_reserva)}</td>
@@ -70,13 +69,13 @@ function ReservaDetalle() {
         </tbody>
       </table>
       <div className="pagination__container">
-        <button className="button__anterior" onClick={handlePreviousPage} disabled={currentPage === 1}>
+        <button className="button__anterior" onClick={()=> setCurrentPage(currentPage - 1) } disabled={currentPage === 1}>
           Anterior
         </button>
         <span className="span__numero">
           Página {currentPage}
         </span>
-        <button className="button__siguiente" onClick={handleNextPage} disabled={reservas.length < reservasPerPage}>
+        <button className="button__siguiente" onClick={() => setCurrentPage(currentPage + 1)} disabled={indexOfLastReserva >= reservas.length }>
           Siguiente
         </button>
       </div>
