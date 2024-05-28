@@ -7,6 +7,8 @@
     z-index: 1000;
 }
 
+/* Logo Empresa */
+
 .logo__img {
     max-width: 120px;
     transition: transform 1s ease;
@@ -16,6 +18,7 @@
     transform: rotateZ(20deg);
 }
 
+/* Texto links */
 .nav-link {
     color: #ffffff;
     margin: 0px 20px;
@@ -28,13 +31,55 @@
     transform: scale(1.1);
 }
 
-.nav-link:focus{
+.nav-link:focus {
     color: #ffffff;
 }
-.button__login{
-    color: #006431;
+
+/* Lista desplegable personalizada */
+.custom-dropdown-menu {
+    background-color: #ffffff;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: none;
+    position: absolute;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
 }
-.button__login:hover{
+
+.custom-dropdown-item {
+    color: #003f1f;
+    padding: 10px 20px;
+    text-decoration: none;
+    display: block;
+    white-space: nowrap;
+}
+
+.custom-dropdown-item:hover {
+    background-color: #f1f1f1;
+}
+
+.drop__item {
+    border-bottom: 1px solid #003f1f;
+    border-top: 1px solid #003f1f;
+}
+
+/* Mostrar el menú desplegable al pasar el mouse */
+.custom-dropdown:hover .custom-dropdown-menu {
+    display: block;
+}
+
+.custom-dropdown-toggle::after {
+    display: none;
+}
+
+/* Button para iniciar sesion */
+.button__login {
+    color: #006431;
+    border-radius: 25px;
+}
+
+.button__login:hover {
     color: #006431;
     background-color: #ffffff;
 }
@@ -50,11 +95,13 @@
     outline: none;
     border: none;
 }
-.button__nav{
+
+.button__nav {
     background-color: #006431;
     border: none;
-    margin: 2px 5px;
+    margin-right: 40px;
 }
+
 .navbar-toggler-icon {
     color: #ffffff;
 }
@@ -65,8 +112,7 @@
 }
 
 @media screen and (min-width: 992px) {
-    .button__nav{
+    .button__nav {
         display: none;
     }
-    
 }

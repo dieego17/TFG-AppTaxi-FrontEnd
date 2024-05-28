@@ -11,6 +11,11 @@ function HeaderCliente() {
   const userName = token ? JSON.parse(atob(token.split('.')[1])).nombre : '';
   const apellido = token ? JSON.parse(atob(token.split('.')[1])).apellidos : '';
 
+  //cerrar sesión
+  const handleLogout = () => {
+    localStorage.clear();
+    window.location.href = '/';
+  };
 
   return (
     <section className='section__header'>
@@ -34,13 +39,13 @@ function HeaderCliente() {
                   Nuevo Viaje
                 </Link>
               </li>
-              <li className="nav-item dropdown">
-                <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <li className="nav-item dropdown custom-dropdown">
+                <a className="nav-link dropdown-toggle custom-dropdown-toggle" role="button">
                   Historial
                 </a>
-                <ul className="dropdown-menu">
-                  <li><Link to={'/cliente/mis-reservas'} className="dropdown-item" href="#">Mis Reservas</Link></li>
-                  <li><Link to={'/cliente/mis-viajes'} className="dropdown-item" href="#">Mis Viajes</Link></li>
+                <ul className="custom-dropdown-menu">
+                  <li><Link to={'/cliente/mis-reservas'} className="custom-dropdown-item"><i className="fa-solid fa-suitcase"></i> Mis Reservas</Link></li>
+                  <li><Link to={'/cliente/mis-viajes'} className="custom-dropdown-item"><i className="fa-solid fa-taxi"></i> Mis Viajes</Link></li>
                 </ul>
               </li>
               <li className="nav-item">
@@ -48,12 +53,15 @@ function HeaderCliente() {
                   Añadir Reseña
                 </Link>
               </li>
-              <li className="nav-item">
-                <Link to={'/'} className="nav-link btn btn-light button__login">
-                  {userName} {apellido} <i className="fa-solid fa-arrow-right-to-bracket"></i>
-                </Link>
+              <li className="nav-item dropdown custom-dropdown">
+                <a className="nav-link btn btn-light button__login dropdown-toggle custom-dropdown-toggle" role="button">
+                  {userName} {apellido}
+                </a>
+                <ul className="custom-dropdown-menu">
+                  <li><Link to={'/cliente/editar-perfil'} className="custom-dropdown-item"><i className="fa-regular fa-pen-to-square"></i> Editar Perfil</Link></li>
+                  <li><Link onClick={handleLogout} className="custom-dropdown-item"><i className="fa-solid fa-arrow-right-from-bracket"></i> Cerrar Sesión</Link></li>
+                </ul>
               </li>
-  
             </ul>
           </div>
         </div>

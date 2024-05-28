@@ -17,7 +17,7 @@ import AllClientes from './components/Dashboard/AllClientes/AllClientes';
 import GraficaBeneficios from './components/Dashboard/GraficaBeneficios/GraficaBeneficios';
 import ReservaDetalle from './components/Dashboard/AllClientes/ClienteDetalle/ReservaDetalle/ReservaDetalle';
 import ViajeDetalle from './components/Dashboard/AllClientes/ClienteDetalle/ViajeDetalle/ViajeDetalle';
-import EditarPerfiil from './components/Dashboard/EditarPerfil/EditarPerfiil';
+import EditarPerfil from './components/Dashboard/EditarPerfil/EditarPerfil';
 import AllGanancias from './components/Dashboard/GraficaBeneficios/AllGanancias/AllGanancias';
 import AllGastos from './components/Dashboard/GraficaBeneficios/AllGastos/AllGastos';
 import InsertarGanancias from './components/Dashboard/GraficaBeneficios/AllGanancias/InsertarGanancia/InsertarGanancia';
@@ -30,6 +30,7 @@ import RutaMapa from './components/Dashboard/AllClientes/ClienteDetalle/ViajeDet
 import ReservarViaje from './components/Cliente/ReservarViaje/ReservarViaje';
 import CrearFactura from './components/Dashboard/CrearFactura/CrearFactura';
 import PrivateRoute from './auth/PrivateRoute';
+import EditarCliente from './components/Cliente/EditarCliente/EditarCliente';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <BrowserRouter>
@@ -53,6 +54,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           <Route path="mis-viajes" element={<MisViajes />} />
           <Route path="mis-viajes/detalles/:id" element={<DetalleViaje />} />
           <Route path="crear-reseña" element={<Reseña />} />
+          <Route path="editar-perfil" element={<EditarCliente />} />
         </Route>
       </Route>
 
@@ -64,7 +66,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           <Route path="clientes/viajes-detalle/:id" element={<ViajeDetalle />} />
           <Route path="clientes/viajes-detalles/ruta/:id" element={<RutaMapa />} />
           <Route path="crear-factura" element={<CrearFactura />} />
-          <Route path="editar-perfil" element={<EditarPerfiil />} />
+          <Route path="editar-perfil" element={<EditarPerfil />} />
           <Route path="resumen-financiero" element={<GraficaBeneficios />} />
           <Route path="resumen-financiero/todas-ganancias" element={<AllGanancias />} />
           <Route path="resumen-financiero/añadir-ganancia" element={<InsertarGanancias />} />

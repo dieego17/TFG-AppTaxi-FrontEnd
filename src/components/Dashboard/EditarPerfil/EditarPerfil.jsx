@@ -2,7 +2,7 @@
 import React from 'react'
 import './editar.css'
 
-function EditarPerfiil() {
+function EditarPerfil() {
 
   
 
@@ -24,4 +24,4 @@ function EditarPerfiil() {
   )
 }
 
-export default EditarPerfiil
+export default EditarPerfil
