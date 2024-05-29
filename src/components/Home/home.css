@@ -1,7 +1,8 @@
-.container__home{
+.container__home {
     background-color: #006431;
 }
-.section__principal{
+
+.section__principal {
     color: #ffffff;
     padding: 20px;
     margin-top: 140px;
@@ -11,16 +12,20 @@
     align-items: center;
     width: 100%;
 }
-.article__title{
+
+.article__title {
     width: 50%;
 }
-.h1__title{
+
+.h1__title {
     font-size: 2.5rem;
 }
-.p__title{
+
+.p__title {
     padding-bottom: 20px;
 }
-.link__login{
+
+.link__login {
     color: #ffffff;
     text-decoration: none;
     font-size: 1.2rem;
@@ -29,12 +34,13 @@
     border-radius: 5px;
     transition: 0.5s;
 }
-.link__login:hover{
+
+.link__login:hover {
     background-color: #ffffff;
     color: #006431;
 }
 
-.img__home{
+.img__home {
     width: 430px;
     height: 400px;
     margin: 0px 20px;
@@ -42,17 +48,19 @@
 }
 
 /* Responsive home */
-@media screen and (max-width: 1024px){
-    .section__principal{
+@media screen and (max-width: 1024px) {
+    .section__principal {
         flex-direction: column;
         margin-top: 140px;
     }
-    .article__title{
+
+    .article__title {
         width: 100%;
         text-align: center;
         margin-bottom: 20px;
     }
-    .img__home{
+
+    .img__home {
         width: 300px;
         height: 300px;
         margin: 20px 0px;
@@ -60,15 +68,22 @@
 }
 
 
-
-
 /* Servicios */
 .container__servicios {
-    margin: 0px 5px;
+    margin-top: 40px;
+    margin-bottom: 50px;
 }
+
+.container__tarjetas {
+    padding: 0px 10px;
+}
+
+
+/* Porque elegirnos */
 
 .article__elegirnos {
     background-color: #006431;
+    padding: 20px 0px;
 }
 
 .card {
@@ -100,11 +115,18 @@
     margin: 0px 10px;
 }
 
+
+/* Section reseñas */
+.container__opiniones {
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
 .container__reseñas {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 20px 0px;
+    margin: 40px 0px;
 }
 
 .title__reseñas {
@@ -124,24 +146,50 @@
     height: 160px;
 }
 
+.estrellas__opiniones {
+    color: #FDD663;
 
-.brand-list{
+}
+
+.brand-list {
     overflow: hidden;
     width: 100%;
 }
-.wrapper{
+
+.wrapper {
     display: grid;
     grid-auto-flow: column;
 }
 
 @keyframes scroll {
-    to{
+    to {
         translate: calc(-4 * 15rem);
     }
 }
 
-.wrapper{
+.wrapper {
     animation: scroll 15s linear infinite;
 }
+
+/* flecha */
+.flecha__arriba {
+    position: fixed;
+    bottom: -50px; 
+    right: 20px;
+    background-color: #ffffff;
+    color: #006431;
+    border: none;
+    padding: 5px 15px;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: bottom 1s ease;
+    box-shadow: 0px 0px 5px #000000;
+}
+
+.flecha__arriba.visible {
+    bottom: 20px;
+}
+
 
 

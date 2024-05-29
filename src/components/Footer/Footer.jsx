@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom'
 function Footer() {
   return (
     <footer className='footer'>
-      <section className='container t-4'>
+      <section className='container t-4 container__texto--footer'>
         <article className='article__lista row text-left'>
             <div className='col-lg-3 col-sm-12 mt-3'>
               <img className='logo__footer' src={logo} alt="" />
@@ -36,9 +36,9 @@ function Footer() {
               </ul>
             </div>
           </article>
-        <hr className='text-white' />
       </section>
       <section className='container'>
+      <hr className='text-white' />
         <article className='container row article__rrss'>
           <div className='col-lg-7 col-sm-12 container__politicas'>
             <p className=' link__footer--politicas link__footer--name'>© 2024 AppTaxio</p>

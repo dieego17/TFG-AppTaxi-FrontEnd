@@ -7,29 +7,60 @@ import coche from "../../assets/images/car.png";
 import porcen from "../../assets/images/percent.png";
 import tele from "../../assets/images/teleo.png";
 import TarjetaTestimonio from "./TarjetaTestimonio";
-import { useTestimonio } from "../../hooks/useTestimonio";
-import chofer2 from "../../assets/images/chofer2.jpeg";
-import chofer3 from "../../assets/images/chofer3.jpg";
 import TarjetaServicios from "./TarjetaServicios";
-import chofer from "../../assets/images/chofer.jpg";
 import google from "../../assets/images/google.svg";
 import home from "../../assets/images/home1.jpg";
+import recogidainmediata from "../../assets/images/recogida_inmediata.jpg";
+import ciudadCiudad from "../../assets/images/ciudad_ciudad.jpg";
+import horasDias from "../../assets/images/horasDia.jpg";
+
+import { useTestimonio } from "../../hooks/useTestimonio";
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 
 function Home() {
   // hook personalizado para coger los testimonios de los clientes
   const testimonios = useTestimonio();
 
+  const [showScrollButton, setShowScrollButton] = useState(false);
+
+  // Mostrar botón de scroll cuando se hace scroll
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY  > 100) { 
+        setShowScrollButton(true);
+      } else {
+        setShowScrollButton(false);
+      }
+    };
+
+    // Evento para hacer scroll
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Función para hacer scroll hacia arriba
+  function handleScrollTop() {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  }
+  
+
   return (
     <main className="main">
+      <div className={`flecha__arriba ${showScrollButton ? 'visible' : ''}`} onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
+        <i className="fa-solid fa-arrow-up"></i>
+      </div>
       <div className="container__home">
         <div className="section__principal container">
           <article className="article__title">
             <h1 className="h1__title">Tu destino, nuestra misión. <br /> ¡Viaja sin límites con AppTaxio!</h1>
             <p className="p__title">Descubre la comodidad de solicitar un taxi con solo unos clics. ¡Seguridad, rapidez y comodidad en cada viaje!</p>
             <Link to={'/login'} className="link__login">
-              Iniciar Sesión
+              Inicia Sesión
             </Link>
           </article>
           <article className="article__img">
@@ -38,13 +69,13 @@ function Home() {
         </div>
       </div>
       <section>
-        <article className="container">
+        <article className="container container__servicios">
           <h2 className="text-center pt-5 supertitle__servicios">Nuestros Servicios</h2>
-          <div className="row justify-content-center text-center container__servicios">
+          <div className="row justify-content-center text-center container__tarjetas">
             <TarjetaServicios
               enlace={"servicios/ciudad-a-ciudad"}
               titulo={"Viajes de ciudad a ciudad"}
-              imagen={chofer}
+              imagen={ciudadCiudad}
               texto={
                 "Disfruta de nuestra app con un servicio sin problemas y extras como espacio adicional para equipaje."
               }
@@ -52,7 +83,7 @@ function Home() {
             <TarjetaServicios
               enlace={"servicios/recogida-inmediata"}
               titulo={"Recogida inmediata"}
-              imagen={chofer3}
+              imagen={recogidainmediata}
               texto={
                 "Viaja en taxi en menos de 10 minutos con nuestra recogida inmediata a través de la AppTaxio."
               }
@@ -60,7 +91,7 @@ function Home() {
             <TarjetaServicios
               enlace={"servicios/viaje-por-horas"}
               titulo={"Alquiler por horas y día completo"}
-              imagen={chofer2}
+              imagen={horasDias}
               texto={
                 "Disfruta del máximo confort con coches de lujo y conductores profesionales."
               }
@@ -93,7 +124,7 @@ function Home() {
           </div>
         </article>
       </section>
-      <section className="container">
+      <section className="container container__opiniones">
         <article className="row mt-4 mb-4">
           <div className="container__reseñas">
             <img className="svg__google" src={google} alt="" />

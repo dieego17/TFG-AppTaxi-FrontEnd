@@ -14,27 +14,27 @@ function TarjetaTestimonio({testimonios}) {
                   {
                     testimonio.clasificacion_testimonio == 4 || testimonio.clasificacion_testimonio < 4.5 ? 
                     <div className="text-center">
-                      <i className="bi bi-star-fill text-success"></i>
-                      <i className="bi bi-star-fill text-success"></i>
-                      <i className="bi bi-star-fill text-success"></i>
-                      <i className="bi bi-star-fill text-success"></i>
-                      <i className="bi bi-star text-success"></i>
+                      <i className="bi bi-star-fill estrellas__opiniones"></i>
+                      <i className="bi bi-star-fill estrellas__opiniones"></i>
+                      <i className="bi bi-star-fill estrellas__opiniones"></i>
+                      <i className="bi bi-star-fill estrellas__opiniones"></i>
+                      <i className="bi bi-star estrellas__opiniones"></i>
                     </div>
                     : testimonio.clasificacion_testimonio == 5 || testimonio.clasificacion_testimonio > 4.5 ?
                     <div className="text-center">
-                      <i className="bi bi-star-fill text-success"></i>
-                      <i className="bi bi-star-fill text-success"></i>
-                      <i className="bi bi-star-fill text-success"></i>
-                      <i className="bi bi-star-fill text-success"></i>
-                      <i className="bi bi-star-fill text-success"></i>
+                      <i className="bi bi-star-fill estrellas__opiniones"></i>
+                      <i className="bi bi-star-fill estrellas__opiniones"></i>
+                      <i className="bi bi-star-fill estrellas__opiniones"></i>
+                      <i className="bi bi-star-fill estrellas__opiniones"></i>
+                      <i className="bi bi-star-fill estrellas__opiniones"></i>
                     </div>
                     : testimonio.clasificacion_testimonio == 4.5 ?
                     <div className="text-center">
-                      <i className="bi bi-star-fill text-success"></i>
-                      <i className="bi bi-star-fill text-success"></i>
-                      <i className="bi bi-star-fill text-success"></i>
-                      <i className="bi bi-star-fill text-success"></i>
-                      <i className="bi bi-star-half text-success"></i>
+                      <i className="bi bi-star-fill estrellas__opiniones"></i>
+                      <i className="bi bi-star-fill estrellas__opiniones"></i>
+                      <i className="bi bi-star-fill estrellas__opiniones"></i>
+                      <i className="bi bi-star-fill estrellas__opiniones"></i>
+                      <i className="bi bi-star-half estrellas__opiniones"></i>
                     </div>
                     : null
                   }
