@@ -1,8 +1,10 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import "./registerCliente.css";
+import logo from "../../assets/images/logoVerde.png";
 
-function RegisterTaxista() {
+function RegisterCliente() {
   const [name, setName] = useState("");
   const [lastName, setLastName] = useState("");
   const [phone, setPhone] = useState("");
@@ -28,93 +30,157 @@ function RegisterTaxista() {
 
   const validateEmail = (email) => {
     const re = /\S+@\S+\.\S+/;
-    return re.test(email);
+    if (!re.test(email)) {
+      setEmailError("Introduzca un correo válido");
+      return false;
+    } else {
+      setEmailError("");
+      return true;
+    }
   };
 
   const validatePassword = (password) => {
-    return password.length >= 6;
+    setPasswordError("Introduzca una contraseña");
+    if (password === "") {
+      setPasswordError("Introduzca una contraseña");
+      return false;
+    } else if (password.length < 6) {
+      setPasswordError("La contraseña debe tener al menos 6 caracteres");
+      return false;
+    } else {
+      setPasswordError("");
+      return true;
+    }
+  };
+
+  const validateRepitePassword = (repitePassword) => {
+    if (repitePassword !== password) {
+      setRepitePasswordError("Las contraseñas no coinciden");
+      return false;
+    }
+    setRepitePasswordError("");
+    return true;
+  };
+
+  const validateName = (name) => {
+    if (name === "") {
+      setNameError("Introduzca tu nombre");
+      return false;
+    }
+    setNameError("");
+    return true;
+  };
+
+  const validateLastName = (lastName) => {
+    if (lastName === "") {
+      setLastNameError("Introduzca tu apellido");
+      return false;
+    }
+    setLastNameError("");
+    return true;
+  };
+
+  const validatePhone = (phone) => {
+    if (phone === "") {
+      setPhoneError("Introduzca tu teléfono");
+      return false;
+    }else if (phone.length < 9) {
+      setPhoneError("Introduzca un teléfono válido");
+      return false;
+    }
+    setPhoneError("");
+    return true;
+  };
+
+  const validateDNI = (DNI) => {
+    if (DNI === "") {
+      setDniError("Introduzca tu DNI");
+      return false;
+    }
+    setDniError("");
+    return true;
+  };
+
+  const validateDireccionUsuario = (direccionUsuario) => {
+    if (direccionUsuario === "") {
+      setDireccionUsuarioError("Introduzca tu dirección");
+      return false;
+    }
+    setDireccionUsuarioError("");
+    return true;
+  };
+
+  const validateMetodoPago = (metodoPago) => {
+    if (metodoPago === "") {
+      setErrorMetodoPago("Introduzca tu método de pago");
+      return false;
+    }
+    setErrorMetodoPago("");
+    return true;
   };
 
   const handleNameChange = (e) => {
-    const newName = e.target.value;
-    setName(newName);
-    setNameError(newName ? "" : "Por favor ingresa tu nombre.");
+    setName(e.target.value);
+    validateName(e.target.value);
   };
 
   const handleLastNameChange = (e) => {
-    const newLastName = e.target.value;
-    setLastName(newLastName);
-    setLastNameError(newLastName ? "" : "Por favor ingresa tus apellidos.");
-  };
-
-  const handleDNIChange = (e) => {
-    const newDNI = e.target.value;
-    setDNI(newDNI);
-    setDniError(newDNI ? "" : "Por favor ingresa tu DNI.");
-  };
-
-  const handleDireccionUsuarioChange = (e) => {
-    const newDireccionUsuario = e.target.value;
-    setDireccionUsuario(newDireccionUsuario);
-    setDireccionUsuarioError(
-      newDireccionUsuario ? "" : "Por favor ingresa tu dirección."
-    );
+    setLastName(e.target.value);
+    validateLastName(e.target.value);
   };
 
   const handlePhoneChange = (e) => {
-    const newPhone = e.target.value;
-    setPhone(newPhone);
-    setPhoneError(newPhone ? "" : "Por favor ingresa tu teléfono.");
+    setPhone(e.target.value);
+    validatePhone(e.target.value);
   };
 
   const handleEmailChange = (e) => {
-    const newEmail = e.target.value;
-    setEmail(newEmail);
-    setEmailError(
-      newEmail
-        ? validateEmail(newEmail)
-          ? ""
-          : "Por favor ingresa un correo electrónico válido."
-        : "Por favor ingresa tu correo electrónico."
-    );
+    setEmail(e.target.value);
+    validateEmail(e.target.value);
+  };
+
+  const handleDNIChange = (e) => {
+    setDNI(e.target.value);
+    validateDNI(e.target.value);
+  };
+
+  const handleDireccionUsuarioChange = (e) => {
+    setDireccionUsuario(e.target.value);
+    validateDireccionUsuario(e.target.value);
   };
 
   const handlePasswordChange = (e) => {
-    const newPassword = e.target.value;
-    setPassword(newPassword);
-    setPasswordError(
-      newPassword
-        ? validatePassword(newPassword)
-          ? ""
-          : "La contraseña debe tener al menos 6 caracteres."
-        : "Por favor ingresa tu contraseña."
-    );
+    setPassword(e.target.value);
+    validatePassword(e.target.value);
   };
 
-    const handleMetodoPagoChange = (e) => {
-        const newMetodoPago = e.target.value;
-        setMetodoPago(newMetodoPago);
-        setErrorMetodoPago(
-            newMetodoPago ? "" : "Por favor selecciona un método de pago."
-        );
-    };
-
   const handleRepitePasswordChange = (e) => {
-    const newPasswordRepeat = e.target.value;
-    setRepitePassword(newPasswordRepeat);
-    setRepitePasswordError(
-      newPasswordRepeat === password ? "" : "Las contraseñas no coinciden."
-    );
+    setRepitePassword(e.target.value);
+    validateRepitePassword(e.target.value);
+  };
+
+  const handleMetodoPagoChange = (e) => {
+    setMetodoPago(e.target.value);
+    validateMetodoPago(e.target.value);
   };
 
   // Función para enviar los datos del formulario
-  const handleSubmit = async (e) => {
+  const handleRegister = async (e) => {
     // Evitar que el formulario recargue la página
     e.preventDefault();
 
-    // Validar que las contraseñas coincidan
-    if (password !== repitePassword) {
-      console.log("Las contraseñas no coinciden");
+    // Validar los datos del formulario
+    if (
+      !validateName(name) ||
+      !validateLastName(lastName) ||
+      !validatePhone(phone) ||
+      !validateEmail(email) ||
+      !validatePassword(password) ||
+      !validateRepitePassword(repitePassword) ||
+      !validateDNI(DNI) ||
+      !validateDireccionUsuario(direccionUsuario) ||
+      !validateMetodoPago(metodoPago)
+    ) {
       return;
     }
 
@@ -135,7 +201,7 @@ function RegisterTaxista() {
             contraseña: password,
             DNI: DNI,
             direccion_usuario: direccionUsuario,
-            metodo_pago: metodoPago
+            metodo_pago: metodoPago,
           }),
         }
       );
@@ -157,135 +223,189 @@ function RegisterTaxista() {
   };
 
   return (
-    <div className="container mt-5">
-      <div className="row justify-content-center">
-        <div className="col-md-6">
-          <div className="card">
-            <div className="card-header">
-              <h3 className="text-center">Crear Cuenta</h3>
-            </div>
-            <div className="card-body">
-              <form onSubmit={handleSubmit}>
-                <div className="form-group">
-                  <label htmlFor="name">Nombre:</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="Ingresa tu nombre"
-                    value={name}
-                    onChange={handleNameChange}
-                  />
-                  {nameError && <div className="text-danger">{nameError}</div>}
+    <div className="container-fluid fullscreen__container--register d-flex align-items-center justify-content-center">
+      <div className="container">
+        <div className="row justify-content-center align-items-center">
+          <div className="col-12 col-md-12 col-lg-12 p-3">
+            <section className="section__login p-3 rounded">
+              <article className="article__logo mb-3">
+                <img className="login__logo" src={logo} alt="logo" />
+                <div className="container__texto--login">
+                  <h3>Registro cliente</h3>
+                  <p>Crea una nueva cuenta</p>
                 </div>
-                <div className="form-group">
-                  <label htmlFor="lastName">Apellidos:</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="Ingresa tus apellidos"
-                    value={lastName}
-                    onChange={handleLastNameChange}
-                  />
-                  {lastNameError && (
-                    <div className="text-danger">{lastNameError}</div>
-                  )}
-                </div>
-                <div className="form-group">
-                  <label htmlFor="phone">Teléfono:</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="Ingresa tu teléfono"
-                    value={phone}
-                    onChange={handlePhoneChange}
-                  />
-                  {phoneError && (
-                    <div className="text-danger">{phoneError}</div>
-                  )}
-                </div>
-                <div className="form-group">
-                  <label htmlFor="DNI">DNI:</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="Ingresa tu DNI"
-                    value={DNI}
-                    onChange={handleDNIChange}
-                  />
-                  {dniError && <div className="text-danger">{dniError}</div>}
-                </div>
-                <div className="form-group">
-                    <label htmlFor="metodoPago">Método de Pago:</label>
-                    <select
-                      className="form-control"
-                      value={metodoPago}
-                      onChange={handleMetodoPagoChange}
-                    >
+              </article>
+              <article className="article__login">
+                <form className="form__login">
+                  <div className="row justify-content-center text-center">
+                    <div className="col-sm-12 col-md-12 col-lg-12 col-xl-4 mb-3 text-center row justify-content-center text-center">
+                      <label className="label__register" htmlFor="nombre">
+                        Nombre
+                      </label>
+                      <input
+                        type="text"
+                        className="input__register"
+                        placeholder="Introduce tu nombre"
+                        onChange={handleNameChange}
+                      />
+                      {nameError && <p className="error__login">{nameError}</p>}
+                    </div>
+                    <div className="col-sm-12 col-md-12 col-lg-12 col-xl-4 mb-3 row justify-content-center text-center">
+                      <label className="label__register" htmlFor="apellidos">
+                        {" "}
+                        Apellidos
+                      </label>
+                      <input
+                        type="text"
+                        className="input__register"
+                        placeholder="Introduce tus apellidos"
+                        onChange={handleLastNameChange}
+                      />
+                      {lastNameError && (
+                        <p className="error__login">{lastNameError}</p>
+                      )}
+                    </div>
+                    <div className="col-sm-12 col-md-12 col-lg-12 col-xl-4 mb-3 row justify-content-center text-center">
+                      <label className="label__register" htmlFor="telefono">
+                        Teléfono
+                      </label>
+                      <input
+                        type="text"
+                        className="input__register"
+                        placeholder="Introduce tu teléfono"
+                        onChange={handlePhoneChange}
+                      />
+                      {phoneError && (
+                        <p className="error__login">{phoneError}</p>
+                      )}
+                    </div>
+                  </div>
+
+                  <div className="row justify-content-center text-center">
+                    <div className="col-sm-12 col-md-12 col-lg-12 col-xl-4 mb-3 row justify-content-center text-center">
+                      <label className="label__register" htmlFor="dni">
+                        DNI
+                      </label>
+                      <input
+                        type="text"
+                        className="input__register"
+                        placeholder="Introduce tu DNI"
+                        onChange={handleDNIChange}
+                      />
+                      {dniError && <p className="error__login">{dniError}</p>}
+                    </div>
+                    <div className="col-sm-12 col-md-12 col-lg-12 col-xl-4 mb-3 row justify-content-center text-center">
+                      <label className="label__register" htmlFor="pago">
+                        Método de Pago
+                      </label>
+                      <select
+                        className="input__register"
+                        onChange={handleMetodoPagoChange}
+                        value={metodoPago}
+                      >
                         <option value="">Selecciona un método de pago</option>
-                        <option value="Tarjeta">Tarjeta</option>
                         <option value="Efectivo">Efectivo</option>
-                    </select>
-                </div>
-                <div className="form-group">
-                  <label htmlFor="direccionUsuario">Dirección:</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="Ingresa tu dirección"
-                    value={direccionUsuario}
-                    onChange={handleDireccionUsuarioChange}
-                  />
-                  {direccionUsuarioError && (
-                    <div className="text-danger">{direccionUsuarioError}</div>
-                  )}
-                </div>
-                <div className="form-group">
-                  <label htmlFor="email">Correo Electrónico:</label>
-                  <input
-                    type="email"
-                    className="form-control"
-                    placeholder="Ingresa tu correo electrónico"
-                    value={email}
-                    onChange={handleEmailChange}
-                  />
-                  {emailError && (
-                    <div className="text-danger">{emailError}</div>
-                  )}
-                </div>
-                <div className="form-group">
-                  <label htmlFor="password">Contraseña:</label>
-                  <input
-                    type={showPassword ? "text" : "password"}
-                    className="form-control"
-                    placeholder="Ingresa tu contraseña"
-                    value={password}
-                    onChange={handlePasswordChange}
-                  />
-                  {passwordError && (
-                    <div className="text-danger">{passwordError}</div>
-                  )}
-                </div>
-                <div className="form-group">
-                  <label htmlFor="repitePassword">Repetir Contraseña:</label>
-                  <input
-                    type={showPasswordRepet ? "text" : "password"}
-                    className="form-control"
-                    placeholder="Repite tu contraseña"
-                    value={repitePassword}
-                    onChange={handleRepitePasswordChange}
-                  />
-                  {repitePasswordError && (
-                    <div className="text-danger">{repitePasswordError}</div>
-                  )}
-                </div>
-                <button type="submit" className="btn btn-primary btn-block">
-                  Registrarse
-                </button>
-                <Link to={"/login"} className="btn btn-primary btn-block">
+                        <option value="Tarjeta de Crédito">Tarjeta de Crédito</option>
+                      </select>
+                      {errorMetodoPago && (
+                        <p className="error__login">{errorMetodoPago}</p>
+                      )}
+                    </div>
+                    <div className="col-sm-12 col-md-12 col-lg-12 col-xl-4 mb-3 row justify-content-center text-center ">
+                      <label className="label__register" htmlFor="dirección">
+                        Dirección
+                      </label>
+                      <input
+                        type="text"
+                        className="input__register"
+                        placeholder="Introduce tu dirección"
+                        onChange={handleDireccionUsuarioChange}
+                      />
+                      {direccionUsuarioError && (
+                        <p className="error__login">{direccionUsuarioError}</p>
+                      )}
+                    </div>
+                  </div>
+                  <div className="row justify-content-center text-center">
+                    <div className="col-sm-12 col-md-12 col-lg-12 col-xl-4 mb-3 row justify-content-center text-center">
+                      <label className="label__register" htmlFor="email">
+                        Correo Electrónico
+                      </label>
+                      <input
+                        type="email"
+                        className="input__register"
+                        placeholder="Introduce tu correo electrónico"
+                        onChange={handleEmailChange}
+                      />
+                      {emailError && (
+                        <p className="error__login">{emailError}</p>
+                      )}
+                    </div>
+                    <div className="col-sm-12 col-md-12 col-lg-12 col-xl-4 mb-3 row justify-content-center text-center">
+                      <label className="label__register" htmlFor="password">
+                        Contraseña
+                      </label>
+                      <div className="container__password position-relative">
+                        <input
+                          type={showPassword ? "text" : "password"}
+                          className="input__register"
+                          placeholder="Introduce tu contraseña"
+                          onChange={handlePasswordChange}
+                        />
+                        <span
+                          className={`fa ${
+                            showPassword ? "fa-unlock" : "fa-lock"
+                          } icono__password--register`}
+                          onClick={() => setShowPassword(!showPassword)}
+                        ></span>
+                      </div>
+                      {passwordError && (
+                        <p className="error__login">{passwordError}</p>
+                      )}
+                    </div>
+                    <div className="col-sm-12 col-md-12 col-lg-12 col-xl-4 mb-3 row justify-content-center text-center">
+                      <label className="label__register" htmlFor="password">
+                        Confirma la Contraseña
+                      </label>
+                      <div className="container__password position-relative">
+                        <input
+                          type={showPasswordRepet ? "text" : "password"}
+                          className="input__register"
+                          placeholder="Introduce de nuevo tu contraseña"
+                          onChange={handleRepitePasswordChange}
+                        />
+                        <span
+                          className={`fa ${
+                            showPasswordRepet ? "fa-unlock" : "fa-lock"
+                          } icono__password--register`}
+                          onClick={() =>
+                            setShowPasswordRepet(!showPasswordRepet)
+                          }
+                        ></span>
+                      </div>
+                      {repitePasswordError && (
+                        <p className="error__login">{repitePasswordError}</p>
+                      )}
+                    </div>
+                  </div>
+                  <div className="container__login--group mb-3 mt-4 text-center">
+                    <button
+                      type="submit"
+                      className="boton__registro"
+                      onClick={handleRegister}
+                    >
+                      Registrarse
+                    </button>
+                  </div>
+                </form>
+              </article>
+
+              <article className="article__login--out text-center">
+                <Link className="link__out" to="/login">
                   Volver
                 </Link>
-              </form>
-            </div>
+              </article>
+            </section>
           </div>
         </div>
       </div>
@@ -293,4 +413,4 @@ function RegisterTaxista() {
   );
 }
 
-export default RegisterTaxista;
+export default RegisterCliente;

@@ -1,9 +1,17 @@
-.fullscreen__container {
+.fullscreen__container--register {
     background-color: #006431;
-    height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
+    padding-bottom: 33px;
+    padding-top: 30px;
+}
+
+@media screen and (min-width: 1200px) {
+    .fullscreen__container--register {
+        background-color: #006431;
+        height: 100vh;
+    }
 }
 
 .section__login {
@@ -19,7 +27,7 @@
 }
 
 .login__logo {
-    width: 100px;
+    width: 110px;
     margin: 20px 0px 0px;
 }
 
@@ -28,46 +36,40 @@
     text-align: right;
 }
 
-.container__login--group {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-}
-
-.label__login {
+.label__register {
     color: #006431;
-    text-align: left;
-    display: flex;
-    justify-content: space-between;
-    width: 300px;
 }
 
-.input__login {
+.input__register {
     margin: 10px 0px 0px;
     padding: 10px 10px;
     border-radius: 5px;
     border: none;
     outline: none;
-    background-color: #ffffff;
-    color: #006431;
+    background-color: #006431;
+    color: #ffffff;
     border: 1px solid #006431;
     width: 300px;
+    height: 50px;
 }
 
-.input__login::placeholder {
-    color: #006431;
+.input__register::placeholder {
+    color: #ffffff;
 }
 
+.container__password {
+    position: relative;
+}
 
-.icono__password {
-    cursor: pointer;
+.icono__password--register {
     position: absolute;
-    top: 34px;
+    right: 65px;
+    top: 60%;
     transform: translateY(-50%);
-    right: 10px;
-    color: #006431;
+    cursor: pointer;
+    color: #ffffff;
 }
+
 
 .link__forgot {
     color: #006431;
@@ -75,9 +77,9 @@
     text-align: right;
 }
 
-.boton__login {
-    background-color: #006431;
-    color: #ffffff;
+.boton__registro {
+    background-color: #ffffff;
+    color: #006431;
     padding: 10px 20px;
     border-radius: 5px;
     border: none;
@@ -87,9 +89,9 @@
     width: 300px;
 }
 
-.boton__login:hover {
-    background-color: #ffffff;
-    color: #006431;
+.boton__registro:hover {
+    background-color: #006431;
+    color: #ffffff;
     border: 1px solid #006431;
 }
 
@@ -103,11 +105,13 @@
     transition: all 0.3s;
     font-size: 0.9rem;
 }
-.container__forgot--password{
+
+.container__forgot--password {
     display: flex;
     justify-content: right;
     margin-right: 95px;
 }
+
 .link__register:hover {
     background-color: #006431;
     color: #ffffff;
@@ -156,7 +160,7 @@
     color: #006431;
 }
 
-.error__login{
+.error__login {
     color: red;
     text-align: center;
     margin-top: 10px;
