@@ -4,7 +4,7 @@ import React from 'react'
 
 function TarjetaTestimonio({testimonios}) {
   return (
-    <div className='row text-center justify-content-center container__reseñas'>
+    <div className=' text-center justify-content-center container__reseñas'>
         {
             testimonios.map(testimonio => (
               <div className="card tarjeta__reseña col-5 m-3" key={testimonio.id}>

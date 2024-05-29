@@ -6,7 +6,6 @@ import tick from "../../assets/images/tick.png";
 import coche from "../../assets/images/car.png";
 import porcen from "../../assets/images/percent.png";
 import tele from "../../assets/images/teleo.png";
-import { Link } from "react-router-dom";
 import TarjetaTestimonio from "./TarjetaTestimonio";
 import { useTestimonio } from "../../hooks/useTestimonio";
 import chofer2 from "../../assets/images/chofer2.jpeg";
@@ -14,7 +13,9 @@ import chofer3 from "../../assets/images/chofer3.jpg";
 import TarjetaServicios from "./TarjetaServicios";
 import chofer from "../../assets/images/chofer.jpg";
 import google from "../../assets/images/google.svg";
-import fondo2 from "../../assets/images/taxi__ia.jpeg";
+import home from "../../assets/images/home1.jpg";
+import { Link } from "react-router-dom";
+
 
 function Home() {
   // hook personalizado para coger los testimonios de los clientes
@@ -22,91 +23,20 @@ function Home() {
 
   return (
     <main className="main">
-      <div className="section__preheader">
-        <section className="section__postheader">
+      <div className="container__home">
+        <div className="section__principal container">
+          <article className="article__title">
+            <h1 className="h1__title">Tu destino, nuestra misión. <br /> ¡Viaja sin límites con AppTaxio!</h1>
+            <p className="p__title">Descubre la comodidad de solicitar un taxi con solo unos clics. ¡Seguridad, rapidez y comodidad en cada viaje!</p>
+            <Link to={'/login'} className="link__login">
+              Iniciar Sesión
+            </Link>
+          </article>
           <article className="article__img">
-            <img className="img__fondo" src={fondo2} alt="" />
+            <img className="img__home" src={home} alt="" />
           </article>
-          <article className="container__form">
-            <h2 className="text-center h2__form">Viaja con nosotros</h2>
-            <form action="">
-              <div className="form-group form__destino">
-                <label htmlFor="origen">Origen</label>
-                <input
-                  type="text"
-                  className="form__control"
-                  placeholder="Dirección, hotel..."
-                />
-                <i className="fa-solid fa-location-dot icono__destino"></i>
-              </div>
-              <div className="form-group form__destino">
-                <label htmlFor="destino">Destino</label>
-                <input
-                  type="text"
-                  className="form__control"
-                  placeholder="Dirección, hotel..."
-                />
-                <i className="fa-solid fa-location-dot icono__destino"></i>
-              </div>
-              <div className="form-group">
-                <label htmlFor="fecha">Fecha</label>
-                <input type="date" className="form__control" id="fecha" />
-              </div>
-              <div className="form-group">
-                <label htmlFor="hora">Hora</label>
-                <input
-                  type="time"
-                  className="form__control"
-                />
-              </div>
-              <Link className="link__button" to="/servicios/ciudad-a-ciudad">
-                <button type="submit" className="btn boton__form">
-                  Buscar
-                </button>
-              </Link>
-            </form>
-          </article>
-        </section>
+        </div>
       </div>
-      <section className="formulario__pequeño">
-        <h2 className="text-center h2__form">Viaja con nosotros</h2>
-        <form action="" className="form__pequeño">
-          <div className="form-group form__destino">
-            <label htmlFor="origen">Origen</label>
-            <input
-              type="text"
-              className="form__control"
-              placeholder="Dirección, hotel..."
-            />
-            <i className="fa-solid fa-location-dot icono__destino"></i>
-          </div>
-          <div className="form-group form__destino">
-            <label htmlFor="destino">Destino</label>
-            <input
-              type="text"
-              className="form__control"
-              placeholder="Dirección, hotel..."
-            />
-            <i className="fa-solid fa-location-dot icono__destino"></i>
-          </div>
-          <div className="form-group">
-            <label htmlFor="fecha">Fecha</label>
-            <input type="date" className="form__control" id="fecha" />
-          </div>
-          <div className="form-group">
-            <label htmlFor="hora">Hora</label>
-            <input
-              type="time"
-              className="form__control"
-            />
-          </div>
-          <Link className="link__button" to="/servicios/ciudad-a-ciudad">
-            <button type="submit" className="btn boton__form">
-              Buscar
-            </button>
-          </Link>
-        </form>
-      </section>
       <section>
         <article className="container">
           <h2 className="text-center pt-5 supertitle__servicios">Nuestros Servicios</h2>
@@ -175,7 +105,11 @@ function Home() {
             <i className="bi bi-star-half estrellas__reseñas"></i>
           </div>
           <div className="container__tarjetas--testimonios">
-            <TarjetaTestimonio testimonios={testimonios} key={testimonios.id} />
+            <div className="brand-list">
+              <div className="wrapper">
+              <TarjetaTestimonio testimonios={testimonios} key={testimonios.id} />
+              </div>
+            </div>
           </div>
         </article>
       </section>
