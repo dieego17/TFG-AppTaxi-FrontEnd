@@ -1,98 +1,195 @@
 /* eslint-disable no-unused-vars */
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import "./insertarGasto.css";
+import { createGasto } from "../../../../../services/createGasto";
 
 function InsertarGasto() {
-    const [descripcionGastos, setDescripcionGastos] = useState('');
-    const [importeGastos, setImporteGastos] = useState('');
-    const [fechaGastos, setFechaGastos] = useState('');
+  const [descripcionGastos, setDescripcionGastos] = useState("");
+  const [importeGastos, setImporteGastos] = useState("");
+  const [fechaGastos, setFechaGastos] = useState("");
 
-    const token = localStorage.getItem('token');
-    const idTaxista = token ? JSON.parse(atob(token.split('.')[1])).id_usuario : '';  
+  const [errorDescripcionGastos, setErrorDescripcionGastos] = useState("");
+  const [errorImporteGastos, setErrorImporteGastos] = useState("");
+  const [errorFechaGastos, setErrorFechaGastos] = useState("");
 
-    // Estado para mostrar la Alerta de error
-    const [showAlertError, setShowAlertError] = useState(false);
+  const token = localStorage.getItem("token");
+  const idTaxista = token
+    ? JSON.parse(atob(token.split(".")[1])).id_usuario
+    : "";
 
-    // Estado para mostrar la Alerta de éxito
-    const [showAlertSuccess, setShowAlertSuccess] = useState(false);
+  const validateDescripcion = (descripcionGastos) => {
+    if (descripcionGastos.length > 255) {
+      setErrorDescripcionGastos(
+        "La descripción no puede superar los 255 caracteres"
+      );
+      return false;
+    } else if (descripcionGastos.length < 5) {
+      setErrorDescripcionGastos(
+        "La descripción debe tener al menos 5 caracteres"
+      );
+      return false;
+    } else {
+      setErrorDescripcionGastos("");
+      return true;
+    }
+  };
 
-    const ApiUrl = import.meta.env.VITE_REACT_URL_API
+  const validateImport = (importeGastos) => {
+    if (importeGastos === "") {
+      setErrorImporteGastos("El importe no puede estar vacío");
+      return false;
+    } else if (importeGastos <= 0) {
+      setErrorImporteGastos("El importe no puede ser negativo");
+      return false;
+    } else {
+      setErrorImporteGastos("");
+      return true;
+    }
+  };
 
-    const handleSubmitGastos = (e) => {
-        e.preventDefault();
+  const validateDate = (fechaGastos) => {
+    if (fechaGastos === "") {
+      setErrorFechaGastos("La fecha no puede estar vacía");
+      return false;
+    } else {
+      setErrorFechaGastos("");
+      return true;
+    }
+  };
 
-        // Verificar si algún campo está vacío
-        if (!descripcionGastos || !fechaGastos || !importeGastos) {
-            setShowAlertError(true); // Mostrar la alerta
-            return;
-        }else{
-            // Si no hay campos vacíos, mostrar la alerta de éxito
-            setShowAlertError(false);
-            setShowAlertSuccess(true)
-        }
+  const handleChangeDescripcionGastos = (e) => {
+    setDescripcionGastos(e.target.value);
+    validateDescripcion(e.target.value);
+  };
 
-        // Si todos los campos están completos, enviar los datos
-        const data = {
-            descripcion_gasto: descripcionGastos,
-            gasto_total: importeGastos,
-            id_taxista: idTaxista,
-            fecha_gasto: fechaGastos
-        };
+  const handleChangeImporteGastos = (e) => {
+    setImporteGastos(e.target.value);
+    validateImport(e.target.value);
+  };
 
-        const requestOptions = {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(data)
-        };
-        fetch('http://localhost:3000/appTaxio/v1/perdidas/3', requestOptions)
-            .then(response => response.json())
-            .then(data => console.log(data))
-            .catch(error => console.log('error', error));
+  const handleChangeFechaGastos = (e) => {
+    setFechaGastos(e.target.value);
+    validateDate(e.target.value);
+  };
+
+  // Estado para mostrar la Alerta de éxito
+  const [showAlertSuccess, setShowAlertSuccess] = useState(false);
+
+  const handleSubmitGastos = (e) => {
+    e.preventDefault();
+
+    if (
+      !validateDescripcion(descripcionGastos) ||
+      !validateImport(importeGastos) ||
+      !validateDate(fechaGastos)
+    ) {
+      return;
+    }
+
+    // Si todos los campos están completos, enviar los datos
+    const data = {
+      descripcion_gasto: descripcionGastos,
+      gasto_total: importeGastos,
+      id_taxista: idTaxista,
+      fecha_gasto: fechaGastos,
     };
 
-    return (
-        <div className='container'>
-            {
-                // Mostrar alerta de error
-                showAlertError && (
-                    <div className="alert alert-danger alert__insert" role="alert">
-                        Por favor, completa todos los campos.
-                    </div>
-                )
-            }
-            {
-                // Mostrar alerta de éxito
-                showAlertSuccess && (
-                    <div className="alert alert-success alert__insert" role="alert">
-                        Gasto insertado correctamente.
-                    </div>
-                )
-            }
-            <div className="section">
-                <h2 className="section-title">Añadir Gastos</h2>
-                <form className='formulario' onSubmit={handleSubmitGastos}>
-                    <div className="form-group">
-                        <label htmlFor="descripcionGastos">Descripción:</label>
-                        <textarea className='input__form' id="descripcionGastos" value={descripcionGastos} onChange={(e) => setDescripcionGastos(e.target.value)}></textarea>
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="fechaGastos">Fecha:</label>
-                        <input className='input__form' id="fechaGastos" value={fechaGastos} type='date' onChange={(e) => setFechaGastos(e.target.value)} />
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="importeGastos">Importe total:</label>
-                        <input className='input__form' id="importeGastos" type='number' value={importeGastos} onChange={(e) => setImporteGastos(e.target.value)} />
-                    </div>
-                    <button type="submit" className="btn">
-                        Insertar
-                    </button>
-                </form>
+    // Llamar a la función para insertar un nuevo gasto
+    createGasto(idTaxista, data);
+    // Mostrar la alerta de éxito
+    setShowAlertSuccess(true);
+  };
+
+  return (
+    <div className="container">
+      <div className="section__insertGasto">
+        <h2 className="gastos__title">Insertar Nuevo Gasto</h2>
+        {
+          // Mostrar alerta de éxito
+          showAlertSuccess && (
+            <div
+              className="alert alert-warning alerta__success fade show"
+              role="alert"
+            >
+              <strong className="texto__success--grande">
+                Gasto insertado correctamente.
+              </strong>
+              <button
+                type="button"
+                className="btn__close"
+                data-bs-dismiss="alert"
+                aria-label="Close"
+              >
+                <i className="bi bi-x-lg"></i>
+              </button>
             </div>
-            <Link className="button__volver" to={'/dashboard/resumen-financiero/todos-gastos'}>
-                Volver
-            </Link>
-        </div>
-    );
+          )
+        }
+        <form className="formulario__gastos">
+          <div className="form-group">
+            <label className="label__gastos" htmlFor="descripcionGastos">
+              Descripción:
+            </label>
+            <textarea
+              className="input__gastos"
+              id="descripcionGastos"
+              value={descripcionGastos}
+              placeholder="Descripción del gasto"
+              onChange={handleChangeDescripcionGastos}
+            ></textarea>
+            {errorDescripcionGastos && (
+              <p className="error">{errorDescripcionGastos}</p>
+            )}
+          </div>
+          <div className="form-group">
+            <label className="label__gastos" htmlFor="fechaGastos">
+              Fecha:
+            </label>
+            <input
+              className="input__gastos"
+              id="fechaGastos"
+              value={fechaGastos}
+              type="date"
+              onChange={handleChangeFechaGastos}
+            />
+            {errorFechaGastos && <p className="error">{errorFechaGastos}</p>}
+          </div>
+          <div className="form-group">
+            <label className="label__gastos" htmlFor="importeGastos">
+              Importe total:
+            </label>
+            <input
+              className="input__gastos"
+              id="importeGastos"
+              type="number"
+              placeholder="Importe total del gasto"
+              value={importeGastos}
+              onChange={handleChangeImporteGastos}
+            />
+            {errorImporteGastos && (
+              <p className="error">{errorImporteGastos}</p>
+            )}
+          </div>
+          <button
+            onClick={handleSubmitGastos}
+            type="submit"
+            className="button__insertarGasto"
+          >
+            Insertar Gasto
+          </button>
+        </form>
+      </div>
+      <div className="button__volverGasto">
+        <Link
+          className="button__volver"
+          to={"/dashboard/resumen-financiero/todos-gastos"}
+        >
+          Volver
+        </Link>
+      </div>
+    </div>
+  );
 }
 
 export default InsertarGasto;

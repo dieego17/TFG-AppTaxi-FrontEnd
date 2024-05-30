@@ -1,0 +1,76 @@
+.section__insertGasto{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 20px;
+}
+.gastos__title{
+    padding-bottom: 10px;
+}
+
+.formulario__gastos{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-group{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.label__gastos{
+    color: #006431;
+    text-align: left;
+}
+.input__gastos{
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+    color: #006431;
+    border: 1px solid #006431;
+}
+.input__gastos::placeholder{
+    color: #006431;
+}
+
+.button__insertarGasto{
+    padding: 10px;
+    background-color: rgba(255, 99, 132, 1);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.button__volverGasto{
+    margin-top: 40px;
+    margin-bottom: 30px;
+}
+
+.error{
+    color: red;
+}
+
+.alerta__success{
+    background-color: #BCF7CF;
+    border: none;
+    border-left: 4px solid #006431;
+    text-align: left;
+    color: #3AA163;
+    width: 400px;
+    z-index: -1;
+}
+.texto__success--grande{
+    color: #33B164;
+}
+.btn__close{
+    color: #006431;
+    cursor: pointer;
+    margin-left: 90px;
+    border: none;
+    background-color: transparent;
+}
+.btn__close:hover{
+    color: #33B164;
+}

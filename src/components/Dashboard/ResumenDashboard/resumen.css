@@ -48,6 +48,10 @@
   padding: 20px;
 }
 
+.article__dashboard--tabla{
+  width: 100%;
+
+}
 
 @media screen and (min-width: 1024px) {
   .main__dashboard{

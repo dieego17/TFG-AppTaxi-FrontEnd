@@ -238,7 +238,7 @@ function RegisterCliente() {
               <article className="article__login">
                 <form className="form__login">
                   <div className="row justify-content-center text-center">
-                    <div className="col-sm-12 col-md-12 col-lg-12 col-xl-4 mb-3 text-center row justify-content-center text-center">
+                    <div className="container__login--group col-sm-12 col-md-12 col-lg-12 col-xl-4 mb-3 text-center row justify-content-center text-center">
                       <label className="label__register" htmlFor="nombre">
                         Nombre
                       </label>
@@ -250,7 +250,7 @@ function RegisterCliente() {
                       />
                       {nameError && <p className="error__login">{nameError}</p>}
                     </div>
-                    <div className="col-sm-12 col-md-12 col-lg-12 col-xl-4 mb-3 row justify-content-center text-center">
+                    <div className="container__login--group col-sm-12 col-md-12 col-lg-12 col-xl-4 mb-3 row justify-content-center text-center">
                       <label className="label__register" htmlFor="apellidos">
                         {" "}
                         Apellidos
@@ -265,7 +265,7 @@ function RegisterCliente() {
                         <p className="error__login">{lastNameError}</p>
                       )}
                     </div>
-                    <div className="col-sm-12 col-md-12 col-lg-12 col-xl-4 mb-3 row justify-content-center text-center">
+                    <div className="container__login--group col-sm-12 col-md-12 col-lg-12 col-xl-4 mb-3 row justify-content-center text-center">
                       <label className="label__register" htmlFor="telefono">
                         Teléfono
                       </label>
@@ -282,7 +282,7 @@ function RegisterCliente() {
                   </div>
 
                   <div className="row justify-content-center text-center">
-                    <div className="col-sm-12 col-md-12 col-lg-12 col-xl-4 mb-3 row justify-content-center text-center">
+                    <div className="container__login--group col-sm-12 col-md-12 col-lg-12 col-xl-4 mb-3 row justify-content-center text-center">
                       <label className="label__register" htmlFor="dni">
                         DNI
                       </label>
@@ -294,7 +294,7 @@ function RegisterCliente() {
                       />
                       {dniError && <p className="error__login">{dniError}</p>}
                     </div>
-                    <div className="col-sm-12 col-md-12 col-lg-12 col-xl-4 mb-3 row justify-content-center text-center">
+                    <div className="container__login--group col-sm-12 col-md-12 col-lg-12 col-xl-4 mb-3 row justify-content-center text-center">
                       <label className="label__register" htmlFor="pago">
                         Método de Pago
                       </label>
@@ -311,7 +311,7 @@ function RegisterCliente() {
                         <p className="error__login">{errorMetodoPago}</p>
                       )}
                     </div>
-                    <div className="col-sm-12 col-md-12 col-lg-12 col-xl-4 mb-3 row justify-content-center text-center ">
+                    <div className="container__login--group col-sm-12 col-md-12 col-lg-12 col-xl-4 mb-3 row justify-content-center text-center ">
                       <label className="label__register" htmlFor="dirección">
                         Dirección
                       </label>
@@ -327,7 +327,7 @@ function RegisterCliente() {
                     </div>
                   </div>
                   <div className="row justify-content-center text-center">
-                    <div className="col-sm-12 col-md-12 col-lg-12 col-xl-4 mb-3 row justify-content-center text-center">
+                    <div className="container__login--group col-sm-12 col-md-12 col-lg-12 col-xl-4 mb-3 row justify-content-center text-center">
                       <label className="label__register" htmlFor="email">
                         Correo Electrónico
                       </label>
@@ -341,14 +341,13 @@ function RegisterCliente() {
                         <p className="error__login">{emailError}</p>
                       )}
                     </div>
-                    <div className="col-sm-12 col-md-12 col-lg-12 col-xl-4 mb-3 row justify-content-center text-center">
+                    <div className="container__login--group col-sm-12 col-md-12 col-lg-12 col-xl-4 mb-3 row justify-content-center text-center">
                       <label className="label__register" htmlFor="password">
                         Contraseña
                       </label>
-                      <div className="container__password position-relative">
                         <input
                           type={showPassword ? "text" : "password"}
-                          className="input__register"
+                          className="input__register input__password"
                           placeholder="Introduce tu contraseña"
                           onChange={handlePasswordChange}
                         />
@@ -358,19 +357,17 @@ function RegisterCliente() {
                           } icono__password--register`}
                           onClick={() => setShowPassword(!showPassword)}
                         ></span>
-                      </div>
                       {passwordError && (
                         <p className="error__login">{passwordError}</p>
                       )}
                     </div>
-                    <div className="col-sm-12 col-md-12 col-lg-12 col-xl-4 mb-3 row justify-content-center text-center">
+                    <div className="container__login--group col-sm-12 col-md-12 col-lg-12 col-xl-4 mb-3 row justify-content-center text-center">
                       <label className="label__register" htmlFor="password">
                         Confirma la Contraseña
                       </label>
-                      <div className="container__password position-relative">
                         <input
                           type={showPasswordRepet ? "text" : "password"}
-                          className="input__register"
+                          className="input__register input__password"
                           placeholder="Introduce de nuevo tu contraseña"
                           onChange={handleRepitePasswordChange}
                         />
@@ -382,7 +379,6 @@ function RegisterCliente() {
                             setShowPasswordRepet(!showPasswordRepet)
                           }
                         ></span>
-                      </div>
                       {repitePasswordError && (
                         <p className="error__login">{repitePasswordError}</p>
                       )}

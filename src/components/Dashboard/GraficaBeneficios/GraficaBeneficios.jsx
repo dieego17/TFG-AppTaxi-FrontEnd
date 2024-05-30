@@ -87,7 +87,7 @@ function GraficaBeneficios() {
     }, [ganancias, perdidas]);
 
     return (
-        <div>
+        <div className='container__grafica'>
             <div className="chart-container">
                 <h2>RESUMEN FINANCIERO</h2>
                 <canvas id="myChart" width="600" height="400"></canvas>

@@ -187,7 +187,7 @@ function RegisterTaxista() {
               <article className="article__login">
                 <form className="form__login">
                   <div className="row justify-content-center text-center">
-                    <div className="col-sm-12 col-md-12 col-lg-12 col-xl-4 mb-5 text-center row justify-content-center text-center">
+                    <div className="container__inputs--register col-sm-12 col-md-12 col-lg-12 col-xl-4 mb-5 text-center row justify-content-center text-center">
                       <label className="label__register" htmlFor="nombre">
                         Nombre
                       </label>
@@ -199,7 +199,7 @@ function RegisterTaxista() {
                       />
                       {nameError && <p className="error__login">{nameError}</p>}
                     </div>
-                    <div className="col-sm-12 col-md-12 col-lg-12 col-xl-4 mb-5 row justify-content-center text-center">
+                    <div className="container__inputs--register col-sm-12 col-md-12 col-lg-12 col-xl-4 mb-5 row justify-content-center text-center">
                       <label className="label__register" htmlFor="apellidos">
                         {" "}
                         Apellidos
@@ -214,7 +214,7 @@ function RegisterTaxista() {
                         <p className="error__login">{lastNameError}</p>
                       )}
                     </div>
-                    <div className="col-sm-12 col-md-12 col-lg-12 col-xl-4 mb-5 row justify-content-center text-center">
+                    <div className="container__inputs--register col-sm-12 col-md-12 col-lg-12 col-xl-4 mb-5 row justify-content-center text-center">
                       <label className="label__register" htmlFor="telefono">
                         Teléfono
                       </label>
@@ -231,7 +231,7 @@ function RegisterTaxista() {
                   </div>
 
                   <div className="row justify-content-center text-center">
-                    <div className="col-sm-12 col-md-12 col-lg-12 col-xl-4 mb-5 row justify-content-center text-center">
+                    <div className="container__inputs--register col-sm-12 col-md-12 col-lg-12 col-xl-4 mb-5 row justify-content-center text-center">
                       <label className="label__register" htmlFor="dni">
                         DNI
                       </label>
@@ -243,7 +243,7 @@ function RegisterTaxista() {
                       />
                       {dniError && <p className="error__login">{dniError}</p>}
                     </div>
-                    <div className="col-sm-12 col-md-12 col-lg-12 col-xl-4 mb-5 row justify-content-center text-center ">
+                    <div className="container__inputs--register col-sm-12 col-md-12 col-lg-12 col-xl-4 mb-5 row justify-content-center text-center ">
                       <label className="label__register" htmlFor="dirección">
                         Dirección
                       </label>
@@ -257,7 +257,7 @@ function RegisterTaxista() {
                         <p className="error__login">{direccionUsuarioError}</p>
                       )}
                     </div>
-                    <div className="col-sm-12 col-md-12 col-lg-12 col-xl-4 mb-5 row justify-content-center text-center ">
+                    <div className="container__inputs--register col-sm-12 col-md-12 col-lg-12 col-xl-4 mb-5 row justify-content-center text-center ">
                       <label className="label__register" htmlFor="numCuenta">
                         Número de cuenta
                       </label>
@@ -273,7 +273,7 @@ function RegisterTaxista() {
                     </div>
                   </div>
                   <div className="row justify-content-center text-center">
-                    <div className="col-sm-12 col-md-12 col-lg-12 col-xl-4 mb-5 row justify-content-center text-center">
+                    <div className="container__inputs--register col-sm-12 col-md-12 col-lg-12 col-xl-4 mb-5 row justify-content-center text-center">
                       <label className="label__register" htmlFor="email">
                         Correo Electrónico
                       </label>
@@ -287,7 +287,7 @@ function RegisterTaxista() {
                         <p className="error__login">{emailError}</p>
                       )}
                     </div>
-                    <div className="col-sm-12 col-md-12 col-lg-12 col-xl-4 mb-5 row justify-content-center text-center">
+                    <div className="container__inputs--register col-sm-12 col-md-12 col-lg-12 col-xl-4 mb-5 row justify-content-center text-center">
                       <label className="label__register" htmlFor="vehiculo">
                         Vehículo
                       </label>
@@ -303,11 +303,10 @@ function RegisterTaxista() {
                     </div>
                   </div>
                   <div className="row justify-content-center text-center">
-                    <div className="col-sm-12 col-md-12 col-lg-12 col-xl-4 mb-5 row justify-content-center text-center">
+                    <div className="container__inputs--register col-sm-12 col-md-12 col-lg-12 col-xl-4 mb-5 row justify-content-center text-center">
                       <label className="label__register" htmlFor="password">
                         Contraseña
                       </label>
-                      <div className="container__password">
                         <input
                           type={showPassword ? "text" : "password"}
                           className="input__register"
@@ -320,16 +319,14 @@ function RegisterTaxista() {
                           } icono__password--taxista`}
                           onClick={() => setShowPassword(!showPassword)}
                         ></span>
-                      </div>
                       {passwordError && (
                         <p className="error__login">{passwordError}</p>
                       )}
                     </div>
-                    <div className="col-sm-12 col-md-12 col-lg-12 col-xl-4 mb-5 row justify-content-center text-center">
+                    <div className="container__inputs--register col-sm-12 col-md-12 col-lg-12 col-xl-4 mb-5 row justify-content-center text-center">
                       <label className="label__register" htmlFor="password">
                         Confirma la Contraseña
                       </label>
-                      <div className="container__password">
                         <input
                           type={showPasswordRepet ? "text" : "password"}
                           className="input__register"
@@ -344,13 +341,12 @@ function RegisterTaxista() {
                             setShowPasswordRepet(!showPasswordRepet)
                           }
                         ></span>
-                      </div>
                       {repitePasswordError && (
                         <p className="error__login">{repitePasswordError}</p>
                       )}
                     </div>
                   </div>
-                  <div className="container__login--group mb-3 mt-4 text-center">
+                  <div className="container__inputs--register mb-3 mt-4 text-center">
                     <button
                       type="submit"
                       className="boton__registro"

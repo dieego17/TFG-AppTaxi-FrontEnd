@@ -113,7 +113,6 @@ function Login() {
                     <label className="label__login" htmlFor="password">
                       Contraseña
                     </label>
-                    <div className="container__password position-relative">
                       <input
                         type={showPassword ? "text" : "password"}
                         className="input__login"
@@ -123,10 +122,9 @@ function Login() {
                       <span
                         className={`fa ${
                           showPassword ? "fa-unlock" : "fa-lock"
-                        } icono__password`}
+                        } icono__password--login`}
                         onClick={() => setShowPassword(!showPassword)}
                       ></span>
-                    </div>
                     {errorPass && <p className="error__login">{errorPass}</p>}
                   </div>
                   <div className="container__forgot--password mb-3 text-end">

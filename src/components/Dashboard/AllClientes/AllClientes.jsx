@@ -30,6 +30,7 @@ function AllClientes() {
         <h1 className="no__clientes">Todavía no tienes clientes</h1>
       ) : (
         <div className="table-container">
+          <h1>Todos los clientes</h1>
           <table className="table">
             <thead className="table__thead">
               <tr className="table__tr">

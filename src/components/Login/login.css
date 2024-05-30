@@ -33,6 +33,8 @@
     justify-content: center;
     flex-direction: column;
     align-items: center;
+    width: 300px;
+    margin: 0 auto;
 }
 
 .label__login {
@@ -52,7 +54,7 @@
     background-color: #ffffff;
     color: #006431;
     border: 1px solid #006431;
-    width: 300px;
+    width: 100%;
 }
 
 .input__login::placeholder {
@@ -60,10 +62,10 @@
 }
 
 
-.icono__password {
+.icono__password--login {
     cursor: pointer;
     position: absolute;
-    top: 34px;
+    top: 54px;
     transform: translateY(-50%);
     right: 10px;
     color: #006431;
