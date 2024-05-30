@@ -16,14 +16,14 @@ function ResumenDashboard({ mostrar }) {
   const apellidos = token ? JSON.parse(atob(token.split('.')[1])).apellidos : '';
 
   return (
-    <div className="resumen-dashboard">
-      <section className='section__dashboard'>
-      <article className='article__dashboard col-lg-6 col-md-12'>
-        <h1>BIENVENIDO,<br />
-          {userName} {apellidos}
-        </h1>
-      </article>
-        <article className='article__dashboard col-lg-6 col-md-12'>
+    <div className="resumen-dashboard container">
+      <section className='section__dashboard section__dashboard--dos'>
+        <article className='article__dashboard article__dashboard--dos'>
+          <h1>BIENVENIDO,<br />
+            {userName} {apellidos}
+          </h1>
+        </article>
+        <article className='article__dashboard article__dashboard--dos'>
           <Link to={'/dashboard/resumen-financiero'} className="article-link">
             <div className="article-content">
               <GraficaBeneficios />
@@ -32,7 +32,7 @@ function ResumenDashboard({ mostrar }) {
         </article>
       </section>
       <section className='section__dashboard'>
-        <article className='article__dashboard'>
+        <article className='article__dashboard article__dashboard--tabla'>
           <Link to={'/dashboard/clientes'} className="article-link">
             <div className="article-content">
               <AllClientes />

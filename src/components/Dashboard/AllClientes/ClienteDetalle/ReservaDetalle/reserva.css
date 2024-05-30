@@ -1,19 +1,17 @@
 .estado__pendiente{
     color: #ffffff;
     border: 1px solid #FFA500;
-    padding: 5px;
     border-radius: 5px;
     background-color: #FFA500;
-    margin: 5px 0px;
+    width: 100px;
 }
 
 .estado__confirmado{
     color: #ffffff;
     border: 1px solid #008000;
     padding: 5px;
-    border-radius: 5px;
     background-color: #008000;
-    margin: 5px 0px;
+    width: 100px;
 }
 
 .button__volver{
@@ -26,3 +24,4 @@
     text-decoration: none;
     font-size: 1.1rem;
 }
+

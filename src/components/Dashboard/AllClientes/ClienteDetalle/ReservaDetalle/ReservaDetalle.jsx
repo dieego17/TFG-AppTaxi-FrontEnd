@@ -53,15 +53,15 @@ function ReservaDetalle() {
         <tbody>
           {currentReservas.map((reserva) => (
             <tr key={reserva.id_reserva}>
-              <td>{formatDate(reserva.fecha_reserva)}</td>
-              <td>{formatTime(reserva.hora_reserva)}</td>
+              <td data-label="Fecha Reserva">{formatDate(reserva.fecha_reserva)}</td>
+              <td data-label="Hora Reserva">{formatTime(reserva.hora_reserva)}</td>
               {reserva.estado_reserva === "Pendiente" ? (
-                <td>
-                  <p className="estado__pendiente">Pendiente</p>
+                <td data-label="Estado Reserva">
+                  <button className="estado__pendiente">Pendiente</button>
                 </td>
               ) : (
-                <td>
-                  <p className="estado__confirmado">Confirmada</p>
+                <td data-label="Estado Reserva">
+                  <button className="estado__confirmado">Confirmada</button>
                 </td>
               )}
             </tr>

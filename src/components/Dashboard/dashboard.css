@@ -22,16 +22,6 @@
     position: fixed;
 }
 
-.main__dashboard{
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-    margin-left: 100px;
-    margin-top: 90px;
-}
 
 .outlet__dashboard{
     display: flex;
