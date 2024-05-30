@@ -27,11 +27,85 @@
     border-radius: 10px;
     cursor: pointer;
 }
-.list__aside--ajustes{
-    margin-top: 120px;
-}
+
 .icon__aside{
     font-size: 30px;
     color: #ffffff;
 }
 
+.list__aside--perfil{
+    margin-top: 95px;
+}
+.button__perfil{
+    background-color: #006431;
+    border: none;
+}
+.foto__user{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: blueviolet;
+    margin: 0px 10px;
+}
+.letra__perfil{
+    color: #ffffff;
+    font-size: 30px;
+    padding: 1px 0px 0px 1px;
+}
+.menu__desplegable{
+    position: absolute;
+    background-color: #005026;
+    border-radius: 10px;
+    padding: 15px;
+    margin-top: 10px;
+    z-index: 1;
+}
+.icon__aside--desplegable{
+    color: #ffffff;
+    text-decoration: none;
+    text-align: left;
+}
+.icon__aside--desplegable:hover{
+    background-color: #005026;
+    color: #ffffff9a;
+}
+
+
+@media screen and (min-width: 1024px){
+    .section__logo{
+        margin: 0px 0px 0px;
+    }
+    .list__aside{
+        margin: 10px 0px 0px;
+        padding: 10px;
+    }
+    .list__aside--perfil{
+        margin-top: 70px;
+    }
+}
+@media screen and (min-width: 1200px){
+    .section__logo{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0px 0px 20px;
+    }
+
+    .list__aside{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 10px 0px;
+        padding: 10px;
+        border-radius: 10px;
+        cursor: pointer;
+    }
+
+    .list__aside--perfil{
+        margin-top: 95px;
+    }
+    .icon__aside{
+        font-size: 30px;
+        color: #ffffff;
+    }
+}

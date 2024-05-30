@@ -307,7 +307,7 @@ function RegisterTaxista() {
                       <label className="label__register" htmlFor="password">
                         Contraseña
                       </label>
-                      <div className="container__password position-relative">
+                      <div className="container__password">
                         <input
                           type={showPassword ? "text" : "password"}
                           className="input__register"
@@ -317,7 +317,7 @@ function RegisterTaxista() {
                         <span
                           className={`fa ${
                             showPassword ? "fa-unlock" : "fa-lock"
-                          } icono__password--register`}
+                          } icono__password--taxista`}
                           onClick={() => setShowPassword(!showPassword)}
                         ></span>
                       </div>
@@ -325,11 +325,11 @@ function RegisterTaxista() {
                         <p className="error__login">{passwordError}</p>
                       )}
                     </div>
-                    <div className="col-sm-12 col-md-12 col-lg-12 col-xl-4 mb-3 row justify-content-center text-center">
+                    <div className="col-sm-12 col-md-12 col-lg-12 col-xl-4 mb-5 row justify-content-center text-center">
                       <label className="label__register" htmlFor="password">
                         Confirma la Contraseña
                       </label>
-                      <div className="container__password position-relative">
+                      <div className="container__password">
                         <input
                           type={showPasswordRepet ? "text" : "password"}
                           className="input__register"
@@ -339,7 +339,7 @@ function RegisterTaxista() {
                         <span
                           className={`fa ${
                             showPasswordRepet ? "fa-unlock" : "fa-lock"
-                          } icono__password--register`}
+                          } icono__password--taxista`}
                           onClick={() =>
                             setShowPasswordRepet(!showPasswordRepet)
                           }

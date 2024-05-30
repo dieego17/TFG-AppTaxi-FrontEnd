@@ -39,9 +39,21 @@
     justify-content: center;
 }
 
+.aside__dashboard__pequeño{
+    position: fixed;
+    background-color: #006431;
+    width: 100%;
+    padding: 0px 20px;
+    top: 0;
+}
+
 @media screen and (min-width: 300px){
     .aside__dashboard{
         display: none;
+    }
+    .aside__dashboard__pequeño{
+        display: block;
+    
     }
 }
 
@@ -49,11 +61,17 @@
     .aside__dashboard{
         display: none;
     }
+    .aside__dashboard__pequeño{
+        display: block;
+    }
 }
 
 @media screen and (min-width: 768px){
     .aside__dashboard{
         display: none;
+    }
+    .aside__dashboard__pequeño{
+        display: block;
     }
 }
 
@@ -61,10 +79,16 @@
     .aside__dashboard{
         display: block;
     }
+    .aside__dashboard__pequeño{
+        display: none;
+    }
 }
 
 @media screen and (min-width: 1200px){
     .aside__dashboard{
         display: block;
+    }
+    .aside__dashboard__pequeño{
+        display: none;
     }
 }

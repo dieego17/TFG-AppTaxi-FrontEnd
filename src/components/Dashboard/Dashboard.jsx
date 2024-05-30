@@ -4,9 +4,9 @@ import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom'; // Importa useLocation para obtener la ubicación actual
 import { Outlet } from 'react-router-dom';
 import AsideDashboard from './AsideDashboard/AsideDashboard';
-import HeaderDashboard from './HeaderDashboard/HeaderDashboard';
 import ResumenDashboard from './ResumenDashboard/ResumenDashboard';
 import './dashboard.css';
+import AsideDashboardPequeño from './AsideDashboard/AsideDashboarPequeño/AsideDashboardPequeño';
 
 
 
@@ -33,11 +33,12 @@ function Dashboard() {
   return (
     <div className='container__dashboard'>
       {noAdmin && <div className='aviso'>No tienes permisos para acceder a esta página</div>}
-      <header className='header__dashboard'>
-        <HeaderDashboard />
-      </header>
       <aside className='aside__dashboard'>
         <AsideDashboard />
+      </aside>
+      {/* Aside para baja resolución */}
+      <aside className='aside__dashboard__pequeño'>
+        <AsideDashboardPequeño />
       </aside>
       <main className='main__dashboard'>
         <ResumenDashboard mostrar={mostrarResumen} />

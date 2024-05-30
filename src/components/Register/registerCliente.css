@@ -4,15 +4,10 @@
     align-items: center;
     justify-content: center;
     padding-bottom: 33px;
-    padding-top: 30px;
+    padding-top: 15px;
+    min-height: 100vh;
 }
 
-@media screen and (min-width: 1200px) {
-    .fullscreen__container--register {
-        background-color: #006431;
-        height: 100vh;
-    }
-}
 
 .section__login {
     background-color: #ffffff;
@@ -29,6 +24,10 @@
 .login__logo {
     width: 110px;
     margin: 20px 0px 0px;
+}
+
+.form__login{
+    width: 100%;
 }
 
 .container__texto--login {
@@ -59,12 +58,17 @@
 
 .container__password {
     position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin: 10px 0px;
 }
 
 .icono__password--register {
     position: absolute;
-    right: 65px;
-    top: 60%;
+    right: 60px;
+    top: 58%;
     transform: translateY(-50%);
     cursor: pointer;
     color: #ffffff;
