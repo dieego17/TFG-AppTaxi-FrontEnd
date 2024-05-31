@@ -43,6 +43,7 @@
     }
     .aside__dashboard__pequeño{
         display: block;
+        z-index: 9999;
     
     }
 }

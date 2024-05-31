@@ -1,5 +1,5 @@
 /* MOBILE FIRST  */
-.main__dashboard{
+.main__dashboard {
   display: flex;
   flex-direction: column;
   text-align: center;
@@ -28,7 +28,7 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.article__dashboard--dos{
+.article__dashboard--dos {
   width: 100%;
 }
 
@@ -46,15 +46,20 @@
 
 .article-content {
   padding: 20px;
+  height: 600px;
 }
 
-.article__dashboard--tabla{
-  width: 100%;
+.article-content__clientes {
+  height: 100%;
+}
 
+.article__dashboard--tabla {
+  width: 100%;
+  margin-bottom: 20px;
 }
 
 @media screen and (min-width: 1024px) {
-  .main__dashboard{
+  .main__dashboard {
     display: flex;
     flex-direction: column;
     text-align: center;
@@ -64,29 +69,30 @@
     margin-left: 170px;
     margin-top: 40px;
   }
-  
+
   .resumen-dashboard {
     display: flex;
     flex-direction: column;
     gap: 20px;
   }
+
   .section__dashboard {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
   }
-  
+
   .article__dashboard {
     flex: 1;
     background-color: #ffffff;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
-  
+
   .article__dashboard:hover {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   }
-  
+
   .article-link {
     display: block;
     width: 100%;
@@ -94,9 +100,9 @@
     text-decoration: none;
     color: inherit;
   }
-  
+
   .article-content {
     padding: 20px;
   }
-  
+
 }

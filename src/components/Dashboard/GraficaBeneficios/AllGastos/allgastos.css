@@ -1,0 +1,37 @@
+.modal-header, .modal-footer{
+    border: none !important;
+}
+
+.modal-header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.modal-title{
+    color: red;
+    font-size: 5rem;
+}
+
+.modal-footer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.btn-secondary{
+    background-color: rgb(200, 200, 200);
+    border: 1px solid rgb(200, 200, 200);
+}
+.btn-secondary:hover{
+    background-color: rgb(150, 150, 150);
+    border: 1px solid rgb(150, 150, 150);
+}
+
+.btn-danger{
+    background-color: red;
+    transition: all 0.3s ease-in-out; 
+    border: 1px solid red;
+}
+.btn-danger:hover{
+    background-color: rgb(200, 0, 0);
+    border: 1px solid rgb(200, 0, 0);
+}

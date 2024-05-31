@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from "react";
 import "./crearFactura.css";
-import { PDFDownloadLink } from '@react-pdf/renderer';
+import { PDFDownloadLink } from "@react-pdf/renderer";
 import PDF from "./PDF/PDF";
 
 function CrearFactura() {
@@ -29,8 +29,28 @@ function CrearFactura() {
 
   // Verificar si todos los campos están completos
   const verificarFormularioCompleto = () => {
-    const { nombreCliente, apellidosCliente, dniCliente, direccionCliente, telefonoCliente, precio, origenViaje, destinoViaje, fechaViaje } = datosFactura;
-    if (nombreCliente !== "" && apellidosCliente !== "" && dniCliente !== "" && direccionCliente !== "" && telefonoCliente !== "" && precio !== "" && origenViaje !== "" && destinoViaje !== "" && fechaViaje !== "") {
+    const {
+      nombreCliente,
+      apellidosCliente,
+      dniCliente,
+      direccionCliente,
+      telefonoCliente,
+      precio,
+      origenViaje,
+      destinoViaje,
+      fechaViaje,
+    } = datosFactura;
+    if (
+      nombreCliente !== "" &&
+      apellidosCliente !== "" &&
+      dniCliente !== "" &&
+      direccionCliente !== "" &&
+      telefonoCliente !== "" &&
+      precio !== "" &&
+      origenViaje !== "" &&
+      destinoViaje !== "" &&
+      fechaViaje !== ""
+    ) {
       setFormularioCompleto(true);
     } else {
       setFormularioCompleto(false);
@@ -40,87 +60,124 @@ function CrearFactura() {
   // Llamar a verificarFormularioCompleto cada vez que cambie algún campo
   useEffect(() => {
     verificarFormularioCompleto();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [datosFactura]);
 
   return (
-    <div>
-      <h1>Crear Factura</h1>
+    <div className="container__crearFactura">
+      <h1 className="h1__crearFactura">Crear Factura</h1>
       <form className="form__factura">
-        <label htmlFor="nombreCliente">Nombre Cliente:</label>
-        <input
-          type="text"
-          name="nombreCliente"
-          id="nombreCliente"
-          value={datosFactura.nombreCliente}
-          onChange={handleChange}
-        />
-        <label htmlFor="apellidosCliente">Apellidos Cliente:</label>
-        <input
-          type="text"
-          name="apellidosCliente"
-          id="apellidosCliente"
-          value={datosFactura.apellidosCliente}
-          onChange={handleChange}
-        />
-        <label htmlFor="dniCliente">DNI Cliente:</label>
-        <input
-          type="text"
-          name="dniCliente"
-          id="dniCliente"
-          value={datosFactura.dniCliente}
-          onChange={handleChange}
-        />
-        <label htmlFor="direccionCliente">Dirección Cliente:</label>
-        <input
-          type="text"
-          name="direccionCliente"
-          id="direccionCliente"
-          value={datosFactura.direccionCliente}
-          onChange={handleChange}
-        />
-        <label htmlFor="telefonoCliente">Teléfono Cliente:</label>
-        <input
-          type="text"
-          name="telefonoCliente"
-          id="telefonoCliente"
-          value={datosFactura.telefonoCliente}
-          onChange={handleChange}
-        />
-        <label htmlFor="origenViaje">Introduce el origen del viaje</label>
-        <input
-          type="text"
-          name="origenViaje"
-          id="origenViaje"
-          value={datosFactura.origenViaje}
-          onChange={handleChange}
-        />
-        <label htmlFor="destinoViaje">Introduce el destino del viaje</label>
-        <input
-          type="text"
-          name="destinoViaje"
-          id="destinoViaje"
-          value={datosFactura.destinoViaje}
-          onChange={handleChange}
-        />
-        <label htmlFor="fechaViaje">Introduce la fecha del viaje</label>
-        <input
-          type="date"
-          name="fechaViaje"
-          id="fechaViaje"
-          value={datosFactura.fechaViaje}
-          onChange={handleChange}
-        />
-        <label htmlFor="precio">Precio:</label>
-        <input
-          type="text"
-          name="precio"
-          id="precio"
-          value={datosFactura.precio}
-          onChange={handleChange}
-        />
+        <div className="container__forms">
+          <div className="container__inputs">
+            <label className="label__crearFactur" htmlFor="nombreCliente">Nombre Cliente:</label>
+            <input className="input__crearFactura"
+              type="text"
+              name="nombreCliente"
+              id="nombreCliente"
+              placeholder="Nombre Cliente"
+              value={datosFactura.nombreCliente}
+              onChange={handleChange}
+            />
+          </div>
+          <div className="container__inputs">
+            <label className="label__crearFactur" htmlFor="apellidosCliente">Apellidos Cliente:</label>
+            <input className="input__crearFactura"
+              type="text"
+              name="apellidosCliente"
+              id="apellidosCliente"
+              placeholder="Apellidos Cliente"
+              value={datosFactura.apellidosCliente}
+              onChange={handleChange}
+            />
+          </div>
+        </div>
+        <div className="container__forms">
+          <div className="container__inputs">
+            <label className="label__crearFactur" htmlFor="dniCliente">DNI Cliente:</label>
+            <input className="input__crearFactura"
+              type="text"
+              name="dniCliente"
+              id="dniCliente"
+              placeholder="DNI Cliente"
+              value={datosFactura.dniCliente}
+              onChange={handleChange}
+            />
+          </div>
+          <div className="container__inputs">
+            <label className="label__crearFactur" htmlFor="direccionCliente">Dirección Cliente:</label>
+            <input className="input__crearFactura"
+              type="text"
+              name="direccionCliente"
+              id="direccionCliente"
+              placeholder="Dirección Cliente"
+              value={datosFactura.direccionCliente}
+              onChange={handleChange}
+            />
+          </div>
+        </div>
+        <div className="container__forms">
+          <div className="container__inputs">
+            <label className="label__crearFactur" htmlFor="telefonoCliente">Teléfono Cliente:</label>
+            <input className="input__crearFactura"
+              type="text"
+              name="telefonoCliente"
+              id="telefonoCliente"
+              placeholder="Teléfono Cliente"
+              value={datosFactura.telefonoCliente}
+              onChange={handleChange}
+            />
+          </div>
+          <div className="container__inputs">
+            <label className="label__crearFactur" htmlFor="origenViaje">Origen del viaje</label>
+            <input className="input__crearFactura"
+              type="text"
+              name="origenViaje"
+              id="origenViaje"
+              placeholder="Origen del viaje"
+              value={datosFactura.origenViaje}
+              onChange={handleChange}
+            />
+          </div>
+        </div>
+        <div className="container__forms">
+          <div className="container__inputs">
+            <label className="label__crearFactur" htmlFor="destinoViaje">Destino del viaje</label>
+            <input className="input__crearFactura"
+              type="text"
+              name="destinoViaje"
+              id="destinoViaje"
+              placeholder="Destino del viaje"
+              value={datosFactura.destinoViaje}
+              onChange={handleChange}
+            />
+          </div>
+          <div className="container__inputs">
+            <label className="label__crearFactur" htmlFor="fechaViaje">Fecha del viaje</label>
+            <input className="input__crearFactura"
+              type="date"
+              name="fechaViaje"
+              id="fechaViaje"
+              value={datosFactura.fechaViaje}
+              onChange={handleChange}
+            />
+          </div>
+        </div>
+        <div className="container__inputs container__precio">
+          <label className="label__crearFactur" htmlFor="precio">Precio:</label>
+          <input className="input__crearFactura"
+            type="number"
+            name="precio"
+            id="precio"
+            placeholder="00.00€"
+            value={datosFactura.precio}
+            onChange={handleChange}
+          />
+        </div>
         {formularioCompleto ? (
-          <PDFDownloadLink document={<PDF datosFactura={datosFactura} />} fileName="factura.pdf">
+          <PDFDownloadLink
+            document={<PDF datosFactura={datosFactura} />}
+            fileName="factura.pdf"
+          >
             {({ blob, url, loading, error }) => (
               <button type="button" className="button__pdf button__pdf-wrapper">
                 Descargar Factura <i className="bi bi-download"></i>

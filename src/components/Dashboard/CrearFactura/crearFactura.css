@@ -1,24 +1,69 @@
-.form__factura{
+.container__crearFactura{
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    margin-top: 20px;
-    padding: 20px;
-    border-radius: 10px;
-    background-color: #f5f5f5;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.h1__crearFactura{
+    color: #006431;
+}
+.container__forms{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 60px;
+    width: 100%;
+    margin: 20px 0;
+}
+.container__inputs{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
     width: 100%;
 }
-
-.button__pdf-wrapper {
-    display: inline-block;
+.container__precio{
+    margin-bottom: 10px;
 }
-.button__pdf{
-    background-color: #008cff;
-    color: #ffffff;
+.input__crearFactura{
+    width: 100%;
+    padding: 10px 15px;
     border: none;
-    padding: 5px;
+    background-color: #cccccc;
     border-radius: 5px;
-    margin: 5px 0px;
+    outline: none;
+    color: #ffffff;
+}
+.input__crearFactura::placeholder{
+    color: #ffffff;
+}
+
+.label__crearFactur{
+    text-align: left;
+    color: #006431;
+}
+
+@media screen and (max-width: 500px) {
+    .container__forms{
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+}
+
+.button__pdf{
+    background-color: #006431;
+    color: #ffffff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: 0.5s;
+    border: 1px solid #006431;
+    margin-top: 15px;
+    
+}
+
+.button__pdf:hover{
+    background-color: #ffffff;
+    color: #006431;
+
 }
