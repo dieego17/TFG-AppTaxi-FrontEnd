@@ -18,15 +18,18 @@ function ResumenDashboard({ mostrar }) {
 
   return (
     <div className="resumen-dashboard container">
+      <section className='section__title'>
+        <h1 className='h1__titleDashboard'>Bienvenido de nuevo, {userName} {apellidos} 👋</h1>
+      </section>
       <section className='section__dashboard section__dashboard--dos'>
         <article className='article__dashboard article__dashboard--dos'>
           <div className="article-content">
             <CalendarioDisponibilidad />
-            </div>
+          </div>
         </article>
         <article className='article__dashboard article__dashboard--dos'>
           <Link to={'/dashboard/resumen-financiero'} className="article-link">
-            <div className="article-content">
+            <div className="article-content article__grafica">
               <GraficaBeneficios />
             </div>
           </Link>

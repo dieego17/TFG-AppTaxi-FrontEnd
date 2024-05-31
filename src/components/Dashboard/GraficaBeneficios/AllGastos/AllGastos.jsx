@@ -45,7 +45,7 @@ function AllGastos() {
 
   return (
     <div>
-      <h2>Todos los Gastos</h2>
+      <h2 className="h2__graficaGanancias">Todos los Gastos</h2>
       <div className="container__button--perdida">
         <Link to='/dashboard/resumen-financiero/añadir-gasto' className='button__perdida'>
           Insertar Nuevo Gasto

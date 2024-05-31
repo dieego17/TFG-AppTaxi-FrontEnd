@@ -50,7 +50,8 @@
 .letra__perfil{
     color: #ffffff;
     font-size: 30px;
-    padding: 1px 0px 0px 1px;
+    padding: 2px 0px 0px 2px;
+    font-family: textPopins;
 }
 .menu__desplegable{
     position: absolute;
@@ -64,6 +65,7 @@
     color: #ffffff;
     text-decoration: none;
     text-align: left;
+    font-family: textPopins;
 }
 .icon__aside--desplegable:hover{
     background-color: #005026;

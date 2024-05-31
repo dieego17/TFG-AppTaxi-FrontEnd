@@ -4,6 +4,7 @@
     border-radius: 5px;
     background-color: #FFA500;
     width: 100px;
+    font-family: textPopins;
 }
 
 .estado__confirmado{
@@ -11,7 +12,12 @@
     border: 1px solid #008000;
     padding: 5px;
     background-color: #008000;
-    width: 100px;
+    width: 120px;
+    font-family: textPopins;
+}
+
+.button__downloadPdf{
+    font-family: textPopins;
 }
 
 .button__volver{

@@ -19,10 +19,12 @@
 
 .h1__title {
     font-size: 2.5rem;
+    font-family: titlePopins;
 }
 
 .p__title {
     padding-bottom: 20px;
+    font-family: textPopins;
 }
 
 .link__login {
@@ -32,6 +34,7 @@
     border: 1px solid #ffffff;
     padding: 10px 20px;
     border-radius: 5px;
+    font-family: textPopins;
     transition: 0.5s;
 }
 
@@ -77,6 +80,24 @@
 .container__tarjetas {
     padding: 0px 10px;
 }
+.supertitle__servicios{
+    color: #006431;
+    font-size: 2rem;
+    font-family: titlePopins;
+    text-align: center;
+}
+.title__servicios{
+    color: #006431;
+    font-family: textPopins;
+}
+.text__servicios{
+    color: #006431;
+    font-family: textPopins;
+    font-size: 0.8rem;
+}
+.span__button{
+    font-family: textPopins;
+}
 
 
 /* Porque elegirnos */
@@ -86,6 +107,9 @@
     padding: 20px 0px;
 }
 
+.title__elegirnos{
+    font-family: titlePopins;
+}
 .card {
     width: 400px;
     border: none;
@@ -106,6 +130,7 @@
 .text__elegirnos {
     color: #ffffff;
     font-size: 1.2rem;
+    font-family: textPopins;
     margin: 0px 10px;
 }
 
@@ -132,6 +157,10 @@
 .title__reseñas {
     margin: 0px 15px;
     font-family: Arial, Helvetica, sans-serif;
+}
+
+.nombre__reseñas{
+    font-family: textPopins;
 }
 
 .estrellas__reseñas {
@@ -186,6 +215,7 @@
     transition: bottom 1s ease;
     box-shadow: 0px 0px 5px #000000;
     z-index: 1000;
+    font-family: textPopins;
 }
 
 .flecha__arriba.visible {

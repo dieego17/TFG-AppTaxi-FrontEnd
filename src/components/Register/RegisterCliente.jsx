@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./registerCliente.css";
 import logo from "../../assets/images/logoVerde.png";
 import { registerCliente } from "../../services/registerCliente";
@@ -27,7 +27,6 @@ function RegisterCliente() {
   const [showPasswordRepet, setShowPasswordRepet] = useState(false);
   const [metodoPago, setMetodoPago] = useState("");
   const [errorMetodoPago, setErrorMetodoPago] = useState("");
-  const navigate = useNavigate();
 
   const validateEmail = (email) => {
     const re = /\S+@\S+\.\S+/;
@@ -210,7 +209,7 @@ function RegisterCliente() {
   };
 
   return (
-    <div className="container-fluid fullscreen__container--register d-flex align-items-center justify-content-center">
+    <div className=" fullscreen__container--register">
       <div className="container">
         <div className="row justify-content-center align-items-center">
           <div className="col-12 col-md-12 col-lg-12 p-3">

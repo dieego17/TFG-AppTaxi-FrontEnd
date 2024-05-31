@@ -9,8 +9,8 @@ function TarjetaTestimonio({testimonios}) {
             testimonios.map(testimonio => (
               <div className="card tarjeta__reseña col-5 m-3" key={testimonio.id}>
                 <div className="card-body">
-                  <h5 className="card-title text-success">{testimonio.cliente.usuario.nombre} {testimonio.cliente.usuario.apellidos}</h5>
-                  <p className="card-text">{testimonio.mensaje_testimonio}</p>
+                  <h5 className="card-title text-success nombre__reseñas">{testimonio.cliente.usuario.nombre} {testimonio.cliente.usuario.apellidos}</h5>
+                  <p className="card-text nombre__reseñas">{testimonio.mensaje_testimonio}</p>
                   {
                     testimonio.clasificacion_testimonio == 4 || testimonio.clasificacion_testimonio < 4.5 ? 
                     <div className="text-center">

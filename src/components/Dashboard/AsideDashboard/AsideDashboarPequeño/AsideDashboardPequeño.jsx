@@ -76,14 +76,6 @@ function AsideDashboardPequeño() {
                     Cerrar Sesión
                   </button>
                 </li>
-                <li className="list__deplegable">
-                  <Link
-                    className="dropdown-item icon__aside--desplegable--pequeño"
-                    to={"/dashboard/editar-perfil"}
-                  >
-                    <i className="fa-solid fa-gear"></i> Editar Perfil
-                  </Link>
-                </li>
               </ul>
             </div>
           </li>

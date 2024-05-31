@@ -112,8 +112,8 @@ function Pdf({ viaje }) {
   };
 
   const IVA = (viaje.precioTotal_viaje * 0.1).toFixed(1);
-  const precioTotal = parseFloat(IVA) + viaje.precioTotal_viaje;
-
+  const precioTotalString = parseFloat(IVA) + viaje.precioTotal_viaje;
+  const precioTotal = precioTotalString.toFixed(1);
 
   const id_viaje = viaje.id_viaje;
 

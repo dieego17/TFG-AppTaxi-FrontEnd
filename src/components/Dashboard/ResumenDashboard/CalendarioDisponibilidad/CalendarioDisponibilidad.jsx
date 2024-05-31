@@ -2,7 +2,6 @@
 import React from "react";
 import { Calendar, momentLocalizer } from "react-big-calendar";
 import moment from "moment";
-import "moment/locale/es"; 
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import { useFechaViaje } from "../../../../hooks/useFechaViaje";
 import "./calendario.css";
@@ -29,7 +28,7 @@ function CalendarioDisponibilidad() {
 
   return (
     <div className="calendario__container">
-      <h1>Calendario de Viajes </h1>
+      <h1 className="h1__calendario">Calendario Viajes</h1>
       <Calendar
         localizer={localizer}
         events={eventos}

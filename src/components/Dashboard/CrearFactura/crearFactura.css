@@ -27,18 +27,21 @@
     width: 100%;
     padding: 10px 15px;
     border: none;
-    background-color: #cccccc;
+    background-color: #ffffff;
     border-radius: 5px;
     outline: none;
-    color: #ffffff;
+    color: #006431;
+    font-family: textPopins;
 }
 .input__crearFactura::placeholder{
-    color: #ffffff;
+    font-family: textPopins;
+    color: #006431;
 }
 
 .label__crearFactur{
     text-align: left;
     color: #006431;
+    font-family: textPopins;
 }
 
 @media screen and (max-width: 500px) {
@@ -59,11 +62,17 @@
     transition: 0.5s;
     border: 1px solid #006431;
     margin-top: 15px;
-    
+    font-family: textPopins;
 }
 
 .button__pdf:hover{
     background-color: #ffffff;
     color: #006431;
 
+}
+
+.p__crearFactura{
+    color: #006431;
+    font-family: textPopins;
+    margin-top: 20px;
 }

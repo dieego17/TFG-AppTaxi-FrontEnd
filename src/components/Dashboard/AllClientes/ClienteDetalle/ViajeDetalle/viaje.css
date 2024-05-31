@@ -1,95 +1,97 @@
-.estado__pendiente{
-    color: #ffffff;
-    border: 1px solid #FFA500;
-    padding: 5px;
-    border-radius: 5px;
-    background-color: #FFA500;
-    margin: 5px 0px;
+.estado__pendiente {
+  color: #ffffff;
+  border: 1px solid #FFA500;
+  padding: 5px;
+  border-radius: 5px;
+  background-color: #FFA500;
+  margin: 5px 0px;
 }
 
-.estado__confirmado{
-    color: #ffffff;
-    border: 1px solid #008000;
-    padding: 5px;
-    border-radius: 5px;
-    background-color: #008000;
-    margin: 5px 0px;
-}
-.button__pdf{
-    background-color: #008cff;
-    color: #ffffff;
-    border: none;
-    padding: 5px;
-    border-radius: 5px;
-    margin: 5px 0px;
+.estado__confirmado {
+  color: #ffffff;
+  border: 1px solid #008000;
+  padding: 5px;
+  border-radius: 5px;
+  background-color: #008000;
+  margin: 5px 0px;
 }
 
-.button__estado{
-    background-color: #a3a3a3;
-    color: #ffffff;
-    border: none;
-    padding: 5px;
-    border-radius: 5px;
-    margin: 5px 0px;
+.button__downloadPdf {
+  background-color: #008cff;
+  color: #ffffff;
+  border: none;
+  padding: 5px;
+  border-radius: 5px;
+  margin: 5px 0px;
 }
 
-.button__volver{
-    background-color: #006431;
-    color: #ffffff;
-    border: none;
-    padding: 5px 10px;
-    border-radius: 5px;
-    margin: 5px 0px 5px;
-    text-decoration: none;
-    font-size: 1.1rem;
+.button__estado {
+  background-color: #a3a3a3;
+  color: #ffffff;
+  border: none;
+  padding: 5px;
+  border-radius: 5px;
+  margin: 5px 0px;
+}
+
+.button__volver {
+  background-color: #006431;
+  color: #ffffff;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  margin: 5px 0px 5px;
+  text-decoration: none;
+  font-size: 1.1rem;
 }
 
 .pagination__container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 20px;
-  }
-  
-  .button__anterior{
-    padding: 10px 20px;
-    margin: 0 10px;
-    font-size: 16px;
-    background-color: #ff0000;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  .button__siguiente {
-    padding: 10px 20px;
-    margin: 0 10px;
-    font-size: 16px;
-    background-color: #006431;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .button__anterior:hover{
-    background-color: #ff0000bb;
-  }
-  .button__siguiente:hover {
-    background-color: #006430d2;
-  }
-  
-  .button__anterior:disabled,
-  .button__siguiente:disabled {
-    background-color: #cccccc;
-    cursor: not-allowed;
-  }
-  
-  .span__numero {
-    font-size: 16px;
-    margin: 0 10px;
-    color: #333333;
-  }
-  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.button__anterior {
+  padding: 10px 20px;
+  margin: 0 10px;
+  font-size: 16px;
+  background-color: #ff0000;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.button__siguiente {
+  padding: 10px 20px;
+  margin: 0 10px;
+  font-size: 16px;
+  background-color: #006431;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.button__anterior:hover {
+  background-color: #ff0000bb;
+}
+
+.button__siguiente:hover {
+  background-color: #006430d2;
+}
+
+.button__anterior:disabled,
+.button__siguiente:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+.span__numero {
+  font-size: 16px;
+  margin: 0 10px;
+  color: #333333;
+}

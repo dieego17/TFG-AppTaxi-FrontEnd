@@ -67,49 +67,50 @@ function ClienteDetalle() {
   return (
     <div>
       {currentViajes.length === 0 ? (
-        <p>No existen viajes para este cliente</p>
+        <p className="no__clientes">No existen viajes para este cliente</p>
       ) : (
         <div>
+          <h1 className="h1__allClientes">Todas los Viajes</h1>
           <table className="table">
             <thead>
               <tr>
-                <th>Origen</th>
-                <th>Destino</th>
-                <th>Hora</th>
-                <th>Fecha</th>
-                <th>Estado</th>
-                <th>Precio</th>
-                <th>Factura</th>
-                <th>Ruta</th>
+                <th className="table__th">Origen</th>
+                <th className="table__th">Destino</th>
+                <th className="table__th">Hora</th>
+                <th className="table__th">Fecha</th>
+                <th className="table__th">Estado</th>
+                <th className="table__th">Precio</th>
+                <th className="table__th">Factura</th>
+                <th className="table__th">Ruta</th>
               </tr>
             </thead>
             <tbody>
               {currentViajes.map((viaje) => (
                 <tr key={viaje.id_viaje}>
-                  <td data-label="Origen">{viaje.origen_viaje}</td>
-                  <td data-label="Destino">{viaje.destino_viaje}</td>
-                  <td data-label="Hora">{formatTime(viaje.hora_viaje)}</td>
-                  <td data-label="Fecha">{formatDate(viaje.fecha_viaje)}</td>
-                  <td data-label="Estado">
+                  <td className="table__td" data-label="Origen">{viaje.origen_viaje}</td>
+                  <td className="table__td" data-label="Destino">{viaje.destino_viaje}</td>
+                  <td className="table__td" data-label="Hora">{formatTime(viaje.hora_viaje)}</td>
+                  <td className="table__td" data-label="Fecha">{formatDate(viaje.fecha_viaje)}</td>
+                  <td className="table__td" data-label="Estado">
                     <button className={viaje.estado_viaje === 'Pendiente' ? "estado__pendiente" : "estado__confirmado"}>{viaje.estado_viaje}</button>
                     <br />
                     <button className="button__estado" onClick={() => handleChangeEstadoViaje(viaje.id_viaje, viaje.estado_viaje === 'Pendiente' ? 'Finalizado' : 'Pendiente')}>
                       {viaje.estado_viaje === 'Pendiente' ? 'Marcar como Finalizado' : 'Marcar como Pendiente'}
                     </button>
                   </td>
-                  <td data-label="Precio">{viaje.precioTotal_viaje}€</td>
-                  <td data-label="Crear factura">
+                  <td className="table__td" data-label="Precio">{viaje.precioTotal_viaje}€</td>
+                  <td className="table__td" data-label="Crear factura">
                     {viaje.estado_viaje === 'Finalizado' ? (
                       <PDFDownloadLink document={<Pdf viaje={viaje} />} fileName="factura.pdf">
                         {({ blob, url, loading, error }) =>
-                          <button className="button__pdf">Descargar Factura <i className="bi bi-download"></i></button>
+                          <button className="button__downloadPdf">Descargar Factura <i className="bi bi-download"></i></button>
                         }
                       </PDFDownloadLink>
                     ) : (
                       <p>Factura no disponible</p>
                     )}
                   </td>
-                  <td data-label="Ver ruta">
+                  <td className="table__td" data-label="Ver ruta">
                     <Link className="td__link" to={`/dashboard/clientes/viajes-detalles/ruta/${viaje.id_viaje}`}> 
                       <i className="fa-solid fa-car-side"></i>
                     </Link>

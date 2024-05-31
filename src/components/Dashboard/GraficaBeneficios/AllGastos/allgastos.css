@@ -12,6 +12,21 @@
     font-size: 5rem;
 }
 
+.h2__graficaGanancias{
+    text-align: center;
+    margin-bottom: 30px;
+    font-family: titlePopins;
+    color: #006431;
+    padding: 0px 25px;
+}
+.button__perdida{
+    font-family: textPopins;
+}
+
+.modal-dialog{
+    font-family: textPopins;
+}
+
 .modal-footer{
     display: flex;
     justify-content: center;

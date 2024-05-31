@@ -1,8 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { useOneReserva } from "../../../../../hooks/useOneReserva";
-import { Link } from "react-router-dom";
 import "./reserva.css";
 
 function ReservaDetalle() {
@@ -11,8 +10,7 @@ function ReservaDetalle() {
   const idUsuario = token ? JSON.parse(atob(token.split(".")[1])).id_usuario : "";
 
   // Obtener el id de la reserva de la ruta
-  const params = useParams();
-  const id = params.id;
+  const { id } = useParams();
 
   // Estado local para almacenar la página actual
   const [currentPage, setCurrentPage] = useState(1);
@@ -42,43 +40,46 @@ function ReservaDetalle() {
 
   return (
     <div>
-      <table className="table">
-        <thead>
-          <tr>
-            <th>Fecha Reserva</th>
-            <th>Hora Reserva</th>
-            <th>Estado Reserva</th>
-          </tr>
-        </thead>
-        <tbody>
-          {currentReservas.map((reserva) => (
-            <tr key={reserva.id_reserva}>
-              <td data-label="Fecha Reserva">{formatDate(reserva.fecha_reserva)}</td>
-              <td data-label="Hora Reserva">{formatTime(reserva.hora_reserva)}</td>
-              {reserva.estado_reserva === "Pendiente" ? (
-                <td data-label="Estado Reserva">
-                  <button className="estado__pendiente">Pendiente</button>
-                </td>
-              ) : (
-                <td data-label="Estado Reserva">
-                  <button className="estado__confirmado">Confirmada</button>
-                </td>
-              )}
-            </tr>
-          ))}
-        </tbody>
-      </table>
-      <div className="pagination__container">
-        <button className="button__anterior" onClick={()=> setCurrentPage(currentPage - 1) } disabled={currentPage === 1}>
-          Anterior
-        </button>
-        <span className="span__numero">
-          Página {currentPage}
-        </span>
-        <button className="button__siguiente" onClick={() => setCurrentPage(currentPage + 1)} disabled={indexOfLastReserva >= reservas.length }>
-          Siguiente
-        </button>
-      </div>
+      {currentReservas.length === 0 ? (
+        <h1 className="no__reservas">No existen reservas para este cliente</h1>
+      ) : (
+        <div>
+          <h1 className="h1__allClientes">Todas las Reservas</h1>
+          <table className="table">
+            <thead>
+              <tr>
+                <th>Fecha Reserva</th>
+                <th>Hora Reserva</th>
+                <th>Estado Reserva</th>
+              </tr>
+            </thead>
+            <tbody>
+              {currentReservas.map((reserva) => (
+                <tr key={reserva.id_reserva}>
+                  <td data-label="Fecha Reserva">{formatDate(reserva.fecha_reserva)}</td>
+                  <td data-label="Hora Reserva">{formatTime(reserva.hora_reserva)}</td>
+                  <td data-label="Estado Reserva">
+                    <button className={reserva.estado_reserva === "Pendiente" ? "estado__pendiente" : "estado__confirmado"}>
+                      {reserva.estado_reserva}
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <div className="pagination__container">
+            <button className="button__anterior" onClick={() => setCurrentPage(currentPage - 1)} disabled={currentPage === 1}>
+              Anterior
+            </button>
+            <span className="span__numero">
+              Página {currentPage}
+            </span>
+            <button className="button__siguiente" onClick={() => setCurrentPage(currentPage + 1)} disabled={indexOfLastReserva >= reservas.length}>
+              Siguiente
+            </button>
+          </div>
+        </div>
+      )}
       <Link className="button__volver" to={"/dashboard/clientes"}>
         Volver
       </Link>
@@ -87,4 +88,3 @@ function ReservaDetalle() {
 }
 
 export default ReservaDetalle;
-

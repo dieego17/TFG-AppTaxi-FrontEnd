@@ -185,7 +185,7 @@ function CrearFactura() {
             )}
           </PDFDownloadLink>
         ) : (
-          <p>Por favor, complete todos los campos.</p>
+          <p className="p__crearFactura">Por favor, complete todos los campos.</p>
         )}
       </form>
     </div>

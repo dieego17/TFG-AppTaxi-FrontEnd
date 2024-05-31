@@ -43,7 +43,7 @@ function AllGanancias() {
 
   return (
     <div>
-      <h2>Todas las Ganancias</h2>
+      <h2 className="h2__graficaGanancias">Todas las Ganancias</h2>
       <div className="container__button--ganancia">
         <Link
           to="/dashboard/resumen-financiero/añadir-ganancia"

@@ -108,7 +108,7 @@ function InsertarGasto() {
   return (
     <div className="container">
       <div className="section__insertGasto">
-        <h2 className="gastos__title">Insertar Nuevo Gasto</h2>
+        <h2 className="h2__insertarGrafica">Insertar Nuevo Gasto</h2>
         {
           // Mostrar alerta de éxito
           showAlertSuccess && (

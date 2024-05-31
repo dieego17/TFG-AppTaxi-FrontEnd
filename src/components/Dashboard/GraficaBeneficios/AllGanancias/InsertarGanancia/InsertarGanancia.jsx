@@ -112,7 +112,7 @@ function InsertarGanancias() {
   return (
     <div className="container">
       <div className="section__insertGanancia">
-        <h2 className="ganancia__title">Añadir Ganancias</h2>
+        <h2 className="h2__insertarGrafica">Añadir Ganancias</h2>
         {
           // Mostrar alerta de éxito
           showAlertSuccess && (
@@ -121,7 +121,7 @@ function InsertarGanancias() {
                 <div className="notificacion__body">
                   <i className="notificacion__icon fa-regular fa-circle-check"></i>
                   <p className="texto__success--grande">
-                    Gasto insertado correctamente.
+                    Ganancia insertada correctamente.
                   </p>
                 </div>
                 <div className="notifiacion__progress"></div>
@@ -135,6 +135,7 @@ function InsertarGanancias() {
             <textarea
               className="input__ganancia"
               id="descripcionGanancias"
+              placeholder="Descripción de la ganancia"
               value={descripcionGanancias}
               onChange={handleChangeDescripcionGanancia}
             ></textarea>
@@ -159,6 +160,7 @@ function InsertarGanancias() {
             <label className="label__ganancia" htmlFor="importeGanancias">Importe total:</label>
             <input
               className="input__ganancia"
+              placeholder="Importe total de la ganancia"
               id="importeGanancias"
               type="number"
               value={importeGanancias}

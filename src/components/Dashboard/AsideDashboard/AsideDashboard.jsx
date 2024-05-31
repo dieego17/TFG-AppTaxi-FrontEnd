@@ -58,11 +58,6 @@ function AsideDashboard() {
             </button>
             <ul className="dropdown-menu menu__desplegable">
               <li className="list__deplegable">
-                <Link className="dropdown-item icon__aside--desplegable" to={"/dashboard/editar-perfil"}>
-                  <i className="fa-solid fa-gear"></i> Editar Perfil
-                </Link>
-              </li>
-              <li className="list__deplegable">
                 <button onClick={handleLogout} className="dropdown-item icon__aside--desplegable">
                   <i className="fa-solid fa-arrow-right-from-bracket"></i> Cerrar Sesión
                 </button>

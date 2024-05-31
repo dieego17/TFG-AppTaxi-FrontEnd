@@ -10,7 +10,7 @@ function TarjetaServicios({ imagen, titulo, texto, enlace }) {
         <img src={imagen} className="card-img-top imagen__servicios" alt="chofer" /> 
         <div className="card-body texto__servicios">
             <h5 className="card-title title__servicios">{titulo}</h5>
-            <p className="card-text">{texto}</p>
+            <p className="card-text text__servicios">{texto}</p>
         </div>
         <Link to={enlace} className='boton__servicios'>
             <span className='span__button'>Más información</span>

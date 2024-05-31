@@ -1,6 +1,7 @@
 .section__insertGasto{
     display: flex;
     flex-direction: column;
+    width: 100%;
     gap: 20px;
     margin-top: 20px;
 }
@@ -13,26 +14,33 @@
     flex-direction: column;
     gap: 20px;
 }
-
+.h2__insertarGrafica{
+    text-align: center;
+    font-family: titlePopins;
+    color: #006431;
+}
 .form-group{
     display: flex;
     flex-direction: column;
     gap: 10px;
+    width: 100%;
 }
 .label__gastos{
     color: #006431;
     text-align: left;
+    font-family: textPopins;
 }
 .input__gastos{
     padding: 10px;
-    border: 1px solid #ccc;
     border-radius: 5px;
     outline: none;
     color: #006431;
-    border: 1px solid #006431;
+    border: none;
+    font-family: textPopins;
 }
 .input__gastos::placeholder{
     color: #006431;
+    font-family: textPopins;
 }
 
 .button__insertarGasto{
@@ -42,14 +50,18 @@
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    width: 100%;
+    font-family: textPopins;
 }
 .button__volverGasto{
     margin-top: 40px;
     margin-bottom: 30px;
+    font-family: textPopins;
 }
 
 .error{
     color: red;
+    font-family: textPopins;
 }
 
 
@@ -71,6 +83,7 @@
     visibility: hidden;
     animation: fade-in 3s linear;
     border-radius: 5px;
+    font-family: textPopins;
 }
 
 .notificacion__icon{

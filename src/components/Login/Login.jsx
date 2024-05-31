@@ -90,8 +90,8 @@ function Login() {
               <article className="article__logo mb-3">
                 <img className="login__logo" src={logo} alt="logo" />
                 <div className="container__texto--login">
-                  <h3>¡Bienvenido de nuevo!</h3>
-                  <p>Inicia sesión en tu cuenta</p>
+                  <h3 className="h3__login">¡Bienvenido de nuevo!</h3>
+                  <p className="p__login">Inicia sesión en tu cuenta</p>
                 </div>
               </article>
               <article className="article__login">

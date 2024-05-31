@@ -75,7 +75,7 @@ function RutaMapa() {
     <div className='container__ruta container'>
       {ruta && ruta.reserva && (
         <div className='container__info' key={ruta.id_viaje}>
-          <h1>Ruta Viaje</h1>
+          <h1 className='h1__allClientes'>Ruta Viaje</h1>
           <table className='ruta__table'>
             <tbody>
               <tr>

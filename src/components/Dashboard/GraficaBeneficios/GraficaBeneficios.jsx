@@ -3,6 +3,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import Chart from 'chart.js/auto';
 import './grafica.css';
 import { Link } from 'react-router-dom';
+import textPopins from '../../../assets/font/Poppins-Regular.ttf';
 
 function GraficaBeneficios() {
     const [ganancias, setGanancias] = useState([]);
@@ -79,7 +80,16 @@ function GraficaBeneficios() {
                 },
                 animation: {
                     duration: 1500,
-                }
+                },
+                plugins: {
+                    legend: {
+                        labels: {
+                            font: {
+                                family: textPopins, 
+                            },
+                        },
+                    },
+                },
             },
         });
 
@@ -89,7 +99,7 @@ function GraficaBeneficios() {
     return (
         <div className='container__grafica'>
             <div className="chart-container">
-                <h2>RESUMEN FINANCIERO</h2>
+                <h2 className='h2__grafica'>Resumen Financiero</h2>
                 <canvas id="myChart" width="600" height="400"></canvas>
             </div>
             <div className='link__container'>
@@ -101,7 +111,6 @@ function GraficaBeneficios() {
                 </Link>
             </div>
         </div>
-        
     );
 }
 

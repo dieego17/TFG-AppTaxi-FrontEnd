@@ -102,7 +102,7 @@ function Home() {
       <section>
         <article className="article__elegirnos">
           <div className="container p-5">
-            <h2 className="text-center text-white pb-5">Porque elegirnos</h2>
+            <h2 className="text-center text-white title__elegirnos pb-5">Porque elegirnos</h2>
             <div className="row justify-content-around">
               <div className="col-lg-2 col-md-6 text-center container__iconos--elegirnos">
                 <img src={porcen} alt="" />

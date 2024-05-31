@@ -21,17 +21,21 @@
     width: 300px;
 }
 .label__ganancia{
+    font-family: textPopins;
     color: #006431;
 }
 
 .input__ganancia{
     padding: 10px;
-    border: 1px solid #ccc;
     border-radius: 5px;
     outline: none;
     color: #006431;
-    border: 1px solid #006431;
+    border: none;
+    font-family: textPopins;
 }
+
+
+
 .input__ganancia::placeholder{
     color: #006431;
 }
@@ -43,6 +47,7 @@
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    font-family: textPopins;
 }
 .button__volverGanancia{
     margin-top: 40px;

@@ -42,6 +42,7 @@
     text-align: left;
     display: flex;
     justify-content: space-between;
+    font-family: textPopins;
 }
 
 .input__login {
@@ -54,10 +55,12 @@
     color: #006431;
     border: 1px solid #006431;
     width: 100%;
+    font-family: textPopins;
 }
 
 .input__login::placeholder {
     color: #006431;
+    font-family: textPopins;
 }
 
 
@@ -73,7 +76,12 @@
 .link__forgot {
     color: #006431;
     text-decoration: none;
-    text-align: right;
+    text-align: center;
+    font-family: textPopins;
+}
+
+.link__forgot:hover {
+    text-decoration: underline;
 }
 
 .boton__login {
@@ -86,6 +94,7 @@
     border: 1px solid #006431;
     transition: all 0.3s;
     width: 300px;
+    font-family: textPopins;
 }
 
 .boton__login:hover {
@@ -103,10 +112,12 @@
     border-radius: 5px;
     transition: all 0.3s;
     font-size: 0.9rem;
+    font-family: textPopins;
 }
 .container__forgot--password{
     display: flex;
-    justify-content: right;
+    justify-content: center;
+    font-family: textPopins;
     margin-right: 95px;
 }
 .link__register:hover {
@@ -118,6 +129,7 @@
     background-color: #ff5722;
     color: #ffffff;
     border: 1px solid #ff5722;
+    font-family: textPopins;
 }
 
 .link__register--taxista:hover {
@@ -140,6 +152,7 @@
 
 .article__login--out {
     margin-top: 30px;
+    font-family: textPopins;
 }
 
 .link__out {
@@ -150,6 +163,7 @@
     border-radius: 5px;
     transition: all 0.3s;
     border: 1px solid #006431;
+    font-family: textPopins;
 }
 
 .link__out:hover {
@@ -161,4 +175,12 @@
     color: red;
     text-align: center;
     margin-top: 10px;
+    font-family: textPopins;
+}
+
+.h3__login{
+    font-family: titlePopins;
+}
+.p__login{
+    font-family: textPopins;
 }

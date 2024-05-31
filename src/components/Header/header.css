@@ -1,3 +1,12 @@
+@font-face {
+    font-family: textPopins;
+    src: url('../../assets/font/Poppins-Regular.ttf');
+}
+@font-face {
+    font-family: titlePopins;
+    src: url('../../assets/font/Poppins-Medium.ttf');
+}
+
 .navbar {
     background-color: #006431;
     border-bottom: #006431;
@@ -24,6 +33,7 @@
     margin: 0px 20px;
     font-size: 1.2rem;
     transition: transform 1s ease;
+    font-family: textPopins;
 }
 
 .nav-link:hover {
@@ -115,4 +125,9 @@
     .button__nav {
         display: none;
     }
+}
+
+.texto__headerDesplegable{
+    font-family: textPopins;
+    color: #006431;
 }
