@@ -26,11 +26,11 @@ function Login() {
   };
 
   const validatePassword = (password) => {
-    if (password.length < 6) {
-      setErrorPass("La contraseña debe tener al menos 6 caracteres");
-      return false;
-    } else if (password === "") {
+    if (password === "") {
       setErrorPass("Introduzca una contraseña");
+      return false;
+    } else if (password.length < 6) {
+      setErrorPass("Debe tener al menos 6 caracteres");
       return false;
     } else {
       setErrorPass("");
@@ -98,34 +98,40 @@ function Login() {
                 <form className="form__login">
                   {error && <p className="error__login">{error}</p>}
                   <div className="container__login--group mb-3">
-                    <label className="label__login" htmlFor="email">
-                      Correo Electrónico
-                    </label>
+                    <div className="d-flex justify-content-between align-items-center col-12">
+                      <label className="label__login" htmlFor="email">
+                        Email
+                      </label>
+                      {errorEmail && (
+                        <p className="error__login">{errorEmail}</p>
+                      )}
+                    </div>
                     <input
                       type="email"
                       className="input__login"
                       placeholder="Introduce tu correo electrónico"
                       onChange={handleEmailChange}
                     />
-                    {errorEmail && <p className="error__login">{errorEmail}</p>}
                   </div>
-                  <div className="container__login--group mb-3">
-                    <label className="label__login" htmlFor="password">
-                      Contraseña
-                    </label>
-                      <input
-                        type={showPassword ? "text" : "password"}
-                        className="input__login"
-                        placeholder="Introduce tu contraseña"
-                        onChange={handlePasswordChange}
-                      />
-                      <span
-                        className={`fa ${
-                          showPassword ? "fa-unlock" : "fa-lock"
-                        } icono__password--login`}
-                        onClick={() => setShowPassword(!showPassword)}
-                      ></span>
-                    {errorPass && <p className="error__login">{errorPass}</p>}
+                  <div className="container__login--group mb-3 row justify-content-center">
+                    <div className="d-flex justify-content-between align-items-center col-12">
+                      <label className="label__login" htmlFor="password">
+                        Contraseña
+                      </label>
+                      {errorPass && <p className="error__login">{errorPass}</p>}
+                    </div>
+                    <input
+                      type={showPassword ? "text" : "password"}
+                      className="input__login"
+                      placeholder="Introduce tu contraseña"
+                      onChange={handlePasswordChange}
+                    />
+                    <span
+                      className={`fa ${
+                        showPassword ? "fa-unlock" : "fa-lock"
+                      } icono__password--login`}
+                      onClick={() => setShowPassword(!showPassword)}
+                    ></span>
                   </div>
                   <div className="container__forgot--password mb-3 text-end">
                     <Link to="/forgot-password" className="link__forgot">

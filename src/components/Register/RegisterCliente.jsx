@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./registerCliente.css";
 import logo from "../../assets/images/logoVerde.png";
+import { registerCliente } from "../../services/registerCliente";
 
 function RegisterCliente() {
   const [name, setName] = useState("");
@@ -45,7 +46,7 @@ function RegisterCliente() {
       setPasswordError("Introduzca una contraseña");
       return false;
     } else if (password.length < 6) {
-      setPasswordError("La contraseña debe tener al menos 6 caracteres");
+      setPasswordError("Debe tener al menos 6 caracteres");
       return false;
     } else {
       setPasswordError("");
@@ -84,7 +85,7 @@ function RegisterCliente() {
     if (phone === "") {
       setPhoneError("Introduzca tu teléfono");
       return false;
-    }else if (phone.length < 9) {
+    } else if (phone.length < 9) {
       setPhoneError("Introduzca un teléfono válido");
       return false;
     }
@@ -112,7 +113,7 @@ function RegisterCliente() {
 
   const validateMetodoPago = (metodoPago) => {
     if (metodoPago === "") {
-      setErrorMetodoPago("Introduzca tu método de pago");
+      setErrorMetodoPago("Introduzca tu pago");
       return false;
     }
     setErrorMetodoPago("");
@@ -184,42 +185,28 @@ function RegisterCliente() {
       return;
     }
 
-    // Enviar los datos del formulario al backend
-    try {
-      const response = await fetch(
-        "http://localhost:3000/appTaxio/v1/register/cliente",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            nombre: name,
-            apellidos: lastName,
-            telefono: phone,
-            correo_electronico: email,
-            contraseña: password,
-            DNI: DNI,
-            direccion_usuario: direccionUsuario,
-            metodo_pago: metodoPago,
-          }),
-        }
-      );
+    const data = {
+      nombre: name,
+      apellidos: lastName,
+      telefono: phone,
+      correo_electronico: email,
+      contraseña: password,
+      DNI: DNI,
+      direccion_usuario: direccionUsuario,
+      metodo_pago: metodoPago,
+    };
 
-      if (response.status === 200) {
-        console.log("Usuario registrado con éxito");
-        setErrorResponse("");
-        navigate("/login");
-      } else if (response.status === 400) {
-        const json = await response.json();
-        setErrorResponse(json.body.message);
-      }
-    } catch (error) {
-      console.error("Error al procesar la solicitud:", error);
-      setErrorResponse(
-        "Error al procesar la solicitud. Inténtalo de nuevo más tarde."
-      );
+    // Llamar al servicio para registrar al cliente
+    const response = await registerCliente(data);
+
+    // Si hay un error en la respuesta, mostrarlo
+
+    if (response.error) {
+      setErrorResponse(response.error);
+      return;
     }
+
+    
   };
 
   return (
@@ -239,65 +226,79 @@ function RegisterCliente() {
                 <form className="form__login">
                   <div className="row justify-content-center text-center">
                     <div className="container__login--group col-sm-12 col-md-12 col-lg-12 col-xl-4 mb-3 text-center row justify-content-center text-center">
-                      <label className="label__register" htmlFor="nombre">
-                        Nombre
-                      </label>
+                      <div className="d-flex justify-content-between align-items-center">
+                        <label className="label__register" htmlFor="nombre">
+                          Nombre
+                        </label>
+                        {nameError && (
+                          <p className="error__login">{nameError}</p>
+                        )}
+                      </div>
                       <input
                         type="text"
                         className="input__register"
                         placeholder="Introduce tu nombre"
                         onChange={handleNameChange}
                       />
-                      {nameError && <p className="error__login">{nameError}</p>}
                     </div>
                     <div className="container__login--group col-sm-12 col-md-12 col-lg-12 col-xl-4 mb-3 row justify-content-center text-center">
-                      <label className="label__register" htmlFor="apellidos">
-                        {" "}
-                        Apellidos
-                      </label>
+                      <div className="d-flex justify-content-between align-items-center">
+                        <label className="label__register" htmlFor="apellidos">
+                          Apellidos
+                        </label>
+                        {lastNameError && (
+                          <p className="error__login">{lastNameError}</p>
+                        )}
+                      </div>
                       <input
                         type="text"
                         className="input__register"
                         placeholder="Introduce tus apellidos"
                         onChange={handleLastNameChange}
                       />
-                      {lastNameError && (
-                        <p className="error__login">{lastNameError}</p>
-                      )}
                     </div>
                     <div className="container__login--group col-sm-12 col-md-12 col-lg-12 col-xl-4 mb-3 row justify-content-center text-center">
-                      <label className="label__register" htmlFor="telefono">
-                        Teléfono
-                      </label>
+                      <div className="d-flex justify-content-between align-items-center">
+                        <label className="label__register" htmlFor="telefono">
+                          Teléfono
+                        </label>
+                        {phoneError && (
+                          <p className="error__login">{phoneError}</p>
+                        )}
+                      </div>
                       <input
                         type="text"
                         className="input__register"
                         placeholder="Introduce tu teléfono"
                         onChange={handlePhoneChange}
                       />
-                      {phoneError && (
-                        <p className="error__login">{phoneError}</p>
-                      )}
                     </div>
                   </div>
 
                   <div className="row justify-content-center text-center">
                     <div className="container__login--group col-sm-12 col-md-12 col-lg-12 col-xl-4 mb-3 row justify-content-center text-center">
-                      <label className="label__register" htmlFor="dni">
-                        DNI
-                      </label>
+                      <div className="d-flex justify-content-between align-items-center">
+                        <label className="label__register" htmlFor="dni">
+                          DNI
+                        </label>
+                        {dniError && <p className="error__login">{dniError}</p>}
+                      </div>
                       <input
                         type="text"
                         className="input__register"
                         placeholder="Introduce tu DNI"
                         onChange={handleDNIChange}
                       />
-                      {dniError && <p className="error__login">{dniError}</p>}
                     </div>
                     <div className="container__login--group col-sm-12 col-md-12 col-lg-12 col-xl-4 mb-3 row justify-content-center text-center">
-                      <label className="label__register" htmlFor="pago">
-                        Método de Pago
-                      </label>
+                      <div className="d-flex justify-content-between align-items-center">
+                        <label className="label__register" htmlFor="metodoPago">
+                          Método de pago
+                        </label>
+                        {errorMetodoPago && (
+                          <p className="error__login">{errorMetodoPago}</p>
+                        )}
+                      </div>
                       <select
                         className="input__register"
                         onChange={handleMetodoPagoChange}
@@ -305,83 +306,93 @@ function RegisterCliente() {
                       >
                         <option value="">Selecciona un método de pago</option>
                         <option value="Efectivo">Efectivo</option>
-                        <option value="Tarjeta de Crédito">Tarjeta de Crédito</option>
+                        <option value="Tarjeta de Crédito">
+                          Tarjeta de Crédito
+                        </option>
                       </select>
-                      {errorMetodoPago && (
-                        <p className="error__login">{errorMetodoPago}</p>
-                      )}
                     </div>
                     <div className="container__login--group col-sm-12 col-md-12 col-lg-12 col-xl-4 mb-3 row justify-content-center text-center ">
-                      <label className="label__register" htmlFor="dirección">
-                        Dirección
-                      </label>
+                      <div className="d-flex justify-content-between align-items-center">
+                        <label className="label__register" htmlFor="direccion">
+                          Dirección
+                        </label>
+                        {direccionUsuarioError && (
+                          <p className="error__login">
+                            {direccionUsuarioError}
+                          </p>
+                        )}
+                      </div>
                       <input
                         type="text"
                         className="input__register"
                         placeholder="Introduce tu dirección"
                         onChange={handleDireccionUsuarioChange}
                       />
-                      {direccionUsuarioError && (
-                        <p className="error__login">{direccionUsuarioError}</p>
-                      )}
                     </div>
                   </div>
                   <div className="row justify-content-center text-center">
                     <div className="container__login--group col-sm-12 col-md-12 col-lg-12 col-xl-4 mb-3 row justify-content-center text-center">
-                      <label className="label__register" htmlFor="email">
-                        Correo Electrónico
-                      </label>
+                      <div className="d-flex justify-content-between align-items-center">
+                        <label className="label__register" htmlFor="email">
+                          Email
+                        </label>
+                        {emailError && (
+                          <p className="error__login">{emailError}</p>
+                        )}
+                      </div>
                       <input
                         type="email"
                         className="input__register"
-                        placeholder="Introduce tu correo electrónico"
+                        placeholder="Introduce tu email"
                         onChange={handleEmailChange}
                       />
-                      {emailError && (
-                        <p className="error__login">{emailError}</p>
-                      )}
                     </div>
                     <div className="container__login--group col-sm-12 col-md-12 col-lg-12 col-xl-4 mb-3 row justify-content-center text-center">
-                      <label className="label__register" htmlFor="password">
-                        Contraseña
-                      </label>
-                        <input
-                          type={showPassword ? "text" : "password"}
-                          className="input__register input__password"
-                          placeholder="Introduce tu contraseña"
-                          onChange={handlePasswordChange}
-                        />
-                        <span
-                          className={`fa ${
-                            showPassword ? "fa-unlock" : "fa-lock"
-                          } icono__password--register`}
-                          onClick={() => setShowPassword(!showPassword)}
-                        ></span>
-                      {passwordError && (
-                        <p className="error__login">{passwordError}</p>
-                      )}
+                      <div className="d-flex justify-content-between align-items-center">
+                        <label className="label__register" htmlFor="password">
+                          Contraseña
+                        </label>
+                        {passwordError && (
+                          <p className="error__login">{passwordError}</p>
+                        )}
+                      </div>
+                      <input
+                        type={showPassword ? "text" : "password"}
+                        className="input__register input__password"
+                        placeholder="Introduce tu contraseña"
+                        onChange={handlePasswordChange}
+                      />
+                      <span
+                        className={`fa ${
+                          showPassword ? "fa-unlock" : "fa-lock"
+                        } icono__password--register`}
+                        onClick={() => setShowPassword(!showPassword)}
+                      ></span>
                     </div>
                     <div className="container__login--group col-sm-12 col-md-12 col-lg-12 col-xl-4 mb-3 row justify-content-center text-center">
-                      <label className="label__register" htmlFor="password">
-                        Confirma la Contraseña
-                      </label>
-                        <input
-                          type={showPasswordRepet ? "text" : "password"}
-                          className="input__register input__password"
-                          placeholder="Introduce de nuevo tu contraseña"
-                          onChange={handleRepitePasswordChange}
-                        />
-                        <span
-                          className={`fa ${
-                            showPasswordRepet ? "fa-unlock" : "fa-lock"
-                          } icono__password--register`}
-                          onClick={() =>
-                            setShowPasswordRepet(!showPasswordRepet)
-                          }
-                        ></span>
-                      {repitePasswordError && (
-                        <p className="error__login">{repitePasswordError}</p>
-                      )}
+                      <div className="d-flex justify-content-between align-items-center">
+                        <label
+                          className="label__register"
+                          htmlFor="passwordRepet"
+                        >
+                          Confrimar la contraseña
+                        </label>
+                        {repitePasswordError && (
+                          <p className="error__login">{repitePasswordError}</p>
+                        )}
+                      </div>
+                      <input
+                        type={showPasswordRepet ? "text" : "password"}
+                        className="input__register input__password"
+                        placeholder="Introduce de nuevo tu contraseña"
+                        onChange={handleRepitePasswordChange}
+                      />
+                      <span
+                        className={`fa ${
+                          showPasswordRepet ? "fa-unlock" : "fa-lock"
+                        } icono__password--register`}
+                        onClick={() => setShowPasswordRepet(!showPasswordRepet)}
+                      ></span>
                     </div>
                   </div>
                   <div className="container__login--group mb-3 mt-4 text-center">

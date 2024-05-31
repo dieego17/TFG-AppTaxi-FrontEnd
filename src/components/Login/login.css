@@ -1,6 +1,6 @@
 .fullscreen__container {
     background-color: #006431;
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -42,7 +42,6 @@
     text-align: left;
     display: flex;
     justify-content: space-between;
-    width: 300px;
 }
 
 .input__login {
@@ -65,9 +64,9 @@
 .icono__password--login {
     cursor: pointer;
     position: absolute;
-    top: 54px;
+    top: 56px;
     transform: translateY(-50%);
-    right: 10px;
+    right: -300px;
     color: #006431;
 }
 

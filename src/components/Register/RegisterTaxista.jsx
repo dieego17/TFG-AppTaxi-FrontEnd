@@ -1,8 +1,9 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import './registerTaxista.css';
+import "./registerTaxista.css";
 import logo from "../../assets/images/logoVerde.png";
+import { registerTaxista } from "../../services/registerTaxista";
 
 function RegisterTaxista() {
   const [name, setName] = useState("");
@@ -10,7 +11,7 @@ function RegisterTaxista() {
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
   const [DNI, setDNI] = useState("");
-  const [numeroCuenta, setNumeroCuenta] = useState(""); 
+  const [numeroCuenta, setNumeroCuenta] = useState("");
   const [errorNumCuenta, setErrorNumCuenta] = useState("");
   const [direccionUsuario, setDireccionUsuario] = useState("");
   const [password, setPassword] = useState("");
@@ -42,37 +43,37 @@ function RegisterTaxista() {
   const handleNameChange = (e) => {
     const newName = e.target.value;
     setName(newName);
-    setNameError(newName ? "" : "Por favor ingresa tu nombre.");
+    setNameError(newName ? "" : "Introduzca tu nombre.");
   };
 
   const handleLastNameChange = (e) => {
     const newLastName = e.target.value;
     setLastName(newLastName);
-    setLastNameError(newLastName ? "" : "Por favor ingresa tus apellidos.");
+    setLastNameError(newLastName ? "" : "Introduzca tus apellidos.");
   };
 
   const handleDNIChange = (e) => {
     const newDNI = e.target.value;
     setDNI(newDNI);
-    setDniError(newDNI ? "" : "Por favor ingresa tu DNI.");
+    setDniError(newDNI ? "" : "Introduzca tu DNI.");
   };
 
   const handleDireccionUsuarioChange = (e) => {
     const newDireccionUsuario = e.target.value;
     setDireccionUsuario(newDireccionUsuario);
     setDireccionUsuarioError(
-      newDireccionUsuario ? "" : "Por favor ingresa tu dirección."
+      newDireccionUsuario ? "" : "Introduzca tu dirección."
     );
   };
 
   const handleNumeroCuentaChange = (e) => {
     const newNumeroCuenta = e.target.value;
     setNumeroCuenta(newNumeroCuenta);
-    if(newNumeroCuenta.length < 5 || newNumeroCuenta.length > 20){
+    if (newNumeroCuenta.length < 5 || newNumeroCuenta.length > 20) {
       setErrorNumCuenta("El número cuenta debe tener entre 5 y 20 caracteres");
-    }else if(newNumeroCuenta === ""){
-      setErrorNumCuenta("Por favor ingresa tu número de cuenta.");
-    }else{
+    } else if (newNumeroCuenta === "") {
+      setErrorNumCuenta("Introduzca un número de cuenta.");
+    } else {
       setErrorNumCuenta("");
     }
   };
@@ -80,7 +81,7 @@ function RegisterTaxista() {
   const handlePhoneChange = (e) => {
     const newPhone = e.target.value;
     setPhone(newPhone);
-    setPhoneError(newPhone ? "" : "Por favor ingresa tu teléfono.");
+    setPhoneError(newPhone ? "" : "Introduzca tu teléfono.");
   };
 
   const handleEmailChange = (e) => {
@@ -90,15 +91,15 @@ function RegisterTaxista() {
       newEmail
         ? validateEmail(newEmail)
           ? ""
-          : "Por favor ingresa un correo electrónico válido."
-        : "Por favor ingresa tu correo electrónico."
+          : "Introduzca un correo válido"
+        : "Introduzca un correo válido"
     );
   };
 
   const handleVehiculoChange = (e) => {
     const newVehiculo = e.target.value;
     setVehiculo(newVehiculo);
-    setErrorVehiculo(newVehiculo ? "" : "Por favor ingresa tu vehículo.");
+    setErrorVehiculo(newVehiculo ? "" : "Introduzca un vehículo.");
   };
 
   const handlePasswordChange = (e) => {
@@ -108,8 +109,8 @@ function RegisterTaxista() {
       newPassword
         ? validatePassword(newPassword)
           ? ""
-          : "La contraseña debe tener al menos 6 caracteres."
-        : "Por favor ingresa tu contraseña."
+          : "Debe tener al menos 6 caracteres."
+        : "Introduzca una contraseña"
     );
   };
 
@@ -132,43 +133,26 @@ function RegisterTaxista() {
       return;
     }
 
-    // Enviar los datos del formulario al backend
-    try {
-      const response = await fetch(
-        "http://localhost:3000/appTaxio/v1/register/taxista",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            nombre: name,
-            apellidos: lastName,
-            telefono: phone,
-            correo_electronico: email,
-            contraseña: password,
-            DNI: DNI,
-            direccion_usuario: direccionUsuario,
-            numero_cuenta: numeroCuenta,
-            vehiculo: vehiculo
-          }),
-        }
-      );
+    const data = {
+      nombre: name,
+      apellidos: lastName,
+      telefono: phone,
+      correo_electronico: email,
+      contraseña: password,
+      DNI: DNI,
+      direccion_usuario: direccionUsuario,
+      numero_cuenta: numeroCuenta,
+      vehiculo: vehiculo,
+    };
 
-      if (response.status === 200) {
-        console.log("Usuario registrado con éxito");
-        setErrorResponse("");
-        navigate("/login");
-      } else if (response.status === 400) {
-        const json = await response.json();
-        setErrorResponse(json.body.message);
-      }
-    } catch (error) {
-      console.error("Error al procesar la solicitud:", error);
-      setErrorResponse(
-        "Error al procesar la solicitud. Inténtalo de nuevo más tarde."
-      );
+    // enviar los datos al backend
+    const response = await registerTaxista(data);
+
+    if (response.error) {
+      setErrorResponse(response.error);
+      return;
     }
+
   };
 
   return (
@@ -188,162 +172,186 @@ function RegisterTaxista() {
                 <form className="form__login">
                   <div className="row justify-content-center text-center">
                     <div className="container__inputs--register col-sm-12 col-md-12 col-lg-12 col-xl-4 mb-5 text-center row justify-content-center text-center">
-                      <label className="label__register" htmlFor="nombre">
-                        Nombre
-                      </label>
+                      <div className="d-flex justify-content-between align-items-center">
+                        <label className="label__register" htmlFor="nombre">
+                          Nombre
+                        </label>
+                        {nameError && (
+                          <p className="error__login">{nameError}</p>
+                        )}
+                      </div>
                       <input
                         type="text"
                         className="input__register"
                         placeholder="Introduce tu nombre"
                         onChange={handleNameChange}
                       />
-                      {nameError && <p className="error__login">{nameError}</p>}
                     </div>
                     <div className="container__inputs--register col-sm-12 col-md-12 col-lg-12 col-xl-4 mb-5 row justify-content-center text-center">
-                      <label className="label__register" htmlFor="apellidos">
-                        {" "}
-                        Apellidos
-                      </label>
+                      <div className="d-flex justify-content-between align-items-center">
+                        <label className="label__register" htmlFor="apellidos">
+                          Apellidos
+                        </label>
+                        {lastNameError && (
+                          <p className="error__login">{lastNameError}</p>
+                        )}
+                      </div>
                       <input
                         type="text"
                         className="input__register"
                         placeholder="Introduce tus apellidos"
                         onChange={handleLastNameChange}
                       />
-                      {lastNameError && (
-                        <p className="error__login">{lastNameError}</p>
-                      )}
                     </div>
                     <div className="container__inputs--register col-sm-12 col-md-12 col-lg-12 col-xl-4 mb-5 row justify-content-center text-center">
-                      <label className="label__register" htmlFor="telefono">
-                        Teléfono
-                      </label>
+                      <div className="d-flex justify-content-between align-items-center">
+                        <label className="label__register" htmlFor="telefono">
+                          Teléfono
+                        </label>
+                        {phoneError && (
+                          <p className="error__login">{phoneError}</p>
+                        )}
+                      </div>
                       <input
                         type="text"
                         className="input__register"
                         placeholder="Introduce tu teléfono"
                         onChange={handlePhoneChange}
                       />
-                      {phoneError && (
-                        <p className="error__login">{phoneError}</p>
-                      )}
                     </div>
                   </div>
 
                   <div className="row justify-content-center text-center">
                     <div className="container__inputs--register col-sm-12 col-md-12 col-lg-12 col-xl-4 mb-5 row justify-content-center text-center">
-                      <label className="label__register" htmlFor="dni">
-                        DNI
-                      </label>
+                      <div className="d-flex justify-content-between align-items-center">
+                        <label className="label__register" htmlFor="dni">
+                          DNI
+                        </label>
+                        {dniError && <p className="error__login">{dniError}</p>}
+                      </div>
                       <input
                         type="text"
                         className="input__register"
                         placeholder="Introduce tu DNI"
                         onChange={handleDNIChange}
                       />
-                      {dniError && <p className="error__login">{dniError}</p>}
                     </div>
                     <div className="container__inputs--register col-sm-12 col-md-12 col-lg-12 col-xl-4 mb-5 row justify-content-center text-center ">
-                      <label className="label__register" htmlFor="dirección">
-                        Dirección
-                      </label>
+                      <div className="d-flex justify-content-between align-items-center">
+                        <label className="label__register" htmlFor="direccion">
+                          Dirección
+                        </label>
+                        {direccionUsuarioError && (
+                          <p className="error__login">
+                            {direccionUsuarioError}
+                          </p>
+                        )}
+                      </div>
                       <input
                         type="text"
                         className="input__register"
                         placeholder="Introduce tu dirección"
                         onChange={handleDireccionUsuarioChange}
                       />
-                      {direccionUsuarioError && (
-                        <p className="error__login">{direccionUsuarioError}</p>
-                      )}
                     </div>
                     <div className="container__inputs--register col-sm-12 col-md-12 col-lg-12 col-xl-4 mb-5 row justify-content-center text-center ">
-                      <label className="label__register" htmlFor="numCuenta">
-                        Número de cuenta
-                      </label>
+                      <div className="d-flex justify-content-between align-items-center">
+                        <label className="label__register" htmlFor="numCuenta">
+                          Número de cuenta
+                        </label>
+                        {errorNumCuenta && (
+                          <p className="error__login">{errorNumCuenta}</p>
+                        )}
+                      </div>
                       <input
                         type="text"
                         className="input__register"
                         placeholder="Introduce tu número de cuenta"
                         onChange={handleNumeroCuentaChange}
                       />
-                      {errorNumCuenta && (
-                        <p className="error__login">{errorNumCuenta}</p>
-                      )}
                     </div>
                   </div>
                   <div className="row justify-content-center text-center">
                     <div className="container__inputs--register col-sm-12 col-md-12 col-lg-12 col-xl-4 mb-5 row justify-content-center text-center">
-                      <label className="label__register" htmlFor="email">
-                        Correo Electrónico
-                      </label>
+                      <div className="d-flex justify-content-between align-items-center">
+                        <label className="label__register" htmlFor="email">
+                          Email
+                        </label>
+                        {emailError && (
+                          <p className="error__login">{emailError}</p>
+                        )}
+                      </div>
                       <input
                         type="email"
                         className="input__register"
                         placeholder="Introduce tu correo electrónico"
                         onChange={handleEmailChange}
                       />
-                      {emailError && (
-                        <p className="error__login">{emailError}</p>
-                      )}
                     </div>
                     <div className="container__inputs--register col-sm-12 col-md-12 col-lg-12 col-xl-4 mb-5 row justify-content-center text-center">
-                      <label className="label__register" htmlFor="vehiculo">
-                        Vehículo
-                      </label>
+                      <div className="d-flex justify-content-between align-items-center">
+                        <label className="label__register" htmlFor="vehiculo">
+                          Vehículo
+                        </label>
+                        {errorVehiculo && (
+                          <p className="error__login">{errorVehiculo}</p>
+                        )}
+                      </div>
                       <input
                         type="text"
                         className="input__register"
                         placeholder="Introduce tu vehículo"
                         onChange={handleVehiculoChange}
                       />
-                      {errorVehiculo && (
-                        <p className="error__login">{errorVehiculo}</p>
-                      )}
                     </div>
                   </div>
                   <div className="row justify-content-center text-center">
                     <div className="container__inputs--register col-sm-12 col-md-12 col-lg-12 col-xl-4 mb-5 row justify-content-center text-center">
-                      <label className="label__register" htmlFor="password">
-                        Contraseña
-                      </label>
-                        <input
-                          type={showPassword ? "text" : "password"}
-                          className="input__register"
-                          placeholder="Introduce tu contraseña"
-                          onChange={handlePasswordChange}
-                        />
-                        <span
-                          className={`fa ${
-                            showPassword ? "fa-unlock" : "fa-lock"
-                          } icono__password--taxista`}
-                          onClick={() => setShowPassword(!showPassword)}
-                        ></span>
-                      {passwordError && (
-                        <p className="error__login">{passwordError}</p>
-                      )}
+                      <div className="d-flex justify-content-between align-items-center">
+                        <label className="label__register" htmlFor="password">
+                          Contraseña
+                        </label>
+                        {passwordError && (
+                          <p className="error__login">{passwordError}</p>
+                        )}
+                      </div>
+                      <input
+                        type={showPassword ? "text" : "password"}
+                        className="input__register"
+                        placeholder="Introduce tu contraseña"
+                        onChange={handlePasswordChange}
+                      />
+                      <span
+                        className={`fa ${
+                          showPassword ? "fa-unlock" : "fa-lock"
+                        } icono__password--taxista`}
+                        onClick={() => setShowPassword(!showPassword)}
+                      ></span>
                     </div>
                     <div className="container__inputs--register col-sm-12 col-md-12 col-lg-12 col-xl-4 mb-5 row justify-content-center text-center">
-                      <label className="label__register" htmlFor="password">
-                        Confirma la Contraseña
-                      </label>
-                        <input
-                          type={showPasswordRepet ? "text" : "password"}
-                          className="input__register"
-                          placeholder="Introduce de nuevo tu contraseña"
-                          onChange={handleRepitePasswordChange}
-                        />
-                        <span
-                          className={`fa ${
-                            showPasswordRepet ? "fa-unlock" : "fa-lock"
-                          } icono__password--taxista`}
-                          onClick={() =>
-                            setShowPasswordRepet(!showPasswordRepet)
-                          }
-                        ></span>
-                      {repitePasswordError && (
-                        <p className="error__login">{repitePasswordError}</p>
-                      )}
+                      <div className="d-flex justify-content-between align-items-center">
+                        <label
+                          className="label__register"
+                          htmlFor="passwordRepet"
+                        >
+                          Confrimar la contraseña
+                        </label>
+                        {repitePasswordError && (
+                          <p className="error__login">{repitePasswordError}</p>
+                        )}
+                      </div>
+                      <input
+                        type={showPasswordRepet ? "text" : "password"}
+                        className="input__register"
+                        placeholder="Introduce de nuevo tu contraseña"
+                        onChange={handleRepitePasswordChange}
+                      />
+                      <span
+                        className={`fa ${
+                          showPasswordRepet ? "fa-unlock" : "fa-lock"
+                        } icono__password--taxista`}
+                        onClick={() => setShowPasswordRepet(!showPasswordRepet)}
+                      ></span>
                     </div>
                   </div>
                   <div className="container__inputs--register mb-3 mt-4 text-center">

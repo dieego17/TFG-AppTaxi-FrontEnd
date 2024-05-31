@@ -110,7 +110,7 @@ function ClienteDetalle() {
                     )}
                   </td>
                   <td data-label="Ver ruta">
-                    <Link to={`/dashboard/clientes/viajes-detalles/ruta/${viaje.id_viaje}`}> 
+                    <Link className="td__link" to={`/dashboard/clientes/viajes-detalles/ruta/${viaje.id_viaje}`}> 
                       <i className="fa-solid fa-car-side"></i>
                     </Link>
                   </td>

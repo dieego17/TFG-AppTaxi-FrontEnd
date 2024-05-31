@@ -103,6 +103,10 @@ function InsertarGanancias() {
 
     // Mostrar alerta de éxito
     setShowAlertSuccess(true);
+    // Limpiar los campos
+    setDescripcionGanancias("");
+    setImporteGanancias("");
+    setFechaGanancia("");
   };
 
   return (
@@ -112,21 +116,16 @@ function InsertarGanancias() {
         {
           // Mostrar alerta de éxito
           showAlertSuccess && (
-            <div
-              className="alert alert-warning alerta__success--ganancia fade show"
-              role="alert"
-            >
-              <strong className="texto__success--grandeGanancia">
-                Ganancia insertada correctamente.
-              </strong>
-              <button
-                type="button"
-                className="btn__close--ganancia"
-                data-bs-dismiss="alert"
-                aria-label="Close"
-              >
-                <i className="bi bi-x-lg"></i>
-              </button>
+            <div className="container__body">
+              <div className="notificacion__container">
+                <div className="notificacion__body">
+                  <i className="notificacion__icon fa-regular fa-circle-check"></i>
+                  <p className="texto__success--grande">
+                    Gasto insertado correctamente.
+                  </p>
+                </div>
+                <div className="notifiacion__progress"></div>
+              </div>
             </div>
           )
         }
