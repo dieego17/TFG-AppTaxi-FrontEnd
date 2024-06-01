@@ -1,80 +1,112 @@
 /* eslint-disable no-unused-vars */
-import React, { useState } from 'react';
-import './reseña.css';
-import { createTestimonio } from '../../../services/createTestimonio';
+import React, { useState } from "react";
+import "./reseña.css";
+import { createTestimonio } from "../../../services/createTestimonio";
 
 function Reseña() {
-    // Estado para la puntuación
-    const [puntuacion, setPuntuacion] = useState(0);
-    const [mensaje, setMensaje] = useState('');
-    const [success, setSuccess] = useState(false);
-    const [error, setError] = useState(false);
+  // Estados para los campos y los mensajes de error
+  const [puntuacion, setPuntuacion] = useState(0);
+  const [mensaje, setMensaje] = useState("");
+  const [errorMensaje, setErrorMensaje] = useState("");
+  const [errorPuntuacion, setErrorPuntuacion] = useState("");
 
-    // ID del usuario
-    const token = localStorage.getItem('token');
+  // ID del usuario
+  const token = localStorage.getItem("token");
+  const idUsuario = token ? JSON.parse(atob(token.split(".")[1])).id_usuario : "";
 
-    const idUsuario = token ? JSON.parse(atob(token.split('.')[1])).id_usuario : '';
+  // Función para manejar el cambio en el campo de reseña
+  const handleChange = (e) => {
+    setMensaje(e.target.value);
+    validarMensaje(e.target.value); 
+  };
 
-    // Función para manejar el click en las estrellas
-    const handleClick = (valor) => {
-        setPuntuacion(valor);
-    };
+  // Función para manejar el click en las estrellas
+  const handleClick = (valor) => {
+    setPuntuacion(valor);
+    validarPuntuacion(valor); 
+  };
 
-    const handleChange = (e) => {
-        setMensaje(e.target.value);
-    };
+  // Función para validar el campo de reseña
+  const validarMensaje = (value) => {
+    if (value.trim() === "") {
+      setErrorMensaje("Por favor, escribe tu reseña");
+      return false;
+    } else if (value.length < 10) {
+      setErrorMensaje("La reseña debe tener al menos 10 caracteres");
+      return false;
+    } else {
+      setErrorMensaje("");
+      return true;
+    }
+  };
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
+  // Función para validar el campo de puntuación
+  const validarPuntuacion = (valor) => {
+    if (valor === 0) {
+      setErrorPuntuacion("Por favor, selecciona una puntuación");
+      return false;
+    } else {
+      setErrorPuntuacion("");
+      return true;
+    }
+  };
 
-        if (puntuacion === 0 || mensaje === '') {
-            setError(true); // Establecer el estado error como true si hay errores
-            return;
-        }
+  // Función para enviar el formulario
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-        // Llamar a la función para crear el testimonio
-        createTestimonio(idUsuario, mensaje, puntuacion);
-        setSuccess(true);
-    };
+    const isMensajeValid = validarMensaje(mensaje);
+    const isPuntuacionValid = validarPuntuacion(puntuacion);
 
-    return (
-        <div className='container__reseña'>
-            <h1>Reseña</h1>
-            {
-                success ? 
-                <div className="alert alert-success" role="alert">
-                    Reseña enviada correctamente
-                </div>
-                : 
-                null
-            }
-            {
-                error ? 
-                <div className="alert alert-danger" role="alert">
-                    Debes completar todos los campos
-                </div>
-                : 
-                null
-            }
-            <form onSubmit={handleSubmit} action="" className='form__reseña'>
-                <label htmlFor="reseña">Escribe tu reseña</label>
-                <textarea onChange={handleChange} name="reseña" id="reseña" cols="30" rows="10"></textarea>
-                <label htmlFor="puntuacion">Puntuación</label>
-                <div className="stars">
-                    {/* Contenedor de estrellas */}
-                    {[...Array(5)].map((star, i) => {
-                        const valor = i + 1;
-                        return (
-                            <span key={i} onClick={() => handleClick(valor)}>
-                                <i className={`fa-solid fa-star ${valor <= puntuacion ? 'selected' : ''}`}></i>
-                            </span>
-                        );
-                    })}
-                </div>
-                <button>Enviar</button>
-            </form>
+    if (!isMensajeValid || !isPuntuacionValid) {
+      return;
+    }
+
+    await createTestimonio(idUsuario, mensaje, puntuacion);
+  };
+
+  return (
+    <div className="container__reseña">
+      <h1 className="h1__reseña">Valoranos <i className="fa-regular fa-thumbs-up"></i></h1>
+      <form onSubmit={handleSubmit} action="" className="form__reseña">
+        <div className="container__reseñaInputs">
+          <label className="label__reseña" htmlFor="puntuacion">Puntuación</label>
+          <div className="stars">
+            {[...Array(5)].map((star, i) => {
+              const valor = i + 1;
+              return (
+                <span key={i} onClick={() => handleClick(valor)}>
+                  <i
+                    className={`fa-solid fa-star ${
+                      valor <= puntuacion ? "selected" : ""
+                    }`}
+                  ></i>
+                </span>
+              );
+            })}
+          </div>
+          {errorPuntuacion && <p className="error">{errorPuntuacion}</p>}
         </div>
-    );
+        <div className="container__reseñaInputs">
+          <label className="label__reseña" htmlFor="reseña">Escribe tu reseña</label>
+          <textarea
+            placeholder="Escribe tu reseña aquí..."
+            className="textarea__reseña"
+            onChange={handleChange}
+            value={mensaje}
+            name="reseña"
+            id="reseña"
+            cols="30"
+            rows="10"
+          ></textarea>
+          {errorMensaje && <p className="error">{errorMensaje}</p>}
+        </div>
+        <div className="container__reseñaInputs">
+          <button className="button__reseña">Enviar</button>
+        </div>
+      </form>
+    </div>
+  );
 }
 
 export default Reseña;

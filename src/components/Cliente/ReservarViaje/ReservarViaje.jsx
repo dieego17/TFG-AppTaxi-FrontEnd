@@ -150,6 +150,7 @@ function ReservarViaje() {
           type="text"
           id="origen"
           name="origen"
+          placeholder="Calle Ejemplo, 123, 45678, Ciudad, País"
           value={origen}
           onChange={(e) => setOrigen(e.target.value)}
         />
@@ -157,6 +158,7 @@ function ReservarViaje() {
         <input
           type="text"
           id="destino"
+          placeholder="Calle Ejemplo, 123, 45678, Ciudad, País"
           name="destino"
           value={destino}
           onChange={(e) => setDestino(e.target.value)}

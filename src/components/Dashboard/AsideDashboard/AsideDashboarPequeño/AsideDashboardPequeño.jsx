@@ -17,7 +17,7 @@ function AsideDashboardPequeño() {
 
   const handleLogout = () => {
     localStorage.clear();
-    window.location.href = "/";
+    window.location.href = "/ogin";
   };
 
   const token = localStorage.getItem("token");

@@ -14,7 +14,7 @@ function HeaderCliente() {
   //cerrar sesión
   const handleLogout = () => {
     localStorage.clear();
-    window.location.href = '/';
+    window.location.href = '/login';
   };
 
   return (
@@ -58,7 +58,6 @@ function HeaderCliente() {
                   {userName} {apellido}
                 </a>
                 <ul className="custom-dropdown-menu">
-                  <li><Link to={'/cliente/editar-perfil'} className="custom-dropdown-item"><i className="fa-regular fa-pen-to-square"></i> Editar Perfil</Link></li>
                   <li><Link onClick={handleLogout} className="custom-dropdown-item"><i className="fa-solid fa-arrow-right-from-bracket"></i> Cerrar Sesión</Link></li>
                 </ul>
               </li>

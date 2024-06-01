@@ -6,12 +6,12 @@ import { deleteReserva } from "../../../services/deleteReserva";
 import "./misReservas.css";
 import { Link } from "react-router-dom";
 
-
 function MisReservas() {
-
   // ID del usuario
   const token = localStorage.getItem("token");
-  const idUsuario = token ? JSON.parse(atob(token.split(".")[1])).id_usuario : "";
+  const idUsuario = token
+    ? JSON.parse(atob(token.split(".")[1])).id_usuario
+    : "";
 
   const reservasData = useReservasClientes(idUsuario);
   const [reservas, setReservas] = useState([]);
@@ -28,8 +28,10 @@ function MisReservas() {
   const indexOfFirstReserva = indexOfLastReserva - reservasPerPage;
 
   // Obtener las reservas a mostrar en la página actual
-  const currentReservas = reservas.slice(indexOfFirstReserva, indexOfLastReserva);
-
+  const currentReservas = reservas.slice(
+    indexOfFirstReserva,
+    indexOfLastReserva
+  );
 
   // use effect para actualizar las reservas
   useEffect(() => {
@@ -79,39 +81,47 @@ function MisReservas() {
 
   return (
     <div className="container__reservas container">
-      <h2>Mis Reservas</h2>
+      <h2 className="h2__reservasCliente">Mis Reservas</h2>
       {currentReservas && currentReservas.length > 0 ? (
         <div>
           <table className="table">
             <thead className="table__thead">
               <tr className="table__tr">
                 <th className="table__th">Fecha</th>
-                <th className="table__th">Estado Reserva</th>
-                <th className="table__th">Hora Reserva</th>
-                <th>Origen Viaje</th>
-                <th>Destino Viaje</th>
+                <th className="table__th">Hora</th>
+                <th className="table__th">Estado</th>
+                <th className="table__th">Origen Viaje</th>
+                <th className="table__th">Destino Viaje</th>
                 <th className="table__th">Acciones</th>
               </tr>
             </thead>
             <tbody className="table__tbody">
               {currentReservas.map((reserva) => (
                 <tr className="table__tr" key={reserva.id_reserva}>
-                  <td className="table__td">
+                  <td data-label="Fecha" className="table__td">
                     {formatearFecha(reserva.fecha_reserva)}
                   </td>
-                  <td className="table__td">
+                  <td data-label="Hora" className="table__td">
+                    {reserva.hora_reserva}
+                  </td>
+                  <td data-label="Estado" className="table__td table__estado">
                     <div>
                       {reserva.estado_reserva === "Pendiente" ? (
-                        <p className="texto__pendiente">Pendiente</p>
+                        <button className="texto__pendiente">Pendiente</button>
                       ) : reserva.estado_reserva === "Confirmada" ? (
-                        <p className="texto__confirmado">Confirmada</p>
+                        <button className="texto__confirmado">
+                          Confirmada
+                        </button>
                       ) : null}
                     </div>
                   </td>
-                  <td className="table__td">{reserva.hora_reserva}</td>
-                  <td className="table__td">{reserva.viaje.origen_viaje}</td>
-                  <td className="table__td">{reserva.viaje.destino_viaje}</td>
-                  <td className="table__td">
+                  <td data-label="Origen Viaje" className="table__td">
+                    {reserva.viaje.origen_viaje}
+                  </td>
+                  <td data-label="Destino Viaje" className="table__td">
+                    {reserva.viaje.destino_viaje}
+                  </td>
+                  <td data-label="Acciones" className="table__td">
                     {reserva.estado_reserva === "Pendiente" && (
                       <div className="container__buttons">
                         <button
@@ -119,7 +129,9 @@ function MisReservas() {
                           className="estado__cancelado"
                           data-bs-toggle="modal"
                           data-bs-target="#exampleModal"
-                          onClick={() => setReservaAEliminar(reserva.id_reserva)}
+                          onClick={() =>
+                            setReservaAEliminar(reserva.id_reserva)
+                          }
                         >
                           Cancelar
                         </button>
@@ -133,18 +145,20 @@ function MisReservas() {
                           <div className="modal-dialog">
                             <div className="modal-content">
                               <div className="modal-header">
-                                <h1 className="modal-title fs-5" id="exampleModalLabel">
-                                  Cancelar reserva
+                                <h1
+                                  className="modal-title"
+                                  id="exampleModalLabel"
+                                >
+                                  <i className="fa-regular fa-circle-xmark"></i>
                                 </h1>
-                                <button
-                                  type="button"
-                                  className="btn-close"
-                                  data-bs-dismiss="modal"
-                                  aria-label="Close"
-                                ></button>
                               </div>
                               <div className="modal-body">
-                                ¿Estás seguro que quieres cancelar y eliminar la reserva?
+                                <p className="modal__text">
+                                  ¿Estas seguro que quieres cancelar la reserva
+                                  seleccionada y eliminarla?
+                                  <br />
+                                  Este proceso no podrá deshacerse.
+                                </p>
                               </div>
                               <div className="modal-footer">
                                 <button
@@ -157,7 +171,9 @@ function MisReservas() {
                                 <button
                                   type="button"
                                   className="estado__cancelado"
-                                  onClick={(event) => cancelarReserva(event, reservaAEliminar)}
+                                  onClick={(event) =>
+                                    cancelarReserva(event, reservaAEliminar)
+                                  }
                                   data-bs-dismiss="modal"
                                 >
                                   Eliminar
@@ -168,10 +184,17 @@ function MisReservas() {
                         </div>
                         <button
                           className="estado__confirmado"
-                          onClick={(event) => confirmarReserva(event, reserva.id_reserva)}
+                          onClick={(event) =>
+                            confirmarReserva(event, reserva.id_reserva)
+                          }
                         >
                           Confirmar
                         </button>
+                      </div>
+                    )}
+                    {reserva.estado_reserva === "Confirmada" && (
+                      <div className="container__mensaje">
+                        No se pueden realizar más acciones
                       </div>
                     )}
                   </td>
@@ -180,16 +203,16 @@ function MisReservas() {
             </tbody>
           </table>
           <div className="pagination__container">
-            <button className="button__anterior"
+            <button
+              className="button__anterior"
               onClick={() => setCurrentPage(currentPage - 1)}
               disabled={currentPage === 1}
             >
               Anterior
             </button>
-            <span className="span__numero">
-              Página {currentPage}
-            </span>
-            <button className="button__siguiente"
+            <span className="span__numero">Página {currentPage}</span>
+            <button
+              className="button__siguiente"
               onClick={() => setCurrentPage(currentPage + 1)}
               disabled={indexOfLastReserva >= reservasData.length}
             >
@@ -198,7 +221,7 @@ function MisReservas() {
           </div>
         </div>
       ) : (
-        <p>No existen reservas para este usuario</p>
+        <p className="no__clientes">No existen reservas para este usuario</p>
       )}
     </div>
   );

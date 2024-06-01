@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { useViajesCliente } from "../../../hooks/useViajesCliente";
 import { Link } from "react-router-dom";
+import "./misViajes.css";
 
 
 function MisViajes() {
@@ -33,9 +34,16 @@ function MisViajes() {
   };
 
 
+  const calcularIva = (precio) => {
+    const resta = (precio * 0.1).toFixed(1);
+    return parseFloat(resta) + precio;
+  };
+
+
+
   return (
     <div className="container__reservas container">
-      <h2>Mis Viajes</h2>
+      <h2 className="h2__viajesCliente">Mis Viajes</h2>
       {currentViajes && currentViajes.length > 0 ? (
         <div>
           <table className="table">
@@ -44,26 +52,32 @@ function MisViajes() {
                 <th className="table__th">Origen</th>
                 <th className="table__th">Destino</th>
                 <th className="table__th">Fecha</th>
-                <th className="table__th">Estado Viaje</th>
-                <th className="table__th">Hora Reserva</th>
-                <th className="table__th">Precio Total</th>
+                <th className="table__th">Hora</th>
+                <th className="table__th">Estado</th>
+                <th className="table__th">Precio</th>
                 <th className="table__th">Más información</th>
               </tr>
             </thead>
             <tbody className="table__tbody">
               {currentViajes.map((viaje) => (
                 <tr className="table__tr" key={viaje.id_viaje}>
-                    <td className="table__td">{viaje.origen_viaje}</td>
-                    <td className="table__td">{viaje.destino_viaje}</td>
-                    <td className="table__td">
+                    <td data-label="Origen" className="table__td">{viaje.origen_viaje}</td>
+                    <td data-label="Destino" className="table__td">{viaje.destino_viaje}</td>
+                    <td data-label="Fecha" className="table__td">
                         {formatearFecha(viaje.fecha_viaje)}
                     </td>
-                    <td className="table__td">{viaje.estado_viaje}</td>
-                    <td className="table__td">{viaje.hora_viaje}</td>
-                    <td className="table__td">{viaje.precioTotal_viaje}€</td>
-                    <td className="table__td">
+                    <td data-label="Hora" className="table__td">{viaje.hora_viaje}</td>
+                    <td data-label="Estado" className="table__td">
+                      {viaje.estado_viaje === "Pendiente" ? (
+                          <button className="texto__pendiente">Pendiente</button>
+                        ) : viaje.estado_viaje === "Finalizado" ? (
+                          <button className="texto__confirmado">Finaliado</button>
+                        ) : null}
+                    </td>
+                    <td data-label="Precio" className="table__td">{calcularIva(viaje.precioTotal_viaje)}€</td>
+                    <td data-label="Más información" className="table__td">
                         <Link to={`/cliente/mis-viajes/detalles/${viaje.id_viaje}`}>
-                            <i className="fa-solid fa-circle-info"></i>
+                            <i className="fa-solid fa-circle-info link__details"></i>
                         </Link>
                     </td>
                 </tr>

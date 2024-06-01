@@ -11,18 +11,24 @@
     color: #ffffff;
     border: 1px solid #008000;
     padding: 5px;
+    width: 150px;
     border-radius: 5px;
     background-color: #008000;
     margin: 5px 5px;
+    text-align: center;
 }
 
-.estado__pendiente, .texto__pendiente{
+
+.texto__pendiente{
     color: #ffffff;
     border: 1px solid #ff8c00;
+    background-color: #ff8c00;
     padding: 5px;
     border-radius: 5px;
-    background-color: #ff8c00;
     margin: 5px 5px;
+    width: 150px;
+    text-align: center;
+    
 }
 
 
@@ -33,4 +39,59 @@
     border-radius: 5px;
     background-color: #ff0000;
     margin: 5px 5px;
+    width: 150px;
+}
+
+.h2__reservasCliente{
+    color: #006431;
+    font-family: titlePopins;
+    font-size: 30px;
+    margin: 50px 0px 20px;
+}
+
+.modal-header, .modal-footer{
+    border: none !important;
+}
+
+.modal-dialog{
+    font-family: textPopins;
+}
+
+.modal-header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal__text{
+    font-family: textPopins;
+    text-align: center;
+}
+.modal-footer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.btn-secondary{
+    background-color: rgb(200, 200, 200);
+    border: 1px solid rgb(200, 200, 200);
+}
+.btn-secondary:hover{
+    background-color: rgb(150, 150, 150);
+    border: 1px solid rgb(150, 150, 150);
+}
+
+.btn-danger{
+    background-color: red;
+    transition: all 0.3s ease-in-out; 
+    border: 1px solid red;
+}
+.btn-danger:hover{
+    background-color: rgb(200, 0, 0);
+    border: 1px solid rgb(200, 0, 0);
+}
+
+.modal-title{
+    color: red;
+    font-size: 5rem;
 }

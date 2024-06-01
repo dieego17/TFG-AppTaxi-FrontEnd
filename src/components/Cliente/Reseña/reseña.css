@@ -10,12 +10,65 @@
     width: 100%;
 }
 
+.h1__reseña{
+    color: #006431;
+    font-family: titlePopins;
+    font-size: 30px;
+    margin: 20px 0px 0px;
+}
+
+.container__reseñaInputs{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+
+}
+
+.label__reseña{
+    color: #006431;
+    font-family: textPopins;
+    margin: 10px 0px;
+    text-align: left;
+}
+
+.textarea__reseña{
+    height: 100px;
+    border: 1px solid #006431;
+    border-radius: 5px;
+    padding: 10px;
+    font-family: textPopins;
+    margin: 10px 0px;
+    outline: none;
+    color: #006431;
+}
+.textarea__reseña::placeholder{
+    color: #006431;
+}
+
 .fa-solid.fa-star {
     font-size: 24px; 
     color: #ccc; 
+    cursor: pointer;
 }
+
 
 .fa-solid.fa-star.selected {
     color: gold; 
+}
+
+.button__reseña{
+    background-color: #006431;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-family: textPopins;
+    cursor: pointer;
+}
+
+.button__reseña:hover{
+    background-color: #006430d4;
 }
 

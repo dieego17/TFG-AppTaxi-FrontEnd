@@ -86,6 +86,11 @@ function ClienteDetalle() {
     setViajes(fetchedViajes);
   }, [fetchedViajes]);
 
+  const calcularIva = (precio) => {
+    const resta = (precio * 0.1).toFixed(1);
+    return parseFloat(resta) + precio;
+  };
+
   return (
     <div>
       {currentViajes.length === 0 ? (
@@ -143,7 +148,7 @@ function ClienteDetalle() {
                           </h1>
                         </div>
                         <div className="modal-body">
-                          <p>¿Estas seguro que quieres cancelar el viaje seleccionado?<br />
+                          <p className="modal__text">¿Estas seguro que quieres cancelar el viaje seleccionado?<br />
                             Este proceso no podrá deshacerse.
                           </p>
                         </div>
@@ -168,7 +173,7 @@ function ClienteDetalle() {
                     </div>
                   </div>
                   </td>
-                  <td className="table__td" data-label="Precio">{viaje.precioTotal_viaje}€</td>
+                  <td className="table__td" data-label="Precio">{calcularIva(viaje.precioTotal_viaje)}€</td>
                   <td className="table__td" data-label="Crear factura">
                     {viaje.estado_viaje === 'Finalizado' ? (
                       <PDFDownloadLink document={<Pdf viaje={viaje} />} fileName="factura.pdf">
