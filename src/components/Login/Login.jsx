@@ -68,11 +68,11 @@ function Login() {
   };
 
   return (
-    <div className="container-fluid fullscreen__container d-flex align-items-center justify-content-center">
+    <div className="container-fluid fullscreen__container">
       <div className="container">
         <div className="row justify-content-center align-items-center">
           <div className="col-12 col-md-8 col-lg-5 p-3">
-            <section className="section__login p-3 rounded ">
+            <section className="section__Login p-3 rounded">
               <article className="article__link--register mb-3 d-flex justify-content-center">
                 <Link
                   to="/register-taxista"
@@ -108,12 +108,12 @@ function Login() {
                     </div>
                     <input
                       type="email"
-                      className="input__login"
+                      className="input__Login"
                       placeholder="Introduce tu correo electrónico"
                       onChange={handleEmailChange}
                     />
                   </div>
-                  <div className="container__login--group mb-3 row justify-content-center">
+                  <div className="container__login--group mb-3 ">
                     <div className="d-flex justify-content-between align-items-center col-12">
                       <label className="label__login" htmlFor="password">
                         Contraseña
@@ -122,18 +122,18 @@ function Login() {
                     </div>
                     <input
                       type={showPassword ? "text" : "password"}
-                      className="input__login"
+                      className="input__Login"
                       placeholder="Introduce tu contraseña"
                       onChange={handlePasswordChange}
                     />
                     <span
                       className={`fa ${
                         showPassword ? "fa-unlock" : "fa-lock"
-                      } icono__password--login`}
+                      } icono__password--Login`}
                       onClick={() => setShowPassword(!showPassword)}
                     ></span>
                   </div>
-                  <div className="container__forgot--password mb-3 text-end">
+                  <div className="container__forgot--password mb-3">
                     <Link to="/forgot-password" className="link__forgot">
                       ¿Olvidaste tu contraseña?
                     </Link>
@@ -142,7 +142,7 @@ function Login() {
                     <button
                       onClick={handleLogin}
                       type="submit"
-                      className="boton__login"
+                      className="boton__Login"
                     >
                       Iniciar Sesión
                     </button>

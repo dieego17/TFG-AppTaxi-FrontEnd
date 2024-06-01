@@ -5,9 +5,14 @@
     justify-content: center;
     padding-bottom: 33px;
     padding-top: 15px;
-    min-height: 100vh;
     height: 100%;
+    width: 100%;
+    min-height: 100vh;
+    max-width: 100%;
+    overflow-x: hidden;
+    overflow-y: auto; 
 }
+
 
 
 .section__login {
@@ -41,12 +46,11 @@
     font-family: textPopins;
 }
 
-.container__login--group{
+.container__register--group{
     display: flex;
     justify-content: center;
     flex-direction: column;
     align-items: center;
-    width: 350px;
     margin: 0 auto;
     position: relative;
 }
@@ -72,8 +76,9 @@
 
 .icono__password--register {
     position: absolute;
-    right: -40%;
-    top: 67%;
+    width: 10px;
+    right: 10%;
+    top: 70%;
     transform: translateY(-50%);
     cursor: pointer;
     color: #ffffff;

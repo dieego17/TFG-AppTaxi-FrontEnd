@@ -70,7 +70,7 @@ function RegisterTaxista() {
     const newNumeroCuenta = e.target.value;
     setNumeroCuenta(newNumeroCuenta);
     if (newNumeroCuenta.length < 5 || newNumeroCuenta.length > 20) {
-      setErrorNumCuenta("El número cuenta debe tener entre 5 y 20 caracteres");
+      setErrorNumCuenta("Debe tener entre 5 y 20 caracteres");
     } else if (newNumeroCuenta === "") {
       setErrorNumCuenta("Introduzca un número de cuenta.");
     } else {
@@ -257,7 +257,7 @@ function RegisterTaxista() {
                     <div className="container__inputs--register col-sm-12 col-md-12 col-lg-12 col-xl-4 mb-5 row justify-content-center text-center ">
                       <div className="d-flex justify-content-between align-items-center">
                         <label className="label__register" htmlFor="numCuenta">
-                          Número de cuenta
+                          Nº de cuenta
                         </label>
                         {errorNumCuenta && (
                           <p className="error__login">{errorNumCuenta}</p>
@@ -343,7 +343,7 @@ function RegisterTaxista() {
                       <input
                         type={showPasswordRepet ? "text" : "password"}
                         className="input__register"
-                        placeholder="Introduce de nuevo tu contraseña"
+                        placeholder="Introduce tu contraseña"
                         onChange={handleRepitePasswordChange}
                       />
                       <span

@@ -1,12 +1,17 @@
 .fullscreen__container {
     background-color: #006431;
-    min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
+    height: 100%;
+    width: 100%;
+    min-height: 100vh;
+    max-width: 100%;
+    overflow-x: hidden;
+    overflow-y: auto; 
 }
 
-.section__login {
+.section__Login {
     background-color: #ffffff;
     width: 100%;
 }
@@ -33,8 +38,15 @@
     justify-content: center;
     flex-direction: column;
     align-items: center;
-    width: 300px;
+    width: 100%;
+    position: relative;
     margin: 0 auto;
+}
+.container__forgot--password{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
 }
 
 .label__login {
@@ -45,7 +57,7 @@
     font-family: textPopins;
 }
 
-.input__login {
+.input__Login {
     margin: 10px 0px 0px;
     padding: 10px 10px;
     border-radius: 5px;
@@ -58,25 +70,26 @@
     font-family: textPopins;
 }
 
-.input__login::placeholder {
+.input__Login::placeholder {
     color: #006431;
     font-family: textPopins;
 }
 
 
-.icono__password--login {
+.icono__password--Login {
     cursor: pointer;
     position: absolute;
     top: 56px;
+    width: 10px;
     transform: translateY(-50%);
-    right: -300px;
+    right: 30px;
     color: #006431;
 }
 
 .link__forgot {
     color: #006431;
     text-decoration: none;
-    text-align: center;
+    text-align: end;
     font-family: textPopins;
 }
 
@@ -84,7 +97,7 @@
     text-decoration: underline;
 }
 
-.boton__login {
+.boton__Login {
     background-color: #006431;
     color: #ffffff;
     padding: 10px 20px;
@@ -93,7 +106,7 @@
     cursor: pointer;
     border: 1px solid #006431;
     transition: all 0.3s;
-    width: 300px;
+    width: 100%;
     font-family: textPopins;
 }
 
@@ -116,9 +129,10 @@
 }
 .container__forgot--password{
     display: flex;
-    justify-content: center;
+    justify-content: end;
+    align-items: end;
     font-family: textPopins;
-    margin-right: 95px;
+
 }
 .link__register:hover {
     background-color: #006431;
@@ -180,7 +194,9 @@
 
 .h3__login{
     font-family: titlePopins;
+    color: #006431;
 }
 .p__login{
     font-family: textPopins;
+    color: #006431;
 }

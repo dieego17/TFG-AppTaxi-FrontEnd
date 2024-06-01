@@ -224,7 +224,7 @@ function RegisterCliente() {
               <article className="article__login">
                 <form className="form__login">
                   <div className="row justify-content-center text-center">
-                    <div className="container__login--group col-sm-12 col-md-12 col-lg-12 col-xl-4 mb-3 text-center row justify-content-center text-center">
+                    <div className="container__register--group col-sm-12 col-md-12 col-lg-12 col-xl-4 mb-3 text-center row justify-content-center text-center">
                       <div className="d-flex justify-content-between align-items-center">
                         <label className="label__register" htmlFor="nombre">
                           Nombre
@@ -240,7 +240,7 @@ function RegisterCliente() {
                         onChange={handleNameChange}
                       />
                     </div>
-                    <div className="container__login--group col-sm-12 col-md-12 col-lg-12 col-xl-4 mb-3 row justify-content-center text-center">
+                    <div className="container__register--group col-sm-12 col-md-12 col-lg-12 col-xl-4 mb-3 row justify-content-center text-center">
                       <div className="d-flex justify-content-between align-items-center">
                         <label className="label__register" htmlFor="apellidos">
                           Apellidos
@@ -256,7 +256,7 @@ function RegisterCliente() {
                         onChange={handleLastNameChange}
                       />
                     </div>
-                    <div className="container__login--group col-sm-12 col-md-12 col-lg-12 col-xl-4 mb-3 row justify-content-center text-center">
+                    <div className="container__register--group col-sm-12 col-md-12 col-lg-12 col-xl-4 mb-3 row justify-content-center text-center">
                       <div className="d-flex justify-content-between align-items-center">
                         <label className="label__register" htmlFor="telefono">
                           Teléfono
@@ -275,7 +275,7 @@ function RegisterCliente() {
                   </div>
 
                   <div className="row justify-content-center text-center">
-                    <div className="container__login--group col-sm-12 col-md-12 col-lg-12 col-xl-4 mb-3 row justify-content-center text-center">
+                    <div className="container__register--group col-sm-12 col-md-12 col-lg-12 col-xl-4 mb-3 row justify-content-center text-center">
                       <div className="d-flex justify-content-between align-items-center">
                         <label className="label__register" htmlFor="dni">
                           DNI
@@ -289,7 +289,7 @@ function RegisterCliente() {
                         onChange={handleDNIChange}
                       />
                     </div>
-                    <div className="container__login--group col-sm-12 col-md-12 col-lg-12 col-xl-4 mb-3 row justify-content-center text-center">
+                    <div className="container__register--group col-sm-12 col-md-12 col-lg-12 col-xl-4 mb-3 row justify-content-center text-center">
                       <div className="d-flex justify-content-between align-items-center">
                         <label className="label__register" htmlFor="metodoPago">
                           Método de pago
@@ -310,7 +310,7 @@ function RegisterCliente() {
                         </option>
                       </select>
                     </div>
-                    <div className="container__login--group col-sm-12 col-md-12 col-lg-12 col-xl-4 mb-3 row justify-content-center text-center ">
+                    <div className="container__register--group col-sm-12 col-md-12 col-lg-12 col-xl-4 mb-3 row justify-content-center text-center ">
                       <div className="d-flex justify-content-between align-items-center">
                         <label className="label__register" htmlFor="direccion">
                           Dirección
@@ -330,7 +330,7 @@ function RegisterCliente() {
                     </div>
                   </div>
                   <div className="row justify-content-center text-center">
-                    <div className="container__login--group col-sm-12 col-md-12 col-lg-12 col-xl-4 mb-3 row justify-content-center text-center">
+                    <div className="container__register--group col-sm-12 col-md-12 col-lg-12 col-xl-4 mb-3 row justify-content-center text-center">
                       <div className="d-flex justify-content-between align-items-center">
                         <label className="label__register" htmlFor="email">
                           Email
@@ -346,7 +346,7 @@ function RegisterCliente() {
                         onChange={handleEmailChange}
                       />
                     </div>
-                    <div className="container__login--group col-sm-12 col-md-12 col-lg-12 col-xl-4 mb-3 row justify-content-center text-center">
+                    <div className="container__register--group col-sm-12 col-md-12 col-lg-12 col-xl-4 mb-3 row justify-content-center text-center">
                       <div className="d-flex justify-content-between align-items-center">
                         <label className="label__register" htmlFor="password">
                           Contraseña
@@ -368,7 +368,7 @@ function RegisterCliente() {
                         onClick={() => setShowPassword(!showPassword)}
                       ></span>
                     </div>
-                    <div className="container__login--group col-sm-12 col-md-12 col-lg-12 col-xl-4 mb-3 row justify-content-center text-center">
+                    <div className="container__register--group col-sm-12 col-md-12 col-lg-12 col-xl-4 mb-3 row justify-content-center text-center">
                       <div className="d-flex justify-content-between align-items-center">
                         <label
                           className="label__register"
@@ -383,7 +383,7 @@ function RegisterCliente() {
                       <input
                         type={showPasswordRepet ? "text" : "password"}
                         className="input__register input__password"
-                        placeholder="Introduce de nuevo tu contraseña"
+                        placeholder="Introduce tu contraseña"
                         onChange={handleRepitePasswordChange}
                       />
                       <span
@@ -394,7 +394,7 @@ function RegisterCliente() {
                       ></span>
                     </div>
                   </div>
-                  <div className="container__login--group mb-3 mt-4 text-center">
+                  <div className="container__register--group mb-3 mt-4 text-center">
                     <button
                       type="submit"
                       className="boton__registro"
