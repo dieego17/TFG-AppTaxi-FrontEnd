@@ -25,6 +25,10 @@
   margin: 5px 0px;
 }
 
+.button__downloadPdf:hover {
+  background-color: #008cffbb;
+}
+
 .button__estado {
   background-color: #a3a3a3;
   color: #ffffff;
@@ -34,13 +38,21 @@
   margin: 5px 0px;
 }
 
+.button__estado:hover {
+  background-color: #a3a3a3bb;
+}
+
+.container__buttonVolver{
+  padding-bottom: 10px;
+}
+
 .button__volver {
   background-color: #006431;
   color: #ffffff;
   border: none;
   padding: 5px 10px;
   border-radius: 5px;
-  margin: 5px 0px 5px;
+  margin: 5px 0px 20px;
   text-decoration: none;
   font-size: 1.1rem;
 }
@@ -51,6 +63,7 @@
   align-items: center;
   margin-bottom: 20px;
 }
+
 
 .button__anterior {
   padding: 10px 20px;
@@ -94,4 +107,17 @@
   font-size: 16px;
   margin: 0 10px;
   color: #333333;
+}
+
+.button__cancelar{
+  background-color: #ff0000;
+  color: #ffffff;
+  border: none;
+  padding: 5px;
+  border-radius: 5px;
+  margin: 5px 0px;
+}
+
+.button__cancelar:hover{
+  background-color: #ff0000bb;
 }

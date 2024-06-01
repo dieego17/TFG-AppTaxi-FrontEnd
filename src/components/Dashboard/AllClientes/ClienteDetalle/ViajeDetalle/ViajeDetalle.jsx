@@ -6,9 +6,9 @@ import { PDFDownloadLink } from '@react-pdf/renderer';
 import { updateEstadoViaje } from "../../../../../services/updateEstadoViaje";
 import Pdf from "../../../../pdf/Pdf";
 import "./viaje.css";
+import { cancelarViajeTaxista } from "../../../../../services/cancelarViajeTaxista";
 
 function ClienteDetalle() {
-
   /* Solo aparecen los viajes del cliente que haya confirmado la reserva */
   // Obtener el id del usuario
   const token = localStorage.getItem("token");
@@ -17,6 +17,14 @@ function ClienteDetalle() {
   // Obtener el id del viaje de la ruta
   const params = useParams();
   const id = params.id;
+
+   // Estado para almacenar el viaje seleccionado
+  const [viajeSeleccionado, setViajeSeleccionado] = useState(null);
+
+  // Función para eliminar un viaje
+  const handleEliminarClick = async (idViaje) => {
+    setViajeSeleccionado(idViaje);
+  }
 
   // Estado local para almacenar la página actual
   const [currentPage, setCurrentPage] = useState(1);
@@ -53,6 +61,20 @@ function ClienteDetalle() {
     );
   };
 
+  //Función para cancelar el viaje
+  const handleCancelarViaje = async () => {
+
+    if (!viajeSeleccionado) return;
+
+    const viajeId = viajeSeleccionado;
+
+    // Actualizar el estado en la base de datos
+    await cancelarViajeTaxista(viajeId);
+
+    window.location.reload();
+
+  };
+
   // Obtener los datos del viaje
   const fetchedViajes = useOneViaje(id, idUsuario);
 
@@ -70,7 +92,7 @@ function ClienteDetalle() {
         <p className="no__clientes">No existen viajes para este cliente</p>
       ) : (
         <div>
-          <h1 className="h1__allClientes">Todas los Viajes</h1>
+          <h1 className="h1__allClientes">Todos los Viajes</h1>
           <table className="table">
             <thead>
               <tr>
@@ -97,6 +119,54 @@ function ClienteDetalle() {
                     <button className="button__estado" onClick={() => handleChangeEstadoViaje(viaje.id_viaje, viaje.estado_viaje === 'Pendiente' ? 'Finalizado' : 'Pendiente')}>
                       {viaje.estado_viaje === 'Pendiente' ? 'Marcar como Finalizado' : 'Marcar como Pendiente'}
                     </button>
+                    <br />
+                    <button
+                    type="button"
+                    className="btn button__cancelar"
+                    data-bs-toggle="modal"
+                    data-bs-target="#exampleModal"
+                    onClick={() => handleEliminarClick(viaje.id_viaje)}>
+                      Cancelar Viaje
+                    </button>
+                    <div
+                    className="modal fade"
+                    id="exampleModal"
+                    tabIndex="-1"
+                    aria-labelledby="exampleModalLabel"
+                    aria-hidden="true"
+                  >
+                    <div className="modal-dialog">
+                      <div className="modal-content">
+                        <div className="modal-header">
+                          <h1 className="modal-title" id="exampleModalLabel">
+                            <i className="fa-regular fa-circle-xmark"></i>
+                          </h1>
+                        </div>
+                        <div className="modal-body">
+                          <p>¿Estas seguro que quieres cancelar el viaje seleccionado?<br />
+                            Este proceso no podrá deshacerse.
+                          </p>
+                        </div>
+                        <div className="modal-footer">
+                          <button
+                            type="button"
+                            className="btn btn-secondary"
+                            data-bs-dismiss="modal"
+                          >
+                            Cancelar
+                          </button>
+                          <button
+                            type="button"
+                            className="btn btn-danger"
+                            data-bs-dismiss="modal"
+                            onClick={handleCancelarViaje}
+                          >
+                            Confirmar
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                   </td>
                   <td className="table__td" data-label="Precio">{viaje.precioTotal_viaje}€</td>
                   <td className="table__td" data-label="Crear factura">
@@ -132,9 +202,11 @@ function ClienteDetalle() {
           </div>
         </div>
       )}
+      <div className="container__buttonVolver">
       <Link className="button__volver" to={"/dashboard/clientes"}>
         Volver
       </Link>
+      </div>
     </div>
   );
 }

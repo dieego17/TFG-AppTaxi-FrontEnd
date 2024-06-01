@@ -72,7 +72,7 @@
     background-color: #eaeaea;
 }
 
-@media screen and (max-width: 1170px) {
+@media screen and (max-width: 1250px) {
     .table {
         border: 0px;
     }
@@ -111,9 +111,6 @@
     margin-top:30px;
 }
     
-@media screen and (max-width: 1024px) {
-    
-}
 
 .button__siguiente,  .button__anterior, .span__numero{
     font-family: textPopins;

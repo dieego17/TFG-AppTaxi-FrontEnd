@@ -19,7 +19,7 @@ function ResumenDashboard({ mostrar }) {
   return (
     <div className="resumen-dashboard container">
       <section className='section__title'>
-        <h1 className='h1__titleDashboard'>Bienvenido de nuevo, {userName} {apellidos} 👋</h1>
+        <h1 className='h1__titleDashboard'>Bienvenido, {userName} {apellidos} 👋</h1>
       </section>
       <section className='section__dashboard section__dashboard--dos'>
         <article className='article__dashboard article__dashboard--dos'>

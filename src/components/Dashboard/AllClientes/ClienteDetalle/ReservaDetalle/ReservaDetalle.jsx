@@ -80,9 +80,11 @@ function ReservaDetalle() {
           </div>
         </div>
       )}
-      <Link className="button__volver" to={"/dashboard/clientes"}>
-        Volver
-      </Link>
+      <div className="container__buttonVolver">
+        <Link className="button__volver" to={"/dashboard/clientes"}>
+          Volver
+        </Link>
+      </div>
     </div>
   );
 }
