@@ -1,0 +1,163 @@
+
+.container__resumenCliente {
+    width: 100%;
+    padding: 20px;
+    margin-top: 180px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.section__inicioCliente {
+    text-align: center;
+    margin-bottom: 30px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+}
+
+.container__tarjetaPromociones {
+    display: flex;
+    flex-wrap: wrap; 
+    justify-content: space-around; 
+}
+.card {
+    flex: 1 1 calc(50% - 20px); 
+    margin: 10px; 
+    box-sizing: border-box; 
+}
+
+.card-img-top {
+    width: 100%; 
+    height: auto; 
+}
+
+
+@media (max-width: 768px) {
+    .card {
+        flex: 1 1 calc(100% - 20px); 
+    }
+}
+
+
+.h1__inicioCliente {
+    font-size: 2rem;
+    font-family: titlePopins;
+    color: #006431;
+}
+
+.text__inicioCliente {
+    font-family: textPopins;
+    color: #006431;
+}
+
+
+.section__promociones {
+    margin-bottom: 30px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.h2__promociones {
+    text-align: center;
+    font-family: titlePopins;
+    color: #006431;
+}
+
+.container__tarjetasPromociones {
+    display: flex;
+    flex-wrap: wrap; 
+    justify-content: center;
+    gap: 20px;
+}
+
+.container__tarjeta {
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    flex: 1;
+    min-width: 200px;
+    max-width: 300px; 
+}
+
+.card__promocion {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.text__promociones {
+    text-align: center;
+    font-family: textPopins;
+    color: #006431;
+}
+
+.link__aeropuerto {
+    text-decoration: none;
+}
+
+
+.container__recomendaciones {
+    width: 100%;
+    padding-top: 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+}
+
+.h2__noticias {
+    text-align: center;
+    margin-bottom: 20px;
+    font-family: titlePopins;
+    color: #006431;
+}
+
+.card {
+    width: 100%;
+    max-width: 800px; 
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+}
+
+.card-body {
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.card__titleTarjeta {
+    font-family: titlePopins;
+    color: #006431;
+    text-align: center;
+}
+
+.card__textTarjeta {
+    font-family: textPopins;
+    color: #006431;
+    text-align: center;
+}
+
+.img-fluid {
+    width: 100%;
+    height: auto;
+}
+
+@media (max-width: 768px) {
+    .container__tarjeta {
+        min-width: 100%; 
+        max-width: 100%;
+    }
+}
+
+.card__titlePro{
+    font-family: textPopins;
+    color: #006431;
+    text-align: center;
+}

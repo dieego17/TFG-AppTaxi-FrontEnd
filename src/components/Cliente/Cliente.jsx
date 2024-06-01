@@ -3,6 +3,10 @@ import React, { useState } from 'react';
 import './cliente.css';
 import HeaderCliente from './HeaderCliente/HeaderCliente';
 import { Outlet } from 'react-router-dom';
+import ResumenCliente from './ResumenCliente/ResumenCliente';
+import { useLocation } from 'react-router-dom';
+import logo from '../../assets/images/logoBlanco.png';
+import FooterCliente from './FooterCliente/FooterCliente';
 
 function Cliente() {
   // Comprobar si tiene rol de cliente
@@ -17,6 +21,12 @@ function Cliente() {
     setNoCliente(true);
   }
 
+  // Obtiene la ubicación actual
+  const location = useLocation();
+
+  // Verifica si la ubicación actual es la página del cliente
+  const mostrarResumen = location.pathname === '/cliente';
+
   return (
     <div>
       {noCliente && <div className='aviso'>No tienes permisos para acceder a esta página</div>}
@@ -24,9 +34,14 @@ function Cliente() {
         <HeaderCliente />
       </header>
       <main>
-        <Outlet />
+        <ResumenCliente mostrar={mostrarResumen} />
+        <div>
+          <Outlet />
+        </div>
       </main>
-      <footer></footer>
+      <footer className='container__footer'>
+        <FooterCliente />
+      </footer>
     </div>
   );
 }
