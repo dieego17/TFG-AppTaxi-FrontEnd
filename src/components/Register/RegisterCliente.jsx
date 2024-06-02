@@ -1,9 +1,10 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./registerCliente.css";
 import logo from "../../assets/images/logoVerde.png";
 import { registerCliente } from "../../services/registerCliente";
+import {  } from "react-router-dom";
 
 function RegisterCliente() {
   const [name, setName] = useState("");
@@ -27,6 +28,7 @@ function RegisterCliente() {
   const [showPasswordRepet, setShowPasswordRepet] = useState(false);
   const [metodoPago, setMetodoPago] = useState("");
   const [errorMetodoPago, setErrorMetodoPago] = useState("");
+  const navigate = useNavigate();
 
   const validateEmail = (email) => {
     const re = /\S+@\S+\.\S+/;
@@ -92,9 +94,17 @@ function RegisterCliente() {
     return true;
   };
 
+  const validarDNI = (dni) => {
+    const re = /^[0-9]{8}[A-Za-z]$/;
+    return re.test(dni);
+  };
+
   const validateDNI = (DNI) => {
     if (DNI === "") {
       setDniError("Introduzca tu DNI");
+      return false;
+    } else if (!validarDNI(DNI)) {
+      setDniError("Introduzca un DNI válido");
       return false;
     }
     setDniError("");
@@ -205,6 +215,8 @@ function RegisterCliente() {
       return;
     }
 
+    // Redirigir al usuario a la página de login
+    navigate("/login");
     
   };
 
@@ -221,6 +233,11 @@ function RegisterCliente() {
                   <p>Crea una nueva cuenta</p>
                 </div>
               </article>
+              {
+                errorResponse && (
+                  <p className="error__login">{errorResponse}</p>
+                )
+              }
               <article className="article__login">
                 <form className="form__login">
                   <div className="row justify-content-center text-center">

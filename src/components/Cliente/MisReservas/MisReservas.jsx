@@ -221,7 +221,7 @@ function MisReservas() {
           </div>
         </div>
       ) : (
-        <p className="no__clientes">No existen reservas para este usuario</p>
+        <p className="no__clientes">Todavía no tienes ninguna reserva</p>
       )}
     </div>
   );

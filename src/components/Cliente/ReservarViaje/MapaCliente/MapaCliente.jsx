@@ -1,14 +1,13 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect, useRef } from 'react';
-import { useParams, Link } from 'react-router-dom';
-import { useLoadScript, GoogleMap, DirectionsService, DirectionsRenderer } from '@react-google-maps/api';
+import { useLoadScript, GoogleMap, DirectionsRenderer } from '@react-google-maps/api';
 
 const bibliotecas = ["places"];
 
 const opcionesMapa = {
   disableDefaultUI: true,
-  zoomControl: true,
+  zoomControl: true
 };
 
 function MapaCliente({origen, destino}) {
@@ -63,7 +62,7 @@ function MapaCliente({origen, destino}) {
     <div className='container__ruta container'>
       <div className='container__mapa'>
         <GoogleMap
-          mapContainerStyle={{ width: '600px', height: '450px', borderRadius: '30px', boxShadow: '0 0 10px 0 rgba(0, 0, 0, 0.2)', zIndex: '-1'}}
+          mapContainerStyle={{ width: '100%', height: '400px', borderRadius: '30px', boxShadow: '0 0 10px 0 rgba(0, 0, 0, 0.2)', zIndex: '-1'}}
           center={mapCenter}
           options={opcionesMapa}
           onLoad={map => mapRef.current = map}

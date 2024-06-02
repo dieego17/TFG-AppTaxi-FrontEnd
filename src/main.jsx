@@ -29,6 +29,7 @@ import RutaMapa from './components/Dashboard/AllClientes/ClienteDetalle/ViajeDet
 import ReservarViaje from './components/Cliente/ReservarViaje/ReservarViaje';
 import CrearFactura from './components/Dashboard/CrearFactura/CrearFactura';
 import PrivateRoute from './auth/PrivateRoute';
+import CambiarContraseña from './components/Login/CambiarContraseña/CambiarContraseña';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <BrowserRouter>
@@ -41,6 +42,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route path="servicios/viaje-por-horas" element={<ViajeHoras />} />
       </Route>
       <Route path="/login" element={<Login />} />
+      <Route path="/login/cambiar-contraseña" element={<CambiarContraseña />} />
       <Route path="/register-taxista" element={<RegisterTaxista />} />
       <Route path="/register-cliente" element={<RegisterCliente />} />
 

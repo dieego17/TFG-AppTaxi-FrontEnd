@@ -33,93 +33,176 @@ function RegisterTaxista() {
 
   const validateEmail = (email) => {
     const re = /\S+@\S+\.\S+/;
-    return re.test(email);
+    if (!re.test(email)) {
+      setEmailError("Introduzca un correo válido");
+      return false;
+    } else {
+      setEmailError("");
+      return true;
+    }
   };
 
   const validatePassword = (password) => {
-    return password.length >= 6;
+    setPasswordError("Introduzca una contraseña");
+    if (password === "") {
+      setPasswordError("Introduzca una contraseña");
+      return false;
+    } else if (password.length < 6) {
+      setPasswordError("Debe tener al menos 6 caracteres");
+      return false;
+    } else {
+      setPasswordError("");
+      return true;
+    }
+  };
+
+  const validateRepitePassword = (repitePassword) => {
+    if (repitePassword !== password) {
+      setRepitePasswordError("Las contraseñas no coinciden");
+      return false;
+    }
+    setRepitePasswordError("");
+    return true;
+  };
+
+  const validateName = (name) => {
+    if (name === "") {
+      setNameError("Introduzca tu nombre");
+      return false;
+    }
+    setNameError("");
+    return true;
+  };
+
+  const validateLastName = (lastName) => {
+    if (lastName === "") {
+      setLastNameError("Introduzca tu apellido");
+      return false;
+    }
+    setLastNameError("");
+    return true;
+  };
+
+  const validatePhone = (phone) => {
+    if (phone === "") {
+      setPhoneError("Introduzca tu teléfono");
+      return false;
+    } else if (phone.length < 9) {
+      setPhoneError("Introduzca un teléfono válido");
+      return false;
+    }
+    setPhoneError("");
+    return true;
+  };
+
+  const validarDNI = (dni) => {
+    const re = /^[0-9]{8}[A-Za-z]$/;
+    return re.test(dni);
+  };
+
+  const validateDNI = (DNI) => {
+    if (DNI === "") {
+      setDniError("Introduzca tu DNI");
+      return false;
+    } else if (!validarDNI(DNI)) {
+      setDniError("Introduzca un DNI válido");
+      return false;
+    }
+    setDniError("");
+    return true;
+  };
+
+  const validateDireccionUsuario = (direccionUsuario) => {
+    if (direccionUsuario === "") {
+      setDireccionUsuarioError("Introduzca tu dirección");
+      return false;
+    }
+    setDireccionUsuarioError("");
+    return true;
+  };
+
+  const validateNumCuenta = (numeroCuenta) => {
+    if (numeroCuenta === "") {
+      setErrorNumCuenta("Introduzca un número de cuenta.");
+      return false;
+    } else if (numeroCuenta.length < 10 || numeroCuenta.length > 20) {
+      setErrorNumCuenta("Debe tener entre 10 y 20 caracteres");
+      return false;
+    }
+    setErrorNumCuenta("");
+    return true;
+  };
+
+  const validateVehiculo = (vehiculo) => {
+    if (vehiculo === "") {
+      setErrorVehiculo("Introduzca un vehículo.");
+      return false;
+    }else if (vehiculo.length < 3 || vehiculo.length > 50) {
+      setErrorVehiculo("Debe tener entre 3 y 50 caracteres");
+      return false;
+    }
+    setErrorVehiculo("");
+    return true;
   };
 
   const handleNameChange = (e) => {
     const newName = e.target.value;
     setName(newName);
-    setNameError(newName ? "" : "Introduzca tu nombre.");
+    validateName(newName);
   };
 
   const handleLastNameChange = (e) => {
     const newLastName = e.target.value;
     setLastName(newLastName);
-    setLastNameError(newLastName ? "" : "Introduzca tus apellidos.");
+    validateLastName(newLastName);
   };
 
   const handleDNIChange = (e) => {
     const newDNI = e.target.value;
     setDNI(newDNI);
-    setDniError(newDNI ? "" : "Introduzca tu DNI.");
+    validateDNI(newDNI);
   };
 
   const handleDireccionUsuarioChange = (e) => {
     const newDireccionUsuario = e.target.value;
     setDireccionUsuario(newDireccionUsuario);
-    setDireccionUsuarioError(
-      newDireccionUsuario ? "" : "Introduzca tu dirección."
-    );
+    validateDireccionUsuario(newDireccionUsuario);
   };
 
   const handleNumeroCuentaChange = (e) => {
     const newNumeroCuenta = e.target.value;
     setNumeroCuenta(newNumeroCuenta);
-    if (newNumeroCuenta.length < 5 || newNumeroCuenta.length > 20) {
-      setErrorNumCuenta("Debe tener entre 5 y 20 caracteres");
-    } else if (newNumeroCuenta === "") {
-      setErrorNumCuenta("Introduzca un número de cuenta.");
-    } else {
-      setErrorNumCuenta("");
-    }
+    validateNumCuenta(newNumeroCuenta);
   };
 
   const handlePhoneChange = (e) => {
     const newPhone = e.target.value;
     setPhone(newPhone);
-    setPhoneError(newPhone ? "" : "Introduzca tu teléfono.");
+    validatePhone(newPhone);
   };
 
   const handleEmailChange = (e) => {
     const newEmail = e.target.value;
     setEmail(newEmail);
-    setEmailError(
-      newEmail
-        ? validateEmail(newEmail)
-          ? ""
-          : "Introduzca un correo válido"
-        : "Introduzca un correo válido"
-    );
+    validateEmail(newEmail);
   };
 
   const handleVehiculoChange = (e) => {
     const newVehiculo = e.target.value;
     setVehiculo(newVehiculo);
-    setErrorVehiculo(newVehiculo ? "" : "Introduzca un vehículo.");
+    validateVehiculo(newVehiculo);
   };
 
   const handlePasswordChange = (e) => {
     const newPassword = e.target.value;
     setPassword(newPassword);
-    setPasswordError(
-      newPassword
-        ? validatePassword(newPassword)
-          ? ""
-          : "Debe tener al menos 6 caracteres."
-        : "Introduzca una contraseña"
-    );
+    validatePassword(newPassword);
   };
 
   const handleRepitePasswordChange = (e) => {
     const newPasswordRepeat = e.target.value;
     setRepitePassword(newPasswordRepeat);
-    setRepitePasswordError(
-      newPasswordRepeat === password ? "" : "Las contraseñas no coinciden."
-    );
+    validateRepitePassword(newPasswordRepeat);
   };
 
   // Función para enviar los datos del formulario
@@ -127,9 +210,8 @@ function RegisterTaxista() {
     // Evitar que el formulario recargue la página
     e.preventDefault();
 
-    // Validar que las contraseñas coincidan
-    if (password !== repitePassword) {
-      console.log("Las contraseñas no coinciden");
+    // Validar los campos del formulario
+    if(!validateName(name) || !validateLastName(lastName) || !validatePhone(phone) || !validateEmail(email) || !validatePassword(password) || !validateRepitePassword(repitePassword) || !validateDNI(DNI) || !validateDireccionUsuario(direccionUsuario) || !vehiculo) { 
       return;
     }
 
@@ -153,6 +235,9 @@ function RegisterTaxista() {
       return;
     }
 
+    // Redirigir al usuario a la página de login
+    navigate("/login");
+
   };
 
   return (
@@ -168,6 +253,9 @@ function RegisterTaxista() {
                   <p>Crea una nueva cuenta</p>
                 </div>
               </article>
+              {errorResponse && (
+                <p className="error__login">{errorResponse}</p>
+              )}
               <article className="article__login">
                 <form className="form__login">
                   <div className="row justify-content-center text-center">

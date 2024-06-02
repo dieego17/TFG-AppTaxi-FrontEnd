@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useTaxistas } from "../../../hooks/useTaxistas";
 import "./reservarViaje.css";
 import { reservaViaje } from "../../../services/reservaViaje";
@@ -18,11 +18,15 @@ function ReservarViaje() {
   const [metodoPago, setMetodoPago] = useState("");
   const [errorMetodoPago, setErrorMetodoPago] = useState("");
   const [precioTotal, setPrecioTotal] = useState(0);
-  const [error, setError] = useState(null);
   const [taxistaSeleccionado, setTaxistaSeleccionado] = useState("");
   const [errorTaxista, setErrorTaxista] = useState("");
   const [isDistanceCalculated, setIsDistanceCalculated] = useState(false);
+
   const [success, setSuccess] = useState(false);
+  const [error, setError] = useState(false);
+
+  // Nuevo estado para actualizar el mapa
+  const [mapKey, setMapKey] = useState(0);
 
   // Nuevo estado para controlar la visualización del mapa
   const [mostrarMapa, setMostrarMapa] = useState(false);
@@ -39,6 +43,12 @@ function ReservarViaje() {
     if (!origen) {
       setErrorOrigen("Introduce una direccion de origen.");
       return false;
+    } else if (origen === destino) {
+      setErrorOrigen("El origen y el destino no pueden ser iguales.");
+      return false;
+    } else if (origen != destino) {
+      setErrorOrigen("");
+      return true;
     } else {
       setErrorOrigen("");
       return true;
@@ -156,11 +166,13 @@ function ReservarViaje() {
         const distanciaEnMetros = data.rows[0].elements[0].distance.value;
         const distanciaEnKilometros = distanciaEnMetros / 1000;
         setDistancia(distanciaEnKilometros);
-        setError(null);
+        setError(false);
         calcularPrecioTotal(distanciaEnKilometros);
         setIsDistanceCalculated(true);
-        // Después de calcular la distancia, mostrar el mapa
+        // Después de calcular la distancia, mostrar el mapa y actualizar el key
         setMostrarMapa(true);
+        // Actualizar el key del mapa para que se vuelva a renderizar si cambia de ciudad
+        setMapKey((prevKey) => prevKey + 1);
       } else {
         setError(
           "Hubo un problema al buscar la distancia. Por favor, intenta de nuevo."
@@ -210,44 +222,40 @@ function ReservarViaje() {
       metodo_pago: metodoPago,
     };
 
-    await reservaViaje(datosFormulario, idUsuario);
+    const res = await reservaViaje(datosFormulario, idUsuario);
+
+    if (res.status === 201) {
+      setSuccess(true);
+      setError(false);
+    } else {
+      setError("El taxista ya tiene un viaje en la misma fecha y hora");
+      setSuccess(false);
+    }
   };
 
   return (
     <div className="container__crear--reservas container">
       <h2 className="h2__reservasViaje">Reservar un viaje</h2>
       <div className="container__contenido container">
-      <form className="container__form" onSubmit={handleSubmit}>
+        <form className="container__form" onSubmit={handleSubmit}>
           {error && (
-            <div
-              className="alert alert-danger alert-dismissible fade show"
-              role="alert"
-            >
-              {error}
-              <button
-                type="button"
-                className="btn-close"
-                data-bs-dismiss="alert"
-                aria-label="Close"
-              ></button>
+            <div className="alert alert-danger" role="alert">
+            <i className="fa-solid fa-xmark"></i>{error}
+              </div>
+          )}
+          {success && (
+            <div className="container__body">
+              <div className="notificacion__container">
+                <div className="notificacion__body">
+                  <i className="notificacion__icon fa-regular fa-circle-check"></i>
+                  <p className="texto__success--grande">
+                    Viaje reservado correctamente.
+                  </p>
+                </div>
+                <div className="notifiacion__progress"></div>
+              </div>
             </div>
           )}
-          {
-            // Mostrar alerta de éxito
-            success && (
-              <div className="container__body">
-                <div className="notificacion__container">
-                  <div className="notificacion__body">
-                    <i className="notificacion__icon fa-regular fa-circle-check"></i>
-                    <p className="texto__success--grande">
-                      Viaje resergado correctamente.
-                    </p>
-                  </div>
-                  <div className="notifiacion__progress"></div>
-                </div>
-              </div>
-            )
-          }
           <div className="container__input">
             <div className="d-flex justify-content-between ">
               <label className="label__reservar" htmlFor="origen">
@@ -358,44 +366,52 @@ function ReservarViaje() {
               {errorTaxista && <p className="error__input">{errorTaxista}</p>}
             </div>
           </div>
-        <div className="container__inputsButton">
-          <div className="container__button">
-            <button
-              className="button__precio"
-              type="button"
-              onClick={handleBuscarDistancia}
-            >
-              Calcular Precio
-            </button>
-            <button
-              className="button__reservas"
-              type="submit"
-              disabled={!isDistanceCalculated}
-            >
-              Reservar
-            </button>
-          </div>
-        </div>
-      </form>
-      <div className="container__mapa">
-        {isDistanceCalculated && (
-          <p className="text__precio">
-            <strong className="strong__pecio">El precio del viaje sería:</strong>{" "}
-            {precioTotal}€
-          </p>
-        )}
-        {mostrarMapa ? (
-          <div style={{ marginTop: "20px" }}>
-            <MapaCliente origen={origen} destino={destino} />
-          </div>
-        ) :
-          (
-            <div className="container__mapaVacio">
-                <iframe className="iframe__mapa" src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d2998348.288015742!2d-4.834991499999999!3d39.5050541!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses!2ses!4v1717325567651!5m2!1ses!2ses" width="600" height="450" style={{ border: "0" }} allowfullscreen="" loading="lazy"></iframe>
+          <div className="container__inputsButton">
+            <div className="container__button">
+              <button
+                className="button__precio"
+                type="button"
+                onClick={handleBuscarDistancia}
+              >
+                Calcular Precio
+              </button>
+              <button
+                className="button__reservas"
+                type="submit"
+                disabled={!isDistanceCalculated}
+              >
+                Reservar
+              </button>
             </div>
-          )
-        }
-      </div>
+          </div>
+        </form>
+        <div className="container__mapa">
+          {isDistanceCalculated && (
+            <p className="text__precio">
+              <strong className="strong__pecio">
+                El precio del viaje sería:
+              </strong>{" "}
+              {precioTotal}€
+            </p>
+          )}
+          {mostrarMapa ? (
+            <div className="container__mapaMaps">
+              <MapaCliente key={mapKey} origen={origen} destino={destino} />
+            </div>
+          ) : (
+            <div className="container__mapaVacio">
+              <iframe
+                className="iframe__mapa"
+                src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d2998348.288015742!2d-4.834991499999999!3d39.5050541!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses!2ses!4v1717325567651!5m2!1ses!2ses"
+                width="600"
+                height="450"
+                style={{ border: "0" }}
+                allowfullscreen=""
+                loading="lazy"
+              ></iframe>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );

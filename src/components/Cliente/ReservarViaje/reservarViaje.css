@@ -1,6 +1,5 @@
 .container__crear--reservas {
     margin-top: 150px;
-    margin-bottom: 20px;
     padding: 20px;
     border-radius: 10px;
     width: 100%;
@@ -187,9 +186,85 @@
     padding: 20px;
 }
 .iframe__mapa{
-    width: 600px;
+    width: 500px;
     height: 450px;
     border: none;
     border-radius: 30px;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+}
+
+.container__mapaMaps{
+    width: 100%;
+    margin-top: 20px;
+}
+
+@media screen and (max-width: 1024px) {
+    .container__crear--reservas {
+        margin-top: 180px;
+        margin-bottom: 100px;
+    }
+
+    .container__contenido {
+        flex-direction: column;
+    }
+
+    .section__reserva {
+        flex-direction: column;
+    }
+
+    .container__form {
+        padding: 0px;
+    }
+
+    .container__formInput {
+        padding: 0px;
+    }
+
+    .container__input {
+        padding: 0px;
+    }
+
+    .contaainer__inputs {
+        flex-direction: column;
+    }
+
+    .container__inputsButton {
+        padding: 20px 5px;
+    }
+
+    .button__precio {
+        margin-top: 10px;
+    }
+
+    .button__reservas {
+        margin-top: 10px;
+    }
+
+    .container__mapaVacio {
+        padding: 0px;
+    }
+
+    .iframe__mapa {
+        width: 100%;
+        height: 400px;
+    }
+
+    .container__mapaMaps {
+        padding-bottom: 0px;
+    }
+    
+}
+
+.alert-danger{
+    border: none;
+    border-bottom: 5px solid #d9534f;
+    font-family: textPopins;
+}
+.fa-xmark{
+    background-color: #d9534f;
+    color: white;
+    border-radius: 50%;
+    padding: 5px;
+    margin-right: 10px;
+
 }

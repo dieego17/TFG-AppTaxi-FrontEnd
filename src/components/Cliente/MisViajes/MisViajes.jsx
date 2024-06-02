@@ -98,7 +98,7 @@ function MisViajes() {
           </div>
         </div>
       ) : (
-        <p>No existen viajes para este usuario</p>
+        <p className="no__clientes">Todavía no tienes ningún viaje</p>
       )}
     </div>
   );

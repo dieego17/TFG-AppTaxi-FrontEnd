@@ -1,0 +1,202 @@
+.fullscreen__container {
+    background-color: #006431;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    min-height: 100vh;
+    max-width: 100%;
+    overflow-x: hidden;
+    overflow-y: auto; 
+}
+
+.section__Login {
+    background-color: #ffffff;
+    width: 100%;
+}
+
+.article__logo {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    text-align: left;
+}
+
+.login__logo {
+    width: 100px;
+    margin: 20px 0px 0px;
+}
+
+.container__texto--login {
+    padding: 40px 0px 0px;
+    text-align: right;
+}
+
+.container__login--group {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    position: relative;
+    margin: 0 auto;
+}
+.container__forgot--password{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.label__login {
+    color: #006431;
+    text-align: left;
+    display: flex;
+    justify-content: space-between;
+    font-family: textPopins;
+}
+
+.input__Login {
+    margin: 10px 0px 0px;
+    padding: 10px 10px;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    background-color: #ffffff;
+    color: #006431;
+    border: 1px solid #006431;
+    width: 100%;
+    font-family: textPopins;
+}
+
+.input__Login::placeholder {
+    color: #006431;
+    font-family: textPopins;
+}
+
+
+.icono__password--Login {
+    cursor: pointer;
+    position: absolute;
+    top: 56px;
+    width: 10px;
+    transform: translateY(-50%);
+    right: 30px;
+    color: #006431;
+}
+
+.link__forgot {
+    color: #006431;
+    text-decoration: none;
+    text-align: end;
+    font-family: textPopins;
+}
+
+.link__forgot:hover {
+    text-decoration: underline;
+}
+
+.boton__Login {
+    background-color: #006431;
+    color: #ffffff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    border: 1px solid #006431;
+    transition: all 0.3s;
+    width: 100%;
+    font-family: textPopins;
+}
+
+.boton__login:hover {
+    background-color: #ffffff;
+    color: #006431;
+    border: 1px solid #006431;
+}
+
+.link__register {
+    color: #006431;
+    text-decoration: none;
+    background-color: #ffffff;
+    color: #006431;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: all 0.3s;
+    font-size: 0.9rem;
+    font-family: textPopins;
+}
+.container__forgot--password{
+    display: flex;
+    justify-content: end;
+    align-items: end;
+    font-family: textPopins;
+
+}
+.link__register:hover {
+    background-color: #006431;
+    color: #ffffff;
+}
+
+.link__register--taxista {
+    background-color: #ff5722;
+    color: #ffffff;
+    border: 1px solid #ff5722;
+    font-family: textPopins;
+}
+
+.link__register--taxista:hover {
+    background-color: #ffffff;
+    color: #ff5722;
+    border: 1px solid #ff5722;
+}
+
+.link__register--cliente {
+    background-color: #3f51b5;
+    color: #ffffff;
+    border: 1px solid #3f51b5;
+}
+
+.link__register--cliente:hover {
+    background-color: #ffffff;
+    color: #3f51b5;
+    border: 1px solid #3f51b5;
+}
+
+.article__login--out {
+    margin-top: 30px;
+    font-family: textPopins;
+}
+
+.link__out {
+    text-decoration: none;
+    background-color: #006431;
+    color: #ffffff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: all 0.3s;
+    border: 1px solid #006431;
+    font-family: textPopins;
+}
+
+.link__out:hover {
+    background-color: #ffffff;
+    color: #006431;
+}
+
+.error__login{
+    color: red;
+    text-align: center;
+    margin-top: 10px;
+    font-family: textPopins;
+}
+
+.h3__login{
+    font-family: titlePopins;
+    color: #006431;
+}
+.p__login{
+    font-family: textPopins;
+    color: #006431;
+}
