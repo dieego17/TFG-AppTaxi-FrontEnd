@@ -35,16 +35,17 @@
 
 .textarea__reseña{
     height: 100px;
-    border: 1px solid #006431;
+    border: none;
     border-radius: 5px;
     padding: 10px;
     font-family: textPopins;
     margin: 10px 0px;
     outline: none;
     color: #006431;
+    background-color: #CCCCCC;
 }
 .textarea__reseña::placeholder{
-    color: #006431;
+    color: #ffffff;
 }
 
 .fa-solid.fa-star {

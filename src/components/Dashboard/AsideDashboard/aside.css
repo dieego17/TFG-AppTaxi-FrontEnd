@@ -26,6 +26,7 @@
     padding: 10px;
     border-radius: 10px;
     cursor: pointer;
+    position: relative;
 }
 
 .icon__aside{
@@ -53,7 +54,7 @@
     padding: 2px 0px 0px 2px;
     font-family: textPopins;
 }
-.menu__desplegable{
+.menu__desplegableAsie{
     position: absolute;
     background-color: #005026;
     border-radius: 10px;

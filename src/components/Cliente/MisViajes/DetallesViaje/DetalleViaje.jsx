@@ -16,11 +16,6 @@ function DetalleViaje() {
     return date.toLocaleDateString();
   };
 
-  const calcularIva = (precio) => {
-    const resta = (precio * 0.1).toFixed(1);
-    return parseFloat(resta) + precio;
-  };
-
   return (
     <section className="container">
       <div className="container__viaje--detalle">
@@ -44,7 +39,7 @@ function DetalleViaje() {
           </p>
           <p className="text__detalleViaje">
             <strong className="strong__detalleViaje">Precio Total:</strong>{" "}
-            {calcularIva(viaje.precioTotal_viaje)}€
+            {viaje.precioTotal_viaje}€
           </p>
           <p className="text__detalleViaje">
             <strong className="strong__detalleViaje">Taxista:</strong>{" "}

@@ -34,12 +34,6 @@ function MisViajes() {
   };
 
 
-  const calcularIva = (precio) => {
-    const resta = (precio * 0.1).toFixed(1);
-    return parseFloat(resta) + precio;
-  };
-
-
 
   return (
     <div className="container__reservas container">
@@ -74,7 +68,7 @@ function MisViajes() {
                           <button className="texto__confirmado">Finaliado</button>
                         ) : null}
                     </td>
-                    <td data-label="Precio" className="table__td">{calcularIva(viaje.precioTotal_viaje)}€</td>
+                    <td data-label="Precio" className="table__td">{viaje.precioTotal_viaje}€</td>
                     <td data-label="Más información" className="table__td">
                         <Link to={`/cliente/mis-viajes/detalles/${viaje.id_viaje}`}>
                             <i className="fa-solid fa-circle-info link__details"></i>

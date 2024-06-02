@@ -1,14 +1,29 @@
-.container__crear--reservas{
+.container__crear--reservas {
     margin-top: 150px;
     margin-bottom: 20px;
     padding: 20px;
     border-radius: 10px;
     width: 100%;
 }
-.title__pagar{
+
+.container__contenido{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+}
+
+.h2__reservasViaje {
+    font-family: titlePopins;
+    color: #006431;
+
+}
+
+.title__pagar {
     text-align: center;
 }
-.section__reserva{
+
+.section__reserva {
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -18,4 +33,163 @@
     background-color: #f5f5f5;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     width: 100%;
+}
+
+
+.container__form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+}
+
+.container__formInput {
+    display: flex;
+    flex-direction: column;
+    margin: 10px 0px;
+    padding: 0px 10px;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+.container__input {
+    display: flex;
+    flex-direction: column;
+    margin: 10px 0px;
+    padding: 0px 10px;
+    width: 100%;
+}
+
+.contaainer__inputs {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.label__reservar {
+    font-family: textPopins;
+    color: #006431;
+}
+
+.input__reservas {
+    margin-top: 10px;
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #006431;
+    font-family: textPopins;
+    outline: none;
+    color: #006431;
+}
+
+.input__reservas::placeholder {
+    font-family: textPopins;
+    color: #006431;
+}
+
+.container__inputsButton {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 50px 5px;
+    border-radius: 10px;
+}
+
+.button__precio {
+    margin-top: 20px;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #00b7ff;
+    color: white;
+    font-family: textPopins;
+    cursor: pointer;
+    outline: none;
+    border: none;
+    border: 1px solid #00b7ff;
+    width: 100%;
+    margin: 0px 5px;
+}
+
+.button__precio:hover {
+    background-color: #ffffff;
+    color: #00b7ff;
+    border: 1px solid #00b7ff;
+}
+
+
+.button__reservas {
+    margin-top: 20px;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #ccc;
+    color: #999;
+    font-family: textPopins;
+    cursor: not-allowed;
+    outline: none;
+    width: 100%;
+    border: none;
+    margin: 0px 5px;
+}
+
+.button__reservas:hover {
+    background-color: #ccc;
+    color: #999;
+}
+
+/* Estilos para cuando el botón está habilitado */
+.button__reservas:enabled {
+    background-color: #006431;
+    color: white;
+    cursor: pointer;
+}
+
+.button__reservas:enabled:hover {
+    background-color: #ffffff;
+    color: #006431;
+    border: 1px solid #006431;
+}
+
+.text__precio {
+    font-family: textPopins;
+    font-size: 20px;
+    color: red;
+}
+
+.strong__pecio {
+    font-family: textPopins;
+    color: #006431;
+    font-weight: normal;
+    text-align: left;
+}
+
+.container__button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 0px 10px;
+
+}
+
+.error__input {
+    color: red;
+    font-family: textPopins;
+    font-size: 14px;
+    text-align: center;
+}
+
+.container__mapaVacio{
+    width: 100%;
+    margin-top: 20px;
+    padding: 20px;
+}
+.iframe__mapa{
+    width: 600px;
+    height: 450px;
+    border: none;
+    border-radius: 30px;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
 }

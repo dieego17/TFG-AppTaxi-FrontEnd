@@ -22,20 +22,20 @@
     flex-wrap: wrap; 
     justify-content: space-around; 
 }
-.card {
+.card__promociones {
     flex: 1 1 calc(50% - 20px); 
     margin: 10px; 
     box-sizing: border-box; 
 }
 
-.card-img-top {
+.img__promociones {
     width: 100%; 
     height: auto; 
 }
 
 
 @media (max-width: 768px) {
-    .card {
+    .card__promociones {
         flex: 1 1 calc(100% - 20px); 
     }
 }
@@ -115,7 +115,7 @@
     color: #006431;
 }
 
-.card {
+.card__news {
     width: 100%;
     max-width: 800px; 
     margin-bottom: 20px;
@@ -124,7 +124,7 @@
     align-items: center; 
 }
 
-.card-body {
+.body__cardNews {
     padding: 15px;
     display: flex;
     flex-direction: column;
@@ -144,7 +144,7 @@
     text-align: center;
 }
 
-.img-fluid {
+.img__new {
     width: 100%;
     height: auto;
 }

@@ -23,6 +23,7 @@
     margin: 0px 20px;
     font-size: 1.2rem;
     transition: transform 1s ease;
+    font-family: textPopins;
 }
 
 .nav-link:hover {
@@ -44,7 +45,7 @@
     position: absolute;
     box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
     min-width: 200px;
-    
+    z-index: 1001;
 }
 
 .custom-dropdown-item {
@@ -58,11 +59,6 @@
 .custom-dropdown-item:hover {
     background-color: #f1f1f1;
     border-radius: 5px;
-}
-
-.drop__item {
-    border-bottom: 1px solid #003f1f;
-    border-top: 1px solid #003f1f;
 }
 
 /* Mostrar el menú desplegable al pasar el mouse */
@@ -79,6 +75,7 @@
 .button__login {
     color: #006431;
     border-radius: 25px;
+    font-family: textPopins;
 }
 
 .button__login:hover {
@@ -98,6 +95,10 @@
     border: none;
 }
 
+.menu__desplegable{
+    font-family: textPopins;
+}
+
 .button__nav {
     background-color: #006431;
     border: none;
@@ -113,6 +114,10 @@
     font-size: 2rem;
 }
 
+.container__deplebable {
+    position: relative;
+}
+
 @media screen and (min-width: 992px) {
     .button__nav {
         display: none;
@@ -120,9 +125,7 @@
 }
 
 @media screen and (max-width: 991px) {
-    .custom-dropdown-menu {
-        position: fixed; 
-        top: 200px; 
-        right: 420px; 
+    .menu__desplegable {
+        position: static !important;
     }
 }

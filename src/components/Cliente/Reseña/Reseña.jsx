@@ -102,7 +102,7 @@ function Reseña() {
           {errorMensaje && <p className="error">{errorMensaje}</p>}
         </div>
         <div className="container__reseñaInputs">
-          <button className="button__reseña">Enviar</button>
+          <button className="button__reseña">Publicar</button>
         </div>
       </form>
     </div>

@@ -56,7 +56,7 @@ function AsideDashboard() {
                 <p className="letra__perfil">{inicial}</p>
               </div>
             </button>
-            <ul className="dropdown-menu menu__desplegable">
+            <ul className="dropdown-menu menu__desplegableAsie">
               <li className="list__deplegable">
                 <button onClick={handleLogout} className="dropdown-item icon__aside--desplegable">
                   <i className="fa-solid fa-arrow-right-from-bracket"></i> Cerrar Sesión

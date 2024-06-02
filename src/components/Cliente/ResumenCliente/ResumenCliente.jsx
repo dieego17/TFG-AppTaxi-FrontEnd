@@ -30,14 +30,14 @@ function ResumenCliente({ mostrar }) {
       <section className="section__promociones">
         <h2 className="h2__promociones">Promociones y Recomendaciones</h2>
         <div className="container__tarjetaPromociones">
-            <div className="card">
-                <img src={discount} className="card-img-top" alt="..." />
+            <div className="card card__promociones">
+                <img src={discount} className="card-img-top img__promociones" alt="..." />
                 <div className="card-body">
                     <h5 className="card-title card__titlePro">Viaja gratis después de 5 viajes</h5>
                 </div>
             </div>
-            <div className="card">
-                <img src={aeropuerto} className="card-img-top" alt="..." />
+            <div className="card card__promociones">
+                <img src={aeropuerto} className="card-img-top img__promociones" alt="..." />
                 <div className="card-body">
                     <h5 className="card-title card__titlePro">Reserva un taxi para tu viaje al aeropuerto</h5>
                 </div>
@@ -47,13 +47,13 @@ function ResumenCliente({ mostrar }) {
 
       <section className="container__recomendaciones">
         <h2 className="h2__noticias">Noticias y Actualizaciones</h2>
-        <div className="card mb-3">
+        <div className="card mb-3 card__news">
           <div className="row g-0">
             <div className="col-md-4">
-              <img src={newRutas} className="img-fluid rounded-start" alt="Nuevas Rutas Disponibles" />
+              <img src={newRutas} className="img-fluid img__new rounded-start" alt="Nuevas Rutas Disponibles" />
             </div>
             <div className="col-md-8">
-              <div className="card-body">
+              <div className="card-body body__cardNews">
                 <h5 className="card-title card__titleTarjeta">¡Nuevas Rutas Disponibles!</h5>
                 <p className="card-text card__textTarjeta">
                   Estamos emocionados de anunciar nuevas rutas para tu conveniencia.
@@ -63,10 +63,10 @@ function ResumenCliente({ mostrar }) {
             </div>
           </div>
         </div>
-        <div className="card mb-3">
+        <div className="card card__news mb-3">
           <div className="row g-0">
             <div className="col-md-8">
-              <div className="card-body">
+              <div className="card-body body__cardNews">
                 <h5 className="card-title card__titleTarjeta">Servicio al Cliente 24/7</h5>
                 <p className="card-text card__textTarjeta">
                   Nuestro equipo de atención al cliente está disponible las 24 horas del día,
@@ -75,17 +75,17 @@ function ResumenCliente({ mostrar }) {
               </div>
             </div>
             <div className="col-md-4">
-              <img src={foto24} className="img-fluid rounded-end" alt="Servicio al Cliente 24/7" />
+              <img src={foto24} className="img-fluid img__new rounded-end" alt="Servicio al Cliente 24/7" />
             </div>
           </div>
         </div>
-        <div className="card mb-3">
+        <div className="card card__news mb-3">
           <div className="row g-0">
             <div className="col-md-4">
-              <img src={payApp} className="img-fluid rounded-start" alt="Próximamente: Pagos mediante la App" />
+              <img src={payApp} className="img-fluid img__new rounded-start" alt="Próximamente: Pagos mediante la App" />
             </div>
             <div className="col-md-8">
-              <div className="card-body">
+              <div className="card-body body__cardNews">
                 <h5 className="card-title card__titleTarjeta">Próximamente: Pagos mediante la App</h5>
                 <p className="card-text card__textTarjeta">
                   Pronto podrás realizar tus pagos directamente a través de nuestra app.
