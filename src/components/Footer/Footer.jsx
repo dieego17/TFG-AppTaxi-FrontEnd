@@ -30,9 +30,9 @@ function Footer() {
             <div className='col-lg-3 col-sm-12 container__follow'>
               <h3 className='h3__footer'>Síguenos</h3>
               <ul className='p-0 ul__list--rrss'>
-                <li className='list__footer'><a className='link__footer' href='/'><i className="fa-brands fa-instagram link--footer--rrss"></i></a></li>
-                <li className='list__footer'><a className='link__footer' href='/'><i className="fa-brands fa-facebook-f link--footer--rrss"></i></a></li>
-                <li className='list__footer'><a className='link__footer' href='/'><i className="fa-brands fa-x-twitter link--footer--rrss"></i></a></li>
+                <li className='list__footer'><a className='link__footer' href='https://www.instagram.com/'><i className="fa-brands fa-instagram link--footer--rrss"></i></a></li>
+                <li className='list__footer'><a className='link__footer' href='https://www.facebook.com/'><i className="fa-brands fa-facebook-f link--footer--rrss"></i></a></li>
+                <li className='list__footer'><a className='link__footer' href='https://x.com/home'><i className="fa-brands fa-x-twitter link--footer--rrss"></i></a></li>
               </ul>
             </div>
           </article>

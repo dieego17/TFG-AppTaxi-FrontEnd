@@ -73,7 +73,7 @@ function Home() {
           <h2 className="text-center pt-5 supertitle__servicios">Nuestros Servicios</h2>
           <div className="row justify-content-center text-center container__tarjetas">
             <TarjetaServicios
-              enlace={"servicios/ciudad-a-ciudad"}
+              enlace={"servicios"}
               titulo={"Viajes de ciudad a ciudad"}
               imagen={ciudadCiudad}
               texto={
@@ -81,7 +81,7 @@ function Home() {
               }
             />
             <TarjetaServicios
-              enlace={"servicios/recogida-inmediata"}
+              enlace={"servicios"}
               titulo={"Recogida inmediata"}
               imagen={recogidainmediata}
               texto={
@@ -89,7 +89,7 @@ function Home() {
               }
             />
             <TarjetaServicios
-              enlace={"servicios/viaje-por-horas"}
+              enlace={"servicios"}
               titulo={"Alquiler por horas y día completo"}
               imagen={horasDias}
               texto={
@@ -138,7 +138,7 @@ function Home() {
           <div className="container__tarjetas--testimonios">
             <div className="brand-list">
               <div className="wrapper">
-              <TarjetaTestimonio testimonios={testimonios} key={testimonios.id} />
+              <TarjetaTestimonio testimonios={testimonios} key={testimonios} />
               </div>
             </div>
           </div>

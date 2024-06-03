@@ -1,10 +1,10 @@
 /* eslint-disable no-unused-vars */
 import React from 'react'
 
-function ViajeHoras() {
+function Servicios() {
   return (
-    <div>ViajeHoras</div>
+    <div>Servicios</div>
   )
 }
 
-export default ViajeHoras
+export default Servicios

@@ -7,7 +7,7 @@ function TarjetaTestimonio({testimonios}) {
     <div className=' text-center justify-content-center container__reseñas'>
         {
             testimonios.map(testimonio => (
-              <div className="card tarjeta__reseña col-5 m-3" key={testimonio.id}>
+              <div className="card tarjeta__reseña col-5 m-3" key={testimonio.id_testimonio}>
                 <div className="card-body">
                   <h5 className="card-title text-success nombre__reseñas">{testimonio.cliente.usuario.nombre} {testimonio.cliente.usuario.apellidos}</h5>
                   <p className="card-text nombre__reseñas">{testimonio.mensaje_testimonio}</p>

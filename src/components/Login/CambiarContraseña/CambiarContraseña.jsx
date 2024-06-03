@@ -119,7 +119,7 @@ function CambiarContraseña() {
                   <div className="container__login--group mb-3 ">
                     <div className="d-flex justify-content-between align-items-center col-12">
                       <label className="label__login" htmlFor="password">
-                        Contraseña
+                        Nueva Contraseña
                       </label>
                       {errorPass && <p className="error__login">{errorPass}</p>}
                     </div>

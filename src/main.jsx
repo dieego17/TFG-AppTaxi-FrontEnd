@@ -4,14 +4,12 @@ import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Home from './components/Home/Home';
 import Layout from './components/Layout';
-import QuienesSomos from './components/QuienesSomos';
+import QuienesSomos from './components/QuienesSomos/QuienesSomos';
 import Login from './components/Login/Login';
 import Dashboard from './components/Dashboard/Dashboard';
 import RegisterTaxista from './components/Register/RegisterTaxista';
 import RegisterCliente from './components/Register/RegisterCliente';
-import RecogidaInmedia from './components/RecogidaInmediata/RecogidaInmedia';
-import CiudadaCiudad from './components/CiudadaCiudad/CiudadaCiudad';
-import ViajeHoras from './components/ViajeHoras/ViajeHoras';
+import Servicios from './components/Servicios/Servicios';
 import Cliente from './components/Cliente/Cliente';
 import AllClientes from './components/Dashboard/AllClientes/AllClientes';
 import GraficaBeneficios from './components/Dashboard/GraficaBeneficios/GraficaBeneficios';
@@ -36,10 +34,8 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<Home />} />
-        <Route path="quienes-somos" element={<QuienesSomos />} />
-        <Route path="servicios/recogida-inmediata" element={<RecogidaInmedia />} />
-        <Route path="servicios/ciudad-a-ciudad" element={<CiudadaCiudad />} />
-        <Route path="servicios/viaje-por-horas" element={<ViajeHoras />} />
+        <Route path="/quienes-somos" element={<QuienesSomos />} />
+        <Route path="/servicios" element={<Servicios />} />
       </Route>
       <Route path="/login" element={<Login />} />
       <Route path="/login/cambiar-contraseña" element={<CambiarContraseña />} />

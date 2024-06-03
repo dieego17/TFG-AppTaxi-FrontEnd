@@ -23,15 +23,10 @@ function Header() {
                   Inicio
                 </Link>
               </li>
-              <li className="nav-item dropdown custom-dropdown">
-                <Link to={'/servicios'} className="nav-link dropdown-toggle custom-dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Servicios
+              <li className="nav-item">
+                <Link to={'/servicios'} className="nav-link">
+                Servicios
                 </Link>
-                <ul className="custom-dropdown-menu">
-                  <li><Link to={'/servicios/ciudad-a-ciudad'} className="custom-dropdown-item texto__headerDesplegable"><i className="fa-solid fa-road"></i> Viajes de ciudad a ciudad</Link></li>
-                  <li><Link to={'/servicios/recogida-inmediata'} className="custom-dropdown-item texto__headerDesplegable drop__item"><i className="fa-solid fa-truck-fast"></i> Recogida inmediata</Link></li>
-                  <li><Link to={'/servicios/viaje-por-horas'} className="custom-dropdown-item texto__headerDesplegable"><i className="fa-regular fa-clock"></i> Alquiler por horas y día completo</Link></li>
-                </ul>
               </li>
               <li className="nav-item">
                 <Link to={'/quienes-somos'} className="nav-link">
