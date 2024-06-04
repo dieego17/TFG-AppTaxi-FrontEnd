@@ -1,0 +1,20 @@
+.container__servicios{
+    margin-top: 170px;
+}
+.title__pageServicios{
+    text-align: center;
+    font-family: titlePopins;
+    color: #006431;
+}
+
+.section__cardServicios{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.svg__airport{
+    width: 80px;
+    
+}

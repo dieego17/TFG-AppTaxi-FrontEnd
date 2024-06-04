@@ -21,9 +21,7 @@ function Footer() {
               <h3 className='h3__footer'>Enlaces útiles</h3>
               <ul className='p-0'>
                 <li className='list__footer'><Link className='link__footer' to={'/'} >Inicio</Link></li>
-                <li className='list__footer'><Link className='link__footer' to={'/servicios/ciudad-a-ciudad'} >Viajes de ciudad a ciudad</Link></li>
-                <li className='list__footer'><Link className='link__footer' to={'/servicios/recogida-inmediata'} >Recogida inmediata</Link></li>
-                <li className='list__footer'><Link className='link__footer' to={'/servicios/viaje-por-horas'} >Alquiler por horas y día completo</Link></li>
+                <li className='list__footer'><Link className='link__footer' to={'/servicios'} >Servicios</Link></li>
                 <li className='list__footer'><Link className='link__footer' to={'/quienes-somos'} >Quiénes Somos</Link></li>
               </ul>
             </div>

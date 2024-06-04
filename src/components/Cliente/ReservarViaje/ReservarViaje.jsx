@@ -190,24 +190,25 @@ function ReservarViaje() {
     let precio;
 
     if (distancia < 5) {
-      precio = 4 + (distancia + 1) * precioPorKilometro;
+        precio = 4 + (distancia + 1) * precioPorKilometro;
     } else {
-      precio = distancia * precioPorKilometro;
+        precio = distancia * precioPorKilometro;
     }
 
     // Redondeo el precio a dos decimales
     precio = parseFloat(precio.toFixed(2));
 
     const calcularIva = (precio) => {
-      const resta = (precio * 0.1).toFixed(1);
-      return parseFloat(resta) + precio;
+        const iva = parseFloat((precio * 0.1).toFixed(2));
+        return parseFloat((iva + precio).toFixed(2));
     };
 
     // Añadir IVA
     const precioConIva = calcularIva(precio);
 
     setPrecioTotal(precioConIva);
-  };
+};
+
 
   const handleSubmit = async (event) => {
     event.preventDefault();

@@ -129,6 +129,17 @@ function InsertarGanancias() {
             </div>
           )
         }
+        <div className="container__body">
+              <div className="notificacion__container">
+                <div className="notificacion__body">
+                  <i className="notificacion__icon fa-regular fa-circle-check"></i>
+                  <p className="texto__success--grande">
+                    Ganancia insertada correctamente.
+                  </p>
+                </div>
+                <div className="notifiacion__progress"></div>
+              </div>
+            </div>
         <form className="formulario__ganancias">
           <div className="form-group">
             <label className="label__ganancia" htmlFor="descripcionGanancias">Descripción:</label>
