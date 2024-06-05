@@ -1,26 +1,33 @@
 /* eslint-disable no-unused-vars */
-import React from 'react'
-import { Outlet } from 'react-router-dom'
-import Header from './Header/Header.jsx'
-import Footer from './Footer/Footer.jsx'
+import React from 'react';
+import { Outlet } from 'react-router-dom';
+import { useBackendError } from '../auth/useBackEndErrorContext'; 
+import Header from './Header/Header.jsx';
+import Footer from './Footer/Footer.jsx';
+import Mantenimiento from './Mantenimiento/Mantenimiento.jsx';
 
-//componente de Layout 
+// Componente de Layout
 function Layout() {
+  const { backendError } = useBackendError();
   return (
     <div>
-      {/* Componente Header para que el menu se muestre en todas las pantallas */}
-        <header>
+      {backendError ? (
+        <Mantenimiento />
+      ) : (
+        <div>
+          <header>
             <Header />
-        </header>
-        {/* Coponenete Outlet para que se muestre toda la información de las rutas aqui */}
-        <main>
+          </header>
+          <main>
             <Outlet />
-        </main>
-        <footer>
-            <Footer/>
-        </footer>
+          </main>
+          <footer>
+            <Footer />
+          </footer>
+        </div>
+      )}
     </div>
-  )
+  );
 }
 
-export default Layout
+export default Layout;
