@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 
@@ -22,7 +23,7 @@ export const BackendErrorProvider = ({ children }) => {
         const response = await fetch(`${ApiUrl}/status`); 
         // Si el estado no es 200, lanza un error
         if (!response.ok) {
-          throw new Error('Backend not reachable');
+          throw new Error('Backend no funcionando correctamente');
         }
         // Si el estado es 200 y hay un error, establece el estado como no error
         if (backendError) {
@@ -40,6 +41,7 @@ export const BackendErrorProvider = ({ children }) => {
     // Comprobar el estado del backend cada 30 segundos
     const interval = setInterval(checkBackendStatus, 30000); 
     return () => clearInterval(interval);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

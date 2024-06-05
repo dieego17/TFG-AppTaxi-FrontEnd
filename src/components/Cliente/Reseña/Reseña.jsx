@@ -9,6 +9,7 @@ function Reseña() {
   const [mensaje, setMensaje] = useState("");
   const [errorMensaje, setErrorMensaje] = useState("");
   const [errorPuntuacion, setErrorPuntuacion] = useState("");
+  const [successAlert, setSuccessAlert] = useState(false);
 
   // ID del usuario
   const token = localStorage.getItem("token");
@@ -63,10 +64,28 @@ function Reseña() {
     }
 
     await createTestimonio(idUsuario, mensaje, puntuacion);
+    setSuccessAlert(true);
+    setMensaje("");
+    setPuntuacion(0);
   };
 
   return (
     <div className="container__reseña">
+      {
+        successAlert && (
+          <div className="container__body">
+              <div className="notificacion__container">
+                <div className="notificacion__body">
+                  <i className="notificacion__icon fa-regular fa-circle-check"></i>
+                  <p className="texto__success--grande">
+                    Gasto insertado correctamente.
+                  </p>
+                </div>
+                <div className="notifiacion__progress"></div>
+              </div>
+            </div>
+        )
+      }
       <h1 className="h1__reseña">Valoranos <i className="fa-regular fa-thumbs-up"></i></h1>
       <form onSubmit={handleSubmit} action="" className="form__reseña">
         <div className="container__reseñaInputs">
