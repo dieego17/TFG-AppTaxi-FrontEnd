@@ -54,7 +54,7 @@ function HeaderCliente() {
               </li>
               <li className="nav-item dropdown custom-dropdown">
                 <a className="nav-link btn btn-light button__login dropdown-toggle custom-dropdown-toggle" role="button">
-                  {userName} {apellidos}
+                <i className="fa-solid fa-user"></i> {userName} {apellidos}
                 </a>
                 <ul className="custom-dropdown-menu">
                   <li><Link onClick={handleLogout} className="custom-dropdown-item"><i className="fa-solid fa-arrow-right-from-bracket"></i> Cerrar Sesión</Link></li>

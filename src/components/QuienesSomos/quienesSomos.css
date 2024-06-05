@@ -1,9 +1,11 @@
-.container__serviciosPage{
+.container__quienesSomos{
     margin-top: 170px;
+
 }
-.title__pageServicios{
+.h1__titleQuienes{
     text-align: center;
     font-family: titlePopins;
     color: #006431;
     font-size: 2rem;
+
 }

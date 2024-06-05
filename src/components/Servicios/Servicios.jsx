@@ -5,8 +5,8 @@ import './servicios.css'
 
 function Servicios() {
   return (
-    <div className='container__servicios'>
-      <h2 className='title__pageServicios'>Nuestos Servicios</h2>
+    <div className='container__serviciosPage'>
+      <h2 className='title__pageServicios'>Servicios</h2>
       <section>
         <article>
           

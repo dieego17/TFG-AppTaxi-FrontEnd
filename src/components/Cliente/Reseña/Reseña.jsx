@@ -78,7 +78,7 @@ function Reseña() {
                 <div className="notificacion__body">
                   <i className="notificacion__icon fa-regular fa-circle-check"></i>
                   <p className="texto__success--grande">
-                    Gasto insertado correctamente.
+                    Reseña publicada correctamente.
                   </p>
                 </div>
                 <div className="notifiacion__progress"></div>
