@@ -1,11 +1,145 @@
 .container__quienesSomos{
-    margin-top: 170px;
-
+    margin-top: 140px;
 }
-.h1__titleQuienes{
+.container__fondo{
+    width: 100%;
+    position: relative;
+}
+.img__fondo{
+    width: 100%;
+    height: 500px;
+    object-fit: cover;
+    object-position: 50% 38%;
+    filter: brightness(0.6);
+    position: absolute;
+    position: relative;
+}
+
+.container__titleQuienes{
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    width: 30%;
     text-align: center;
+    position: absolute;
+    top: 100%;
+    left: 30%;
+    background-color: #006431;
+    border-top-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    padding: 1%;
+}
+
+.h1__titleQuienes{
+    font-family: titlePopins;
+    color: #ffffff;
+    z-index: 1;
+}
+
+.container__informacionQuienes {
+    display: flex;
+    flex-wrap: wrap; 
+    justify-content: space-around;
+    align-items: flex-start;
+    margin-top: 120px;
+}
+
+.container__textoInfo {
+    width: 100%;
+    max-width: 600px; 
+    margin: 0 auto; 
+    margin-bottom: 20px; 
+    margin-left: 10px;
+}
+.titleInfo__h1{
     font-family: titlePopins;
     color: #006431;
-    font-size: 2rem;
+}
+.icon__info{
+    font-size: 1.5rem;
+    color: #006431;
+}
+.container__textInfo{
+    display: flex;
+    margin-top: 20px;
+    color: #006431;
+    justify-content: start;
+    align-items: flex-start;
+}
+.container__textObj{
+    margin-left: 30px;
+}
+.h3__titleInfo{
+    font-family: titlePopins;
+    font-size: 1.2rem;
+    text-align: left;
+}
+.text__info{
+    font-family: textPopins;
+    text-align: justify;
+    padding: 0px 80px 0px 0px;
+}
 
+.container__imagenInfo {
+    width: 100%; 
+    max-width: 600px; 
+    margin: 0 auto; 
+}
+.img__info{
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    object-position: 50% 38%;
+    position: absolute;
+    position: relative;
+}
+.container__mapaubicancion{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 70px;
+    margin-bottom: 20px;
+}
+.h1__contacto{
+    font-family: titlePopins;
+    color: #006431;
+    padding-bottom: 10px;
+}
+.text__contacto{
+    font-family: textPopins;
+    text-align: center;
+    color: #006431;
+}
+.mapa__ubicacion{
+    width: 100%;
+    border-radius: 10px;
+    height: 400px;
+    margin-top: 10px;
+}
+
+@media screen and (max-width: 1024px){
+    .container__titleQuienes{
+        width: 50%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .container__titleQuienes {
+        width: 290px; 
+        left: 50%; 
+    }
+    .h1__titleQuienes{
+        font-size: 2rem;
+    }
+}
+
+@media screen and (max-width: 425px) {
+    .container__titleQuienes {
+        width: 290px; 
+        left: 50%; 
+    }
+    .h1__titleQuienes{
+        font-size: 1.5rem;
+    }
+    
 }

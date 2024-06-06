@@ -13,6 +13,15 @@
     overflow-y: auto; 
 }
 
+.h3__register{
+    font-family: titlePopins;
+    color: #006431;
+}
+
+.text__register {
+    font-family: textPopins;
+    color: #006431;
+}
 
 
 .section__login {

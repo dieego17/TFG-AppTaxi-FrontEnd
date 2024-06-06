@@ -229,8 +229,8 @@ function RegisterCliente() {
               <article className="article__logo mb-3">
                 <img className="login__logo" src={logo} alt="logo" />
                 <div className="container__texto--login">
-                  <h3>Registro cliente</h3>
-                  <p>Crea una nueva cuenta</p>
+                  <h3 className="h3__register">Registro cliente</h3>
+                  <p className="text__register">Crea una nueva cuenta</p>
                 </div>
               </article>
               {
