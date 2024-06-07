@@ -63,16 +63,15 @@ function ClienteDetalle() {
 
   //Función para cancelar el viaje
   const handleCancelarViaje = async () => {
-
     if (!viajeSeleccionado) return;
-
+  
     const viajeId = viajeSeleccionado;
-
+  
+    // Actualizar el estado local para eliminar el viaje cancelado
+    setViajes(prevViajes => prevViajes.filter(viaje => viaje.id_viaje !== viajeId));
+  
     // Actualizar el estado en la base de datos
     await cancelarViajeTaxista(viajeId);
-
-    window.location.reload();
-
   };
 
   // Obtener los datos del viaje

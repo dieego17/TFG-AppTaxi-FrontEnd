@@ -1,20 +1,32 @@
 /* eslint-disable no-unused-vars */
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useGanancias } from "../../../../hooks/useGanancias";
 import { deleteGanancia } from "../../../../services/deleteGanancia";
 
 function AllGanancias() {
   const token = localStorage.getItem("token");
-  const idUsuario = token ? JSON.parse(atob(token.split(".")[1])).id_usuario: "";
+  const idUsuario = token ? JSON.parse(atob(token.split(".")[1])).id_usuario : "";
 
+  // Estado para almacenar la página actual
   const [currentPage, setCurrentPage] = useState(1);
   const gananciasPerPage = 4;
+  // Calcular el índice del último gasto y del primer gasto
   const indexOfLastGanancia = currentPage * gananciasPerPage;
   const indexOfFirstGanancia = indexOfLastGanancia - gananciasPerPage;
 
-  const ganancias = useGanancias(idUsuario);
+  // Obtener todas las ganancias usando el hook
+  const allGanancias = useGanancias(idUsuario);
+  console.log(allGanancias);
+  // Estado para almacenar las ganancias
+  const [ganancias, setGanancias] = useState(allGanancias);
 
+ // Actualizar el estado cuando las ganancias se carguen
+ useEffect(() => {
+    setGanancias(allGanancias);
+  }, [allGanancias]);
+
+  // Obtener las ganancias actuales
   const currentGanancias = ganancias.slice(
     indexOfFirstGanancia,
     indexOfLastGanancia
@@ -27,16 +39,22 @@ function AllGanancias() {
   const handleDelete = async () => {
     if (!gananciaSeleccionada) return;
 
+    // Llamar a la función para eliminar una ganancia
     const deleted = await deleteGanancia(gananciaSeleccionada.id_ganancia);
+    // Si se elimina la ganancia, actualizar el estado
     if (deleted) {
-      window.location.reload();
+      // Filtrar las ganancias para eliminar la ganancia seleccionada
+      setGanancias(ganancias.filter(g => g.id_ganancia !== gananciaSeleccionada.id_ganancia));
+      setGananciaSeleccionada(null);
     }
   };
 
   const handleEliminarClick = (ganancia) => {
+    // Almacenar la ganancia seleccionada
     setGananciaSeleccionada(ganancia);
   };
 
+  // Formatear la fecha
   const formatDate = (date) => {
     return new Date(date).toLocaleDateString();
   };
@@ -59,7 +77,7 @@ function AllGanancias() {
               <th className="table__th">Descripción</th>
               <th className="table__th">Ganancia Total</th>
               <th className="table__th">Fecha</th>
-              <th className="tabñe__th">Eliminar</th>
+              <th className="table__th">Eliminar</th>
             </tr>
           </thead>
           <tbody className="table__tbody">
@@ -86,7 +104,7 @@ function AllGanancias() {
           </tbody>
         </table>
       ) : (
-        <p>No existen ganancias.</p>
+        <p className="no__clientes">No existen ganancias.</p>
       )}
       <div
         className="modal fade"
@@ -104,7 +122,7 @@ function AllGanancias() {
             </div>
             <div className="modal-body">
               <p>¿Estas seguro que quieres eliminar la ganancia de {gananciaSeleccionada &&
-                  gananciaSeleccionada.descripcion_ganancia}?<br />
+                gananciaSeleccionada.descripcion_ganancia}?<br />
                 Este proceso no podrá deshacerse.
               </p>
             </div>

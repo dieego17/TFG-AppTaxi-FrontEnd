@@ -98,7 +98,7 @@
     align-items: center;
     flex-direction: column;
     margin-top: 70px;
-    margin-bottom: 20px;
+    margin-bottom: 50px;
 }
 .h1__contacto{
     font-family: titlePopins;
@@ -115,6 +115,7 @@
     border-radius: 10px;
     height: 400px;
     margin-top: 10px;
+    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.30);
 }
 
 @media screen and (max-width: 1024px){

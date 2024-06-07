@@ -55,7 +55,6 @@ function MisReservas() {
         // Se actualiza el estado de las reservas
         prevReservas.filter((reserva) => reserva.id_reserva !== reservaId)
       );
-      window.location.reload();
     }
   };
 

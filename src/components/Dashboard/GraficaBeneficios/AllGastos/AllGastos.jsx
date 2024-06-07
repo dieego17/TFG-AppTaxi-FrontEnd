@@ -1,9 +1,9 @@
 /* eslint-disable no-unused-vars */
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useGastos } from "../../../../hooks/useGastos";
 import { deleteGasto } from "../../../../services/deleteGasto";
-import './allgastos.css'
+import './allgastos.css';
 
 function AllGastos() {
   const token = localStorage.getItem("token");
@@ -11,26 +11,38 @@ function AllGastos() {
     ? JSON.parse(atob(token.split(".")[1])).id_usuario
     : "";
 
+  // Estado para almacenar la página actual
   const [currentPage, setCurrentPage] = useState(1);
 
   const gastosPerPage = 4;
   const indexOfLastGasto = currentPage * gastosPerPage;
   const indexOfFirstGasto = indexOfLastGasto - gastosPerPage;
 
-  const gastos = useGastos(idUsuario);
+  // Obtener todos los gastos usando el hook
+  const allGastos = useGastos(idUsuario);
+  const [gastos, setGastos] = useState([]);
 
+  // Actualizar el estado cuando los gastos se carguen
+  useEffect(() => {
+    setGastos(allGastos);
+  }, [allGastos]);
+
+  // Obtener los gastos actuales
   const currentGastos = gastos.slice(indexOfFirstGasto, indexOfLastGasto);
 
   // Estado para almacenar el gasto seleccionado
   const [gastoSeleccionado, setGastoSeleccionado] = useState(null);
 
-  // Función para eliminar una gasto
+  // Función para eliminar un gasto
   const handleDelete = async () => {
     if (!gastoSeleccionado) return;
 
+    // Llamar a la función para eliminar un gasto
     const deleted = await deleteGasto(gastoSeleccionado.id_gasto);
+    // Si se elimina el gasto, actualizar el estado
     if (deleted) {
-      window.location.reload();
+      setGastos(gastos.filter(g => g.id_gasto !== gastoSeleccionado.id_gasto));
+      setGastoSeleccionado(null);
     }
   };
 
@@ -40,6 +52,7 @@ function AllGastos() {
   };
 
   const handleEliminarClick = (gasto) => {
+    // Almacenar el gasto seleccionado
     setGastoSeleccionado(gasto);
   };
 
@@ -83,7 +96,7 @@ function AllGastos() {
           </tbody>
         </table>
       ) : (
-        <p>No existen gastos.</p>
+        <p className="no__clientes">No existen gastos.</p>
       )}
       <div
         className="modal fade"
@@ -100,7 +113,7 @@ function AllGastos() {
               </h1>
             </div>
             <div className="modal-body">
-              <p>¿Estas seguro que quieres eliminar el gasto de {gastoSeleccionado && gastoSeleccionado.descripcion_gasto}?<br />
+              <p>¿Estás seguro que quieres eliminar el gasto de {gastoSeleccionado && gastoSeleccionado.descripcion_gasto}?<br />
                 Este proceso no podrá deshacerse.
               </p>
             </div>
