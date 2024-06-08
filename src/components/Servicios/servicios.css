@@ -1,11 +1,13 @@
-.container__serviciosPage{
+.container__serviciosPage {
     margin-top: 140px;
 }
-.container__fondo{
+
+.container__fondo {
     width: 100%;
     position: relative;
 }
-.img__fondoServicios{
+
+.img__fondoServicios {
     width: 100%;
     height: 500px;
     object-fit: cover;
@@ -15,10 +17,201 @@
     position: relative;
 }
 
-.title__pageServicios{
+.title__pageServicios {
     text-align: center;
     font-family: titlePopins;
     color: #006431;
-    text-align: center;
     padding-top: 30px;
+}
+
+.container__serviciosApp {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.container__cardApp {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 80px;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.img__serviciosApp {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+.list__cardServices {
+    color: #006431;
+    font-family: textPopins;
+    text-align: justify;
+}
+
+.h2__cardServicios {
+    font-family: titlePopins;
+    color: #006431;
+    text-align: center;
+    font-size: 1.5rem;
+}
+
+.title__cardServices {
+    color: #006431;
+    text-align: center;
+    font-size: 1.8rem;
+}
+
+.h2__serviciosApp {
+    font-family: titlePopins;
+    color: #006431;
+}
+
+.text__serviciosApp {
+    font-family: textPopins;
+    color: #006431;
+    text-align: justify;
+}
+
+.container__cardServices {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 70px 0px;
+}
+
+.container__textServicios{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    align-items: left;
+    padding: 40px;
+    box-sizing: border-box;
+    border-radius: 5px;
+
+}
+
+.text__cardServices{
+    font-family: textPopins;
+    color: #006431;
+    margin-top: 10px;
+    text-align: center;
+    font-size: 1rem;
+}
+
+.card__services {
+    width: 300px;
+    margin: 20px;
+    transition: 0.3s;
+    overflow: hidden;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.btn__cardServices {
+    background-color: #006431;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+    text-align: center;
+    text-decoration: none;
+}
+
+.btn__cardServices:hover {
+    background-color: #004d27;
+}
+
+.container__mapaMundo {
+    margin-top: 50px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 70px;
+}
+
+.h2__mapaMundo {
+    font-family: titlePopins;
+    color: #ffffff;
+    text-align: center;
+}
+
+.text__mapaMundo {
+    font-family: textPopins;
+    color: #ffffff;
+    text-align: justify;
+    margin-top: 20px;
+}
+
+.container__textMapa {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #006431;
+    padding: 40px;
+    box-sizing: border-box;
+    border-radius: 5px;
+}
+
+.container__mapaImg {
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.img__mapaMundo {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+/* Media Queries */
+@media (min-width: 768px) {
+    .container__cardApp {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .container__textServicios {
+        width: 60%;
+        padding: 20px;
+    }
+
+    .img__serviciosApp {
+        width: 35%;
+        margin-top: 0;
+    }
+
+    .container__mapaMundo {
+        flex-direction: row;
+    }
+}
+
+@media (min-width: 1024px) {
+    .container__textMapa {
+        width: 50%;
+        padding: 60px;
+    }
+
+    .container__mapaImg {
+        width: 50%;
+        padding: 0;
+    }
 }

@@ -1,7 +1,6 @@
 /* eslint-disable no-unused-vars */
-// src/components/Dashboard/Dashboard.js
 import React, { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom'; // Importa useLocation para obtener la ubicación actual
+import { useLocation } from 'react-router-dom'; 
 import { Outlet } from 'react-router-dom';
 import AsideDashboard from './AsideDashboard/AsideDashboard';
 import ResumenDashboard from './ResumenDashboard/ResumenDashboard';

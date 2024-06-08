@@ -11,6 +11,9 @@ function AllGastos() {
     ? JSON.parse(atob(token.split(".")[1])).id_usuario
     : "";
 
+
+    const [alertDelete, setAlertDelete] = useState(false);
+
   // Estado para almacenar la página actual
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -43,6 +46,7 @@ function AllGastos() {
     if (deleted) {
       setGastos(gastos.filter(g => g.id_gasto !== gastoSeleccionado.id_gasto));
       setGastoSeleccionado(null);
+      setAlertDelete(true);
     }
   };
 
@@ -58,6 +62,21 @@ function AllGastos() {
 
   return (
     <div>
+      {
+        alertDelete && (
+          <div className="container__body">
+              <div className="notificacion__container">
+                <div className="notificacion__body">
+                  <i className="notificacion__icon fa-regular fa-circle-check"></i>
+                  <p className="texto__success--grande">
+                    Gasto eliminado correctamente.
+                  </p>
+                </div>
+                <div className="notifiacion__progress"></div>
+              </div>
+            </div>
+        )
+      }
       <h2 className="h2__graficaGanancias">Todos los Gastos</h2>
       <div className="container__button--perdida">
         <Link to='/dashboard/resumen-financiero/añadir-gasto' className='button__perdida'>

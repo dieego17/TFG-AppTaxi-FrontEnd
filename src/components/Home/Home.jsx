@@ -40,13 +40,6 @@ function Home() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Función para hacer scroll hacia arriba
-  function handleScrollTop() {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth"
-    });
-  }
   
 
   return (

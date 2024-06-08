@@ -8,6 +8,8 @@ function AllGanancias() {
   const token = localStorage.getItem("token");
   const idUsuario = token ? JSON.parse(atob(token.split(".")[1])).id_usuario : "";
 
+  const [alertDelete, setAlertDelete] = useState(false);
+
   // Estado para almacenar la página actual
   const [currentPage, setCurrentPage] = useState(1);
   const gananciasPerPage = 4;
@@ -46,6 +48,7 @@ function AllGanancias() {
       // Filtrar las ganancias para eliminar la ganancia seleccionada
       setGanancias(ganancias.filter(g => g.id_ganancia !== gananciaSeleccionada.id_ganancia));
       setGananciaSeleccionada(null);
+      setAlertDelete(true);
     }
   };
 
@@ -61,6 +64,21 @@ function AllGanancias() {
 
   return (
     <div>
+      {
+        alertDelete && (
+          <div className="container__body">
+              <div className="notificacion__container">
+                <div className="notificacion__body">
+                  <i className="notificacion__icon fa-regular fa-circle-check"></i>
+                  <p className="texto__success--grande">
+                    Ganancia eliminada correctamente.
+                  </p>
+                </div>
+                <div className="notifiacion__progress"></div>
+              </div>
+            </div>
+        )
+      }
       <h2 className="h2__graficaGanancias">Todas las Ganancias</h2>
       <div className="container__button--ganancia">
         <Link

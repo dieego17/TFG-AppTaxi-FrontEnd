@@ -3,10 +3,32 @@ import React from 'react'
 import './quienesSomos.css'
 import imgFondo from '../../assets/images/aboutUs.jpg'
 import mision from '../../assets/images/mision.jpeg'
+import { useEffect } from 'react'
 
 function QuienesSomos() {
+
+  const [showScrollButton, setShowScrollButton] = React.useState(false);
+
+  // Mostrar botón de scroll cuando se hace scroll
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY  > 100) { 
+        setShowScrollButton(true);
+      } else {
+        setShowScrollButton(false);
+      }
+    };
+
+    // Evento para hacer scroll
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
     <div className='container__quienesSomos'>
+      <div className={`flecha__arriba ${showScrollButton ? 'visible' : ''}`} onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
+        <i className="fa-solid fa-arrow-up"></i>
+      </div>
       <div className='container__fondo'>
         <img className='img__fondo' src={imgFondo} alt="" />
         <div className='container__titleQuienes'>

@@ -14,6 +14,8 @@ function ClienteDetalle() {
   const token = localStorage.getItem("token");
   const idUsuario = token ? JSON.parse(atob(token.split(".")[1])).id_usuario : "";
 
+  const [alertDelete, setAlertDelete] = useState(false);
+
   // Obtener el id del viaje de la ruta
   const params = useParams();
   const id = params.id;
@@ -72,6 +74,8 @@ function ClienteDetalle() {
   
     // Actualizar el estado en la base de datos
     await cancelarViajeTaxista(viajeId);
+
+    setAlertDelete(true);
   };
 
   // Obtener los datos del viaje
@@ -85,10 +89,6 @@ function ClienteDetalle() {
     setViajes(fetchedViajes);
   }, [fetchedViajes]);
 
-  const calcularIva = (precio) => {
-    const resta = (precio * 0.1).toFixed(1);
-    return parseFloat(resta) + precio;
-  };
 
   return (
     <div>
@@ -96,6 +96,21 @@ function ClienteDetalle() {
         <p className="no__clientes">No existen viajes para este cliente</p>
       ) : (
         <div>
+          {
+            alertDelete && (
+              <div className="container__body">
+                <div className="notificacion__container">
+                  <div className="notificacion__body">
+                    <i className="fa-solid fa-circle-check"></i>
+                    <p className="texto__success--grande">
+                      Viaje cancelado correctamente.
+                    </p>
+                  </div>
+                  <div className="notifiacion__progress"></div>
+                </div>
+              </div>
+            )
+          }
           <h1 className="h1__allClientes">Todos los Viajes</h1>
           <table className="table">
             <thead>
@@ -172,7 +187,7 @@ function ClienteDetalle() {
                     </div>
                   </div>
                   </td>
-                  <td className="table__td" data-label="Precio">{calcularIva(viaje.precioTotal_viaje)}€</td>
+                  <td className="table__td" data-label="Precio">{viaje.precioTotal_viaje}€</td>
                   <td className="table__td" data-label="Crear factura">
                     {viaje.estado_viaje === 'Finalizado' ? (
                       <PDFDownloadLink document={<Pdf viaje={viaje} />} fileName="factura.pdf">
