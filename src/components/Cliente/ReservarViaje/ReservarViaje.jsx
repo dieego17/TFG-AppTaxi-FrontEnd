@@ -40,10 +40,14 @@ function ReservarViaje() {
   const taxistas = useTaxistas();
 
   const validateOrigen = (origen) => {
+
+    const primeraLetraOrigen = origen.charAt(0).toUpperCase();
+    const primeraLetraDestino = destino.charAt(0).toUpperCase();
+
     if (!origen) {
       setErrorOrigen("Introduce una direccion de origen.");
       return false;
-    } else if (origen === destino) {
+    } else if (primeraLetraOrigen === primeraLetraDestino) {
       setErrorOrigen("El origen y el destino no pueden ser iguales.");
       return false;
     } else if (origen != destino) {
