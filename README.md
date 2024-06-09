@@ -39,13 +39,13 @@ Sigue estos pasos para configurar y ejecutar el proyecto en tu entorno local.
 1. Clona este repositorio
 
    ```bash
-   git clone https://github.com/tu-usuario/app-taxio-frontend.git
+   git clone https://github.com/tu-usuario/TFG-AppTaxi-FrontEnd.git
    ```
 
 2. Navega al directorio del proyecto
 
    ```bash
-   cd app-taxio-frontend
+   cd TFG-AppTaxi-FrontEnd
    ```
 
 3. Instala las dependencias
