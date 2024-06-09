@@ -211,7 +211,17 @@ function RegisterTaxista() {
     e.preventDefault();
 
     // Validar los campos del formulario
-    if(!validateName(name) || !validateLastName(lastName) || !validatePhone(phone) || !validateEmail(email) || !validatePassword(password) || !validateRepitePassword(repitePassword) || !validateDNI(DNI) || !validateDireccionUsuario(direccionUsuario) || !vehiculo) { 
+    if(!validateName(name) || 
+    !validateLastName(lastName) || 
+    !validatePhone(phone) || 
+    !validateEmail(email) || 
+    !validatePassword(password) || 
+    !validateRepitePassword(repitePassword) || 
+    !validateDNI(DNI) || 
+    !validateDireccionUsuario(direccionUsuario) || 
+    !validateNumCuenta(numeroCuenta) ||
+    !validateVehiculo(vehiculo)
+  ) { 
       return;
     }
 
