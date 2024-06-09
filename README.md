@@ -31,9 +31,6 @@ AppTaxio es una aplicación web diseñada para facilitar la gestión diaria de l
 - **JWT (jsonwebtoken)**: Para la autenticación y autorización basada en tokens.
 - **Axios**: Para realizar peticiones HTTP.
 - **React Router**: Para la navegación dentro de la aplicación.
-- **Formik**: Para la gestión de formularios y validación.
-- **Yup**: Para la validación de esquemas en los formularios.
-- **React Bootstrap**: Componentes de Bootstrap para React.
 
 ## Instalación
 
@@ -60,10 +57,10 @@ Sigue estos pasos para configurar y ejecutar el proyecto en tu entorno local.
 4. Inicia la aplicación
 
    ```bash
-   npm start
+   npm run dev
    ```
 
-## Capturas de Pantalla
+## Capturas Aplicación
 
 ### Página de Inicio
 
@@ -86,7 +83,7 @@ Sigue estos pasos para configurar y ejecutar el proyecto en tu entorno local.
 
 ## Licencia
 
-Este proyecto está bajo la Licencia MIT. Mira el archivo [LICENSE](LICENSE) para más detalles.
+Este proyecto está bajo la Licencia MIT.
 
 ## Contacto
 
