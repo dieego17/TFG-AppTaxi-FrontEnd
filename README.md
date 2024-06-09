@@ -90,5 +90,5 @@ Este proyecto está bajo la Licencia MIT. Mira el archivo [LICENSE](LICENSE) par
 
 ## Contacto
 
-Si tienes alguna pregunta o sugerencia, no dudes en contactarme a través de [tu-email@example.com](mailto:diegorubio1704.drs@gmail.com).
+Si tienes alguna pregunta o sugerencia, no dudes en contactarme a través de (mailto:diegorubio1704.drs@gmail.com).
 
