@@ -23,7 +23,8 @@ export const BackendErrorProvider = ({ children }) => {
         const response = await fetch(`${ApiUrl}/status`); 
         // Si el estado no es 200, lanza un error
         if (!response.ok) {
-          throw new Error('Backend no funcionando correctamente');
+          //Si hay un error, establece el estado como error
+          setBackendError(true);
         }
         // Si el estado es 200 y hay un error, establece el estado como no error
         if (backendError) {
