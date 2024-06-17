@@ -43,17 +43,19 @@ function RegisterTaxista() {
   };
 
   const validatePassword = (password) => {
-    setPasswordError("Introduzca una contraseña");
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/;
     if (password === "") {
       setPasswordError("Introduzca una contraseña");
       return false;
-    } else if (password.length < 6) {
-      setPasswordError("Debe tener al menos 6 caracteres");
+    } else if (password.length < 8) {
+      setPasswordError("La contraseña debe tener al menos 8 caracteres.");
       return false;
-    } else {
-      setPasswordError("");
-      return true;
+    } else if (!passwordRegex.test(password)) {
+      setPasswordError("La contraseña debe tener caracteres especiales.");
+      return false;
     }
+    setPasswordError("");
+    return true;
   };
 
   const validateRepitePassword = (repitePassword) => {
@@ -108,6 +110,18 @@ function RegisterTaxista() {
       setDniError("Introduzca un DNI válido");
       return false;
     }
+
+    // Verificación adicional para la letra correcta
+    const number = DNI.slice(0, 8);
+    const letter = DNI.slice(8).toUpperCase();
+    const validLetters = "TRWAGMYFPDXBNJZSQVHLCKE";
+    const calculatedLetter = validLetters[number % 23];
+
+    if (letter !== calculatedLetter) {
+      setDniError("La letra del DNI no es correcta");
+      return false;
+    }
+
     setDniError("");
     return true;
   };
@@ -125,10 +139,26 @@ function RegisterTaxista() {
     if (numeroCuenta === "") {
       setErrorNumCuenta("Introduzca un número de cuenta.");
       return false;
-    } else if (numeroCuenta.length < 10 || numeroCuenta.length > 20) {
-      setErrorNumCuenta("Debe tener entre 10 y 20 caracteres");
+    }
+
+    // Validación básica del formato IBAN (longitud y caracteres)
+    const ibanRegex = /^[A-Z0-9]+$/;
+    if (!ibanRegex.test(numeroCuenta) || numeroCuenta.length < 15 || numeroCuenta.length > 34) {
+      setErrorNumCuenta("Número de cuenta no válido.");
       return false;
     }
+
+    // Verificación adicional de IBAN usando el algoritmo de validación MOD-97-10
+    const iban = numeroCuenta.toUpperCase().replace(/[^A-Z0-9]/g, ''); // Eliminar caracteres no válidos
+    const rearranged = iban.slice(4) + iban.slice(0, 4);
+    const numericIban = rearranged.replace(/[A-Z]/g, (char) => char.charCodeAt(0) - 55);
+    const mod97 = BigInt(numericIban) % 97n;
+
+    if (mod97 !== 1n) {
+      setErrorNumCuenta("Número de cuenta no válido.");
+      return false;
+    }
+
     setErrorNumCuenta("");
     return true;
   };

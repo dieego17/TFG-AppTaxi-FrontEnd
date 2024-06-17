@@ -29,16 +29,19 @@ function Login() {
   };
 
   const validatePassword = (password) => {
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/;
     if (password === "") {
       setErrorPass("Introduzca una contraseña");
       return false;
-    } else if (password.length < 6) {
-      setErrorPass("Debe tener al menos 6 caracteres");
+    } else if (password.length < 8) {
+      setErrorPass("Debe tener al menos 8 caracteres.");
       return false;
-    } else {
-      setErrorPass("");
-      return true;
+    } else if (!passwordRegex.test(password)) {
+      setErrorPass("Debe tener caracteres especiales.");
+      return false;
     }
+    setErrorPass("");
+    return true;
   };
 
   const handleEmailChange = (e) => {

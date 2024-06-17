@@ -42,17 +42,19 @@ function RegisterCliente() {
   };
 
   const validatePassword = (password) => {
-    setPasswordError("Introduzca una contraseña");
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/;
     if (password === "") {
       setPasswordError("Introduzca una contraseña");
       return false;
-    } else if (password.length < 6) {
-      setPasswordError("Debe tener al menos 6 caracteres");
+    } else if (password.length < 8) {
+      setPasswordError("La contraseña debe tener al menos 8 caracteres.");
       return false;
-    } else {
-      setPasswordError("");
-      return true;
+    } else if (!passwordRegex.test(password)) {
+      setPasswordError("La contraseña debe tener caracteres especiales.");
+      return false;
     }
+    setPasswordError("");
+    return true;
   };
 
   const validateRepitePassword = (repitePassword) => {
@@ -107,6 +109,18 @@ function RegisterCliente() {
       setDniError("Introduzca un DNI válido");
       return false;
     }
+
+    // Verificación adicional para la letra correcta
+    const number = DNI.slice(0, 8);
+    const letter = DNI.slice(8).toUpperCase();
+    const validLetters = "TRWAGMYFPDXBNJZSQVHLCKE";
+    const calculatedLetter = validLetters[number % 23];
+
+    if (letter !== calculatedLetter) {
+      setDniError("La letra del DNI no es correcta");
+      return false;
+    }
+
     setDniError("");
     return true;
   };
