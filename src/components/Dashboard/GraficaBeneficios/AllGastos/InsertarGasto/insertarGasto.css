@@ -43,9 +43,9 @@
     font-family: textPopins;
 }
 
-.button__insertarGasto{
+.button__insertarGasto {
     padding: 10px;
-    background-color: rgba(255, 99, 132, 1);
+    background: linear-gradient(135deg, #f76c6c, #c05555);
     color: white;
     border: none;
     border-radius: 5px;

@@ -83,7 +83,7 @@ function AllGanancias() {
       <div className="container__button--ganancia">
         <Link
           to="/dashboard/resumen-financiero/añadir-ganancia"
-          className="button__ganancia"
+          className="button__ganancias button__insertar--ganancia"
         >
           Insertar Nueva Ganancia
         </Link>

@@ -79,7 +79,7 @@ function AllGastos() {
       }
       <h2 className="h2__graficaGanancias">Todos los Gastos</h2>
       <div className="container__button--perdida">
-        <Link to='/dashboard/resumen-financiero/añadir-gasto' className='button__perdida'>
+        <Link to='/dashboard/resumen-financiero/añadir-gasto' className='button__perdidas button__insertar--gasto'>
           Insertar Nuevo Gasto
         </Link>
       </div>

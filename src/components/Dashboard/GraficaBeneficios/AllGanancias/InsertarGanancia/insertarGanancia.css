@@ -42,7 +42,7 @@
 
 .button__insertarGanancia{
     padding: 10px;
-    background-color: rgba(54, 162, 235, 1);
+    background: linear-gradient(135deg, #3caea3, #2b8c81);
     color: white;
     border: none;
     border-radius: 5px;

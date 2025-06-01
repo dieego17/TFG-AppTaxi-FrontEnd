@@ -1,82 +1,102 @@
-canvas {
-    max-width: 100%;
-    height: auto;
+/* Contenedor principal de la gráfica */
+.container__grafica {
+    margin: 20px auto;
+    max-width: 800px;
+    background: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: box-shadow 0.3s ease;
 }
 
-.link__container{
-    display: flex;
-    justify-content: space-around;
-    margin-top: 20px;
+.container__grafica:hover {
+    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.15);
 }
-.container__grafica{
-    width: 100%;
-    margin: 0 auto;
-    margin-bottom: 50px;
-}
-.h2__grafica{
+
+/* Título de la gráfica */
+.h2__grafica {
     text-align: center;
-
-    font-family: titlePopins;
+    font-family: 'Poppins', sans-serif;
     color: #006431;
+    font-size: 2.2rem;
+    margin: 20px 0;
+    font-weight: 700;
+}
 
-    font-size: 40px;
+/* Contenedor de la gráfica */
+.chart-container {
+    width: 100%;
+    max-height: 450px;
+    padding: 20px;
+    background: linear-gradient(135deg, #f0f4f8, #e9ecef);
 }
-.link__text{
-    color: #ffffff;
-    text-decoration: none;
-    background-color: rgba(54, 162, 235, 1);
-    padding: 10px;
-    border-radius: 5px;
-    transition: background-color 0.3s;
-    font-family: textPopins;
-    font-size: 0.9rem;
 
-}
-.button__ganancia{
-    background-color: rgba(54, 162, 235, 1);
-    color: #ffffff;
-    padding: 5px;
-    border-radius: 5px;
-    text-decoration: none;
-    transition: background-color 0.3s;
-    margin: 0px 15px;
-    font-family: textPopins;
-}
-.container__button--perdida, .container__button--ganancia{
+/* Botones */
+.link__container {
     display: flex;
     justify-content: center;
-    margin-bottom: 10px;
-
+    gap: 20px;
+    margin: 15px 0 25px 0;
 }
-.button__perdida{
-    background-color: rgba(255, 99, 132, 1);
-    color: #ffffff;
-    padding: 5px;
-    border-radius: 5px;
+
+.button__ganancias,
+.button__perdidas {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px 24px;
+    border-radius: 10px;
+    font-weight: 600;
     text-decoration: none;
-    transition: background-color 0.3s;
-    margin: 10px 0px;
+    font-family: 'Poppins', sans-serif;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
 }
 
-.link__text:hover{
-    background-color: rgba(54, 162, 235, 0.7);
+/* Botón de ganancias */
+.button__ganancias {
+    background: linear-gradient(135deg, #3caea3, #2b8c81);
+    color: #fff;
 }
 
-.link__text--perdidas{
-    background-color: rgba(255, 99, 132, 1);;
+.button__ganancias:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
 }
 
-.link__text--perdidas:hover{
-    background-color: rgba(255, 99, 132, 0.7);
+/* Botón de pérdidas */
+.button__perdidas {
+    background: linear-gradient(135deg, #f76c6c, #c05555);
+    color: #fff;
 }
 
-.icon__basura{
-    color: red;
+.button__perdidas:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
 }
 
-@media screen and (max-width: 1024px) {
-    .link__text{
-        font-size: 0.75rem;
+/* Ajustes generales */
+canvas {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+/* Media query para pantallas más pequeñas */
+@media screen and (max-width: 768px) {
+    .h2__grafica {
+        font-size: 1.8rem;
     }
-    
+
+    .button__ganancias,
+    .button__perdidas {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+    }
+
+    .link__container {
+        flex-direction: column;
+        gap: 10px;
+    }
 }

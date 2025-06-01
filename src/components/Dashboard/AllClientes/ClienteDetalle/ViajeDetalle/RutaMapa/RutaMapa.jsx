@@ -1,121 +1,192 @@
 /* eslint-disable no-unused-vars */
-import React, { useState, useEffect, useRef } from 'react';
-import { useParams, Link } from 'react-router-dom';
-import { useLoadScript, GoogleMap, DirectionsService, DirectionsRenderer } from '@react-google-maps/api';
-import { useOneViajeRuta } from '../../../../../../hooks/useOneViajeRuta';
-import distance from '../../../../../../assets/images/distance.png';
-import './ruta.css';
-
-const bibliotecas = ["places"];
-
-const opcionesMapa = {
-  disableDefaultUI: true,
-  zoomControl: true,
-};
+import React, { useEffect, useState } from "react";
+import { useParams, Link } from "react-router-dom";
+import {
+  MapContainer,
+  TileLayer,
+  Marker,
+  Popup,
+  Polyline,
+} from "react-leaflet";
+import "leaflet/dist/leaflet.css";
+import { useOneViajeRuta } from "../../../../../../hooks/useOneViajeRuta";
+import distanceIcon from "../../../../../../assets/images/distance.png";
+import "./ruta.css";
 
 function RutaMapa() {
-  const API_KEY = import.meta.env.VITE_GOOGLE_MAPS_API;
-  const token = localStorage.getItem("token");
-  const idUsuario = token ? JSON.parse(atob(token.split(".")[1])).id_usuario : "";
-
-  const [directions, setDirections] = useState(null);
-  const [mapCenter, setMapCenter] = useState({ lat: 0, lng: 0 });
-  const mapRef = useRef(null);
-
-  const { isLoaded, loadError } = useLoadScript({
-    googleMapsApiKey: API_KEY,
-    libraries: bibliotecas,
-  });
-
   const params = useParams();
   const id = params.id;
 
   const ruta = useOneViajeRuta(id);
 
-  const formatDate = (date) => {
-    return new Date(date).toLocaleDateString();
+  const [origenCoords, setOrigenCoords] = useState(null);
+  const [destinoCoords, setDestinoCoords] = useState(null);
+  const [rutaCoords, setRutaCoords] = useState([]);
+  const [distancia, setDistancia] = useState(null);
+
+  const API_KEY = import.meta.env.VITE_OPENROUTESERVICE_APIKEY;
+
+  const formatDate = (date) => new Date(date).toLocaleDateString();
+
+  const geocodeAddress = async (address) => {
+    try {
+      const response = await fetch(
+        `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(
+          address
+        )}`
+      );
+      const data = await response.json();
+  
+      if (data && data.length > 0) {
+        return {
+          lat: parseFloat(data[0].lat),
+          lng: parseFloat(data[0].lon),
+        };
+      } else {
+        console.warn("No se encontró la dirección:", address);
+        return null;
+      }
+    } catch (error) {
+      console.error("Error en la geocodificación:", error);
+      return null;
+    }
   };
+  
 
   useEffect(() => {
-    if (ruta && isLoaded && ruta.origen_viaje && ruta.destino_viaje) {
-      const directionsService = new window.google.maps.DirectionsService();
-      directionsService.route(
-        {
-          origin: ruta.origen_viaje,
-          destination: ruta.destino_viaje,
-          travelMode: window.google.maps.TravelMode.DRIVING,
-        },
-        (result, status) => {
-          if (status === window.google.maps.DirectionsStatus.OK) {
-            setDirections(result);
+    const obtenerDatos = async () => {
+      if (ruta && ruta.origen_viaje && ruta.destino_viaje) {
+        const origen = await geocodeAddress(`${ruta.origen_viaje}, España`);
+        const destino = await geocodeAddress(`${ruta.destino_viaje}, España`);
 
-            const bounds = new window.google.maps.LatLngBounds();
-            result.routes[0].overview_path.forEach(point => {
-              bounds.extend(point);
-            });
+        setOrigenCoords(origen);
+        setDestinoCoords(destino);
 
-            mapRef.current.fitBounds(bounds);
-          } else {
-            console.error(`Error al obtener direcciones: ${result}`);
+        console.log("Coordenadas origen:", origen);
+        console.log("Coordenadas destino:", destino);
+
+        if (origen && destino) {
+          try {
+            const response = await fetch(
+              "https://api.openrouteservice.org/v2/directions/driving-car/geojson",
+              {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                  Authorization: API_KEY,
+                },
+                body: JSON.stringify({
+                  coordinates: [
+                    [origen.lng, origen.lat],
+                    [destino.lng, destino.lat],
+                  ],
+                }),
+              }
+            );
+
+            const data = await response.json();
+            console.log("Respuesta completa OpenRouteService:", data);
+
+            if (data && data.features && data.features.length > 0) {
+              const coordinates = data.features[0].geometry.coordinates.map(
+                (coord) => [coord[1], coord[0]]
+              );
+              setRutaCoords(coordinates);
+
+              const distanciaKm =
+                data.features[0].properties.summary.distance / 1000;
+              setDistancia(`${distanciaKm.toFixed(2)} km`);
+            } else {
+              console.error("No se encontraron rutas en la respuesta:", data);
+            }
+          } catch (error) {
+            console.error("Error en la petición a OpenRouteService:", error);
           }
         }
-      );
-    }
-  }, [ruta, isLoaded]);
+      }
+    };
 
-  if (loadError) return <div>Error al cargar el mapa</div>;
-  if (!isLoaded) return <div>Cargando el Mapa</div>;
+    obtenerDatos();
+  }, [ruta, API_KEY]);
 
-  let distancia = null;
-  if (directions) {
-    distancia = directions.routes[0].legs[0].distance.text;
-  }
+  const centroMapa = origenCoords || { lat: 40.4168, lng: -3.7038 }; // por defecto, Madrid
 
   return (
-    <div className='container__ruta container'>
+    <div className="container__ruta container">
       {ruta && ruta.reserva && (
-        <div className='container__info' key={ruta.id_viaje}>
-          <h1 className='h1__allClientes'>Ruta Viaje</h1>
-          <table className='ruta__table'>
+        <div className="container__info">
+          <h1 className="h1__allClientes">Ruta Viaje</h1>
+          <table className="ruta__table">
             <tbody>
               <tr>
-                <td className='td__title'><i className="fa-regular fa-compass icono__ruta"></i>Origen: </td>
-                <td className='td__info'>{ruta.origen_viaje}</td>
+                <td className="td__title">
+                  <i className="fa-regular fa-compass icono__ruta"></i>Origen:{" "}
+                </td>
+                <td className="td__info">{ruta.origen_viaje}</td>
               </tr>
               <tr>
-                <td className='td__title'><i className="fa-solid fa-location-dot icono__ruta"></i>Destino: </td>
-                <td className='td__info'>{ruta.destino_viaje}</td>
+                <td className="td__title">
+                  <i className="fa-solid fa-location-dot icono__ruta"></i>
+                  Destino:{" "}
+                </td>
+                <td className="td__info">{ruta.destino_viaje}</td>
               </tr>
               <tr>
-                <td className='td__title'><img className='icono__ruta' src={distance} alt="" />Distancia: </td>
-                <td className='td__info'>{distancia}</td>
+                <td className="td__title">
+                  <img className="icono__ruta" src={distanceIcon} alt="" />
+                  Distancia:{" "}
+                </td>
+                <td className="td__info">{distancia || "Calculando..."}</td>
               </tr>
               <tr>
-                <td className='td__title'><i className="fa-regular fa-calendar-days icono__ruta"></i>Fecha: </td>
-                <td className='td__info'>{formatDate(ruta.fecha_viaje)}</td>
+                <td className="td__title">
+                  <i className="fa-regular fa-calendar-days icono__ruta"></i>
+                  Fecha:{" "}
+                </td>
+                <td className="td__info">{formatDate(ruta.fecha_viaje)}</td>
               </tr>
               <tr>
-                <td className='td__title'><i className="fa-regular fa-clock icono__ruta"></i>Hora: </td>
-                <td className='td__info'>{ruta.hora_viaje}</td>
+                <td className="td__title">
+                  <i className="fa-regular fa-clock icono__ruta"></i>Hora:{" "}
+                </td>
+                <td className="td__info">{ruta.hora_viaje}</td>
               </tr>
             </tbody>
           </table>
-          <div className='container__buttonVolver'>
-            <Link className='button__volver' to={`/dashboard/clientes/viajes-detalle/${ruta.reserva.id_cliente}`}>
+          <div className="container__buttonVolver">
+            <Link
+              className="button__volver"
+              to={`/dashboard/clientes/viajes-detalle/${ruta.reserva.id_cliente}`}
+            >
               Volver
             </Link>
           </div>
         </div>
       )}
-      <div className='container__mapa'>
-        <GoogleMap
-          mapContainerStyle={{ width: '100%', height: '100%', borderRadius: '30px', boxShadow: '0 0 10px 0 rgba(0, 0, 0, 0.2)', zIndex: '-1'}}
-          center={mapCenter}
-          options={opcionesMapa}
-          onLoad={map => mapRef.current = map}
-        >
-          {directions && <DirectionsRenderer directions={directions} />}
-        </GoogleMap>
+      <div className="container__mapa">
+        {origenCoords && destinoCoords && (
+          <MapContainer
+            center={centroMapa}
+            zoom={7}
+            style={{
+              width: "100%",
+              height: "100%",
+              borderRadius: "30px",
+              boxShadow: "0 0 10px 0 rgba(0, 0, 0, 0.2)",
+            }}
+          >
+            <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+            <Marker position={origenCoords}>
+              <Popup>Origen: {ruta.origen_viaje}</Popup>
+            </Marker>
+            <Marker position={destinoCoords}>
+              <Popup>Destino: {ruta.destino_viaje}</Popup>
+            </Marker>
+            {rutaCoords.length > 0 && (
+              <Polyline positions={rutaCoords} color="blue" />
+            )}
+          </MapContainer>
+        )}
       </div>
     </div>
   );
