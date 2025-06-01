@@ -15,7 +15,6 @@
     "@fullcalendar/interaction": "^6.1.17",
     "@fullcalendar/react": "^6.1.17",
     "@fullcalendar/timegrid": "^6.1.17",
-    "@react-google-maps/api": "2.19.3",
     "@react-pdf/renderer": "3.4.4",
     "bootstrap": "5.3.3",
     "bootstrap-icons": "1.11.3",

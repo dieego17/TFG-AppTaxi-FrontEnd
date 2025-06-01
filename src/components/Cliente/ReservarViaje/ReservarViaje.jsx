@@ -147,8 +147,6 @@ function ReservarViaje() {
   };
 
   const handleBuscarDistancia = async () => {
-    const API_KEY = import.meta.env.VITE_GOOGLE_MAPS_API;
-
     if (
       !validateOrigen(origen) ||
       !validateDestino(destino) ||
@@ -159,35 +157,76 @@ function ReservarViaje() {
     ) {
       return;
     }
-
-    try {
-      const url = `https://maps.googleapis.com/maps/api/distancematrix/json?origins=${origen}&destinations=${destino}&key=${API_KEY}`;
-
-      const response = await fetch(url);
-      const data = await response.json();
-
-      if (data.status === "OK") {
-        const distanciaEnMetros = data.rows[0].elements[0].distance.value;
-        const distanciaEnKilometros = distanciaEnMetros / 1000;
-        setDistancia(distanciaEnKilometros);
-        setError(false);
-        calcularPrecioTotal(distanciaEnKilometros);
-        setIsDistanceCalculated(true);
-        // Después de calcular la distancia, mostrar el mapa y actualizar el key
-        setMostrarMapa(true);
-        // Actualizar el key del mapa para que se vuelva a renderizar si cambia de ciudad
-        setMapKey((prevKey) => prevKey + 1);
-      } else {
-        setError(
-          "Hubo un problema al buscar la distancia. Por favor, intenta de nuevo."
+  
+    const API_KEY = import.meta.env.VITE_OPENROUTESERVICE_APIKEY;
+  
+    const geocodeAddress = async (address) => {
+      try {
+        const response = await fetch(
+          `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(address)}`
         );
+        const data = await response.json();
+        if (data && data.length > 0) {
+          return {
+            lat: parseFloat(data[0].lat),
+            lng: parseFloat(data[0].lon),
+          };
+        } else {
+          console.warn("No se encontró la dirección:", address);
+          return null;
+        }
+      } catch (error) {
+        console.error("Error en la geocodificación:", error);
+        return null;
+      }
+    };
+  
+    try {
+      const origenCoords = await geocodeAddress(`${origen}, España`);
+      const destinoCoords = await geocodeAddress(`${destino}, España`);
+  
+      if (origenCoords && destinoCoords) {
+        const response = await fetch(
+          "https://api.openrouteservice.org/v2/directions/driving-car/geojson",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: API_KEY,
+            },
+            body: JSON.stringify({
+              coordinates: [
+                [origenCoords.lng, origenCoords.lat],
+                [destinoCoords.lng, destinoCoords.lat],
+              ],
+            }),
+          }
+        );
+  
+        const data = await response.json();
+        if (data && data.features && data.features.length > 0) {
+          const distanciaKm =
+            data.features[0].properties.summary.distance / 1000;
+          setDistancia(distanciaKm);
+          setError(false);
+          calcularPrecioTotal(distanciaKm);
+          setIsDistanceCalculated(true);
+          setMostrarMapa(true);
+          setMapKey((prevKey) => prevKey + 1);
+        } else {
+          setError(
+            "Hubo un problema al calcular la distancia. Por favor, intenta de nuevo."
+          );
+        }
+      } else {
+        setError("No se pudieron geocodificar las direcciones.");
       }
     } catch (error) {
-      setError(
-        "Hubo un problema al buscar la distancia. Por favor, intenta de nuevo."
-      );
+      console.error("Error al calcular la distancia:", error);
+      setError("Hubo un problema al calcular la distancia. Por favor, intenta de nuevo.");
     }
   };
+  
 
   const calcularPrecioTotal = (distancia) => {
     const precioPorKilometro = 1;
